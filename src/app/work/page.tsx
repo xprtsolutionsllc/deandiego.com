@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 export const metadata: Metadata = { title: "Work" };
@@ -38,7 +39,13 @@ export default function WorkPage() {
           {PROJECTS.map((p) => (
             <Link key={p.slug} href={`/work/${p.slug}`} className="group block">
               <div className="grid md:grid-cols-2 gap-10 items-center">
-                <ImagePlaceholder label={p.image} aspect="aspect-[16/10]" className="group-hover:border-[#DC2626]/30 transition" />
+                {p.slug === "xprt-cloud" ? (
+                  <div className="aspect-[16/10] rounded-xl overflow-hidden border border-white/10 group-hover:border-[#DC2626]/30 transition">
+                    <Image src="/images/xprt-cloud-dashboard.png" alt={p.image} width={1920} height={1080} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <ImagePlaceholder label={p.image} aspect="aspect-[16/10]" className="group-hover:border-[#DC2626]/30 transition" />
+                )}
                 <div>
                   <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{p.category}</div>
                   <div className="flex items-center gap-3 mb-3">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 export default function Home() {
@@ -76,7 +77,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <Link href="/work/xprt-cloud" className="group">
-              <ImagePlaceholder label="XPRT Cloud dashboard screenshot" className="mb-4 group-hover:border-[#DC2626]/30 transition" />
+              <div className="aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 group-hover:border-[#DC2626]/30 transition">
+                <Image src="/images/xprt-cloud-dashboard.png" alt="XPRT Cloud dashboard" width={1920} height={1080} className="w-full h-full object-cover" />
+              </div>
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-xl font-bold group-hover:text-[#DC2626] transition">XPRT Cloud</h3>
                 <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Built in 4 days</span>
