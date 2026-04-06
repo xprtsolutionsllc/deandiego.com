@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dean Diego — AI Solutions Architect",
+  title: { default: "Dean Diego — AI Solutions Architect", template: "%s | Dean Diego" },
   description: "I build what others plan. Full-stack platforms, autonomous drone systems, and AI integrations — shipped in days, not months.",
   openGraph: {
     title: "Dean Diego — AI Solutions Architect",
@@ -16,15 +18,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        {children}
+        <Nav />
+        <main className="flex-1 pt-16">{children}</main>
+        <Footer />
         <Toaster position="bottom-right" theme="dark" />
       </body>
     </html>
