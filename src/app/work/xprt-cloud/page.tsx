@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 export const metadata: Metadata = { title: "XPRT Cloud — Case Study" };
@@ -22,7 +23,16 @@ export default function XprtCloudPage() {
       {/* Hero image */}
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-6">
-          <ImagePlaceholder label="XPRT Cloud full dashboard screenshot" aspect="aspect-[2/1]" />
+          <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+            <Image
+              src="/images/xprt-cloud-dashboard.png"
+              alt="XPRT Cloud Dashboard — overview with stat cards, activity feed, job status"
+              width={1920}
+              height={1080}
+              className="w-full"
+              priority
+            />
+          </div>
         </div>
       </section>
 
