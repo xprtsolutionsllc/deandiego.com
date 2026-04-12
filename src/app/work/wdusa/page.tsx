@@ -66,7 +66,7 @@ export default function WdusaPage() {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-8">Tech stack.</h2>
           <div className="flex flex-wrap gap-2">
-            {["n8n", "WordPress", "PHP", "Docker", "PostgreSQL", "Google Business API", "Hostinger VPS", "Coolify"].map((t) => (
+            {["n8n", "WordPress", "PHP", "Zapier", "Gravity Forms", "Google Business API", "Asana API", "Claude Code"].map((t) => (
               <span key={t} className="px-3 py-1.5 bg-white/5 rounded-lg text-sm text-gray-400">{t}</span>
             ))}
           </div>
