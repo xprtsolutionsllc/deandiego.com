@@ -11,15 +11,15 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block mb-6 px-4 py-1.5 border border-[#DC2626]/30 rounded-full text-xs text-[#DC2626] font-medium tracking-wide uppercase">
-              AI-Powered Solutions Architect
+              FAA Part 107 Certified | Founder, XPRT Solutions LLC
             </div>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-              I build what
+              Engineer. Pilot.
               <br />
-              others <span className="text-[#DC2626]">plan.</span>
+              <span className="text-[#DC2626]">Builder.</span>
             </h1>
             <p className="text-lg text-gray-400 max-w-lg mb-8 leading-relaxed">
-              Full-stack platforms, autonomous drone systems, and AI integrations — shipped in days, not months. If you can describe it, I can build it.
+              Full-stack software, drone systems, and AI integrations — designed, built, and deployed by one person. If you can describe it, I can build it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-center">
