@@ -151,7 +151,7 @@ export default function ContactPage() {
 
             <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
               <h3 className="font-semibold mb-4">Prefer email?</h3>
-              <a href="mailto:xprtsolutionsllc@gmail.com" className="text-[#DC2626] text-sm hover:underline">xprtsolutionsllc@gmail.com</a>
+              <a href="mailto:dean@goxprt.com" className="text-[#DC2626] text-sm hover:underline">dean@goxprt.com</a>
             </div>
 
             <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">

@@ -28,7 +28,7 @@ export default function Footer() {
               <a href="https://linkedin.com/in/deandiego" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">LinkedIn</a>
               <a href="https://github.com/xprtsolutionsllc" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">GitHub</a>
               <a href="https://goxprt.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">XPRT Cloud</a>
-              <a href="mailto:xprtsolutionsllc@gmail.com" className="block text-sm text-gray-400 hover:text-white transition">Email</a>
+              <a href="mailto:dean@goxprt.com" className="block text-sm text-gray-400 hover:text-white transition">Email</a>
             </div>
           </div>
         </div>
