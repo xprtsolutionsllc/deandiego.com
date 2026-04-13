@@ -11,8 +11,8 @@ export default function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Please fill in your name, email, and project description.");
+    if (!formData.name || !formData.email || !formData.projectType || !formData.budget || !formData.timeline || !formData.message) {
+      toast.error("Please fill in all required fields.");
       return;
     }
     setSubmitting(true);
@@ -69,7 +69,7 @@ export default function ContactPage() {
 
               <div className="grid md:grid-cols-3 gap-5">
                 <div>
-                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Project Type</label>
+                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Project Type *</label>
                   <select value={formData.projectType} onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#DC2626]/50 transition appearance-none">
                     <option value="" className="bg-[#1A1A1A]">Select...</option>
@@ -82,7 +82,7 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Budget</label>
+                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Budget *</label>
                   <select value={formData.budget} onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#DC2626]/50 transition appearance-none">
                     <option value="" className="bg-[#1A1A1A]">Select...</option>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Timeline</label>
+                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Timeline *</label>
                   <select value={formData.timeline} onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                     className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#DC2626]/50 transition appearance-none">
                     <option value="" className="bg-[#1A1A1A]">Select...</option>

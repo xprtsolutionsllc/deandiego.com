@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const data = await req.json();
     const { name, email, company, projectType, budget, timeline, message } = data;
 
-    if (!name || !email || !message) {
+    if (!name || !email || !projectType || !budget || !timeline || !message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -18,10 +18,10 @@ export async function POST(req: Request) {
         `<b>New Project Request</b>\n\n` +
         `<b>Name:</b> ${name}\n` +
         `<b>Email:</b> ${email}\n` +
-        (company ? `<b>Company:</b> ${company}\n` : "") +
-        (projectType ? `<b>Type:</b> ${projectType}\n` : "") +
-        (budget ? `<b>Budget:</b> ${budget}\n` : "") +
-        (timeline ? `<b>Timeline:</b> ${timeline}\n` : "") +
+        `<b>Company:</b> ${company || "Not specified"}\n` +
+        `<b>Type:</b> ${projectType || "Not specified"}\n` +
+        `<b>Budget:</b> ${budget || "Not specified"}\n` +
+        `<b>Timeline:</b> ${timeline || "Not specified"}\n` +
         `\n<b>Message:</b>\n${message}`;
 
       await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
