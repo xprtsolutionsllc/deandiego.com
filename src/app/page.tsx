@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 export default function Home() {
   return (
@@ -96,7 +95,15 @@ export default function Home() {
               <p className="text-sm text-gray-400">Full-stack drone mapping SaaS — flight planning, AI analysis, GPU photogrammetry, 3D viewer, invoicing.</p>
             </Link>
             <Link href="/work/wdusa" className="group">
-              <ImagePlaceholder label="WDUSA systems / workflow screenshot" className="mb-4 group-hover:border-[#DC2626]/30 transition" />
+              <div className="aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 group-hover:border-[#DC2626]/30 transition">
+                <Image
+                  src="/images/wdusa-network.jpg"
+                  alt="Dealer network — 86 locations across the US"
+                  width={1672}
+                  height={941}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-xl font-bold group-hover:text-[#DC2626] transition">Window Depot USA</h3>
                 <span className="px-2.5 py-0.5 bg-white/10 text-gray-300 text-xs font-semibold rounded-full">86 locations</span>

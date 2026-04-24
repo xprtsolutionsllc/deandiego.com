@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 export const metadata: Metadata = { title: "Window Depot USA — Case Study" };
 
@@ -20,7 +20,15 @@ export default function WdusaPage() {
 
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-6">
-          <ImagePlaceholder label="WDUSA systems overview / workflow diagram" aspect="aspect-[2/1]" />
+          <div className="aspect-[2/1] rounded-xl overflow-hidden border border-white/10">
+            <Image
+              src="/images/wdusa-network.jpg"
+              alt="Illustrative dealer network — 86 locations connected across the United States"
+              width={1672}
+              height={941}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
