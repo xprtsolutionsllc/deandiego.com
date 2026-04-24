@@ -37,23 +37,14 @@ export default function AboutPage() {
               The common thread: I build things that work, fast, and I ship them to the real world. Not wireframes. Not pitch decks. Working systems that people use today.
             </p>
           </div>
-          <div className="md:col-span-2 space-y-6">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden border border-white/10">
+          <div className="md:col-span-2">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden border border-white/10 sticky top-24">
               <Image
                 src="/images/dean-headshot.jpg"
                 alt="Dean Diego portrait"
                 width={900}
                 height={1200}
                 className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="aspect-[3/4] rounded-xl overflow-hidden border border-white/10">
-              <Image
-                src="/images/dean-field.jpg"
-                alt="Dean Diego editorial portrait"
-                width={1000}
-                height={1333}
-                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
