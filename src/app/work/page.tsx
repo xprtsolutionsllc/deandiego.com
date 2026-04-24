@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 export const metadata: Metadata = { title: "Work" };
 
@@ -12,7 +11,8 @@ const PROJECTS = [
     category: "SaaS Platform",
     description: "Full-stack drone mapping SaaS — flight planning, AI analysis, GPU photogrammetry, 3D viewer, client portal, invoicing. Built in 4 days.",
     highlight: "Built in 4 days",
-    image: "XPRT Cloud dashboard",
+    imagePath: "/images/xprt-cloud-dashboard.png",
+    imageAlt: "XPRT Cloud dashboard",
   },
   {
     slug: "wdusa",
@@ -20,7 +20,8 @@ const PROJECTS = [
     category: "Enterprise Integration",
     description: "Systems integration for 86 independent dealer locations — automated workflows, CRM pipelines, marketing tooling, dealer management.",
     highlight: "86 locations",
-    image: "WDUSA workflow / dashboard",
+    imagePath: "/images/wdusa-network.jpg",
+    imageAlt: "Dealer network — 86 locations connected across the US",
   },
 ];
 
@@ -39,13 +40,9 @@ export default function WorkPage() {
           {PROJECTS.map((p) => (
             <Link key={p.slug} href={`/work/${p.slug}`} className="group block">
               <div className="grid md:grid-cols-2 gap-10 items-center">
-                {p.slug === "xprt-cloud" ? (
-                  <div className="aspect-[16/10] rounded-xl overflow-hidden border border-white/10 group-hover:border-[#DC2626]/30 transition">
-                    <Image src="/images/xprt-cloud-dashboard.png" alt={p.image} width={1920} height={1080} className="w-full h-full object-cover" />
-                  </div>
-                ) : (
-                  <ImagePlaceholder label={p.image} aspect="aspect-[16/10]" className="group-hover:border-[#DC2626]/30 transition" />
-                )}
+                <div className="aspect-[16/10] rounded-xl overflow-hidden border border-white/10 group-hover:border-[#DC2626]/30 transition">
+                  <Image src={p.imagePath} alt={p.imageAlt} width={1920} height={1200} className="w-full h-full object-cover" />
+                </div>
                 <div>
                   <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{p.category}</div>
                   <div className="flex items-center gap-3 mb-3">
