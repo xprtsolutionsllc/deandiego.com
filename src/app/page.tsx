@@ -31,7 +31,16 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:block">
-            <ImagePlaceholder label="Your photo — working with tech, drone, or at the desk" aspect="aspect-[4/5]" />
+            <div className="aspect-[4/5] rounded-xl overflow-hidden border border-white/10">
+              <Image
+                src="/images/dean-hero.jpg"
+                alt="Dean Diego with laptop and DJI drone at golden hour in the woods"
+                width={1200}
+                height={1500}
+                priority
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

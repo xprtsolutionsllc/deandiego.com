@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -38,8 +38,24 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="md:col-span-2 space-y-6">
-            <ImagePlaceholder label="Professional headshot or portrait" aspect="aspect-[3/4]" />
-            <ImagePlaceholder label="You with the drone / in the field" aspect="aspect-video" />
+            <div className="aspect-[3/4] rounded-xl overflow-hidden border border-white/10">
+              <Image
+                src="/images/dean-headshot.jpg"
+                alt="Dean Diego portrait"
+                width={900}
+                height={1200}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="aspect-[3/4] rounded-xl overflow-hidden border border-white/10">
+              <Image
+                src="/images/dean-field.jpg"
+                alt="Dean Diego editorial portrait"
+                width={1000}
+                height={1333}
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
           </div>
         </div>
       </section>
