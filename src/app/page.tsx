@@ -73,6 +73,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AI Sprint banner */}
+      <section className="py-16 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/10 via-[#DC2626]/5 to-transparent">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
+            <div>
+              <div className="inline-block mb-3 px-3 py-1 border border-[#DC2626]/40 rounded-full text-xs text-[#DC2626] font-medium tracking-wider uppercase">
+                Productized offer
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">
+                $4,500 AI Automation Sprint <span className="text-gray-500 font-normal">·</span> 14 days <span className="text-gray-500 font-normal">·</span> one bottleneck eliminated.
+              </h2>
+              <p className="text-gray-400 max-w-2xl">
+                Fixed-fee, fixed-scope. CRM routing, intake automation, AI-powered workflows. Built and shipped, not proposed.
+              </p>
+            </div>
+            <Link
+              href="/ai-sprint"
+              className="bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B91C1C] transition whitespace-nowrap text-center"
+            >
+              See the offer &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Featured work preview */}
       <section className="py-24 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
