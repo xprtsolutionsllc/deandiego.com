@@ -1,11 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "", email: "", company: "", projectType: "", budget: "", timeline: "", message: "",
+const TOPIC_PRESETS: Record<string, { projectType: string; budget: string; timeline: string; message: string }> = {
+  "ai-sprint": {
+    projectType: "ai-sprint",
+    budget: "1k-5k",
+    timeline: "1-2weeks",
+    message:
+      "I'd like to scope an AI Automation Sprint. The bottleneck I want eliminated is:\n\n",
+  },
+};
+
+const EMPTY_FORM = {
+  name: "", email: "", company: "", projectType: "", budget: "", timeline: "", message: "",
+};
+
+function ContactInner() {
+  const params = useSearchParams();
+  const topic = params.get("topic") || "";
+
+  const [formData, setFormData] = useState(() => {
+    const preset = TOPIC_PRESETS[topic];
+    if (!preset) return EMPTY_FORM;
+    return {
+      ...EMPTY_FORM,
+      projectType: preset.projectType,
+      budget: preset.budget,
+      timeline: preset.timeline,
+      message: preset.message,
+    };
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -24,7 +50,7 @@ export default function ContactPage() {
       });
       if (res.ok) {
         toast.success("Message sent! I'll get back to you within 24 hours.");
-        setFormData({ name: "", email: "", company: "", projectType: "", budget: "", timeline: "", message: "" });
+        setFormData(EMPTY_FORM);
       } else {
         toast.error("Something went wrong. Try emailing me directly.");
       }
@@ -73,6 +99,7 @@ export default function ContactPage() {
                   <select value={formData.projectType} onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#DC2626]/50 transition appearance-none">
                     <option value="" className="bg-[#1A1A1A]">Select...</option>
+                    <option value="ai-sprint" className="bg-[#1A1A1A]">AI Sprint ($4,500 / 2 weeks)</option>
                     <option value="website" className="bg-[#1A1A1A]">Website</option>
                     <option value="webapp" className="bg-[#1A1A1A]">Web Application</option>
                     <option value="ai" className="bg-[#1A1A1A]">AI Integration</option>
@@ -163,5 +190,13 @@ export default function ContactPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[60vh]" />}>
+      <ContactInner />
+    </Suspense>
   );
 }
