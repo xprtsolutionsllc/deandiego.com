@@ -12,6 +12,42 @@ const TOPIC_PRESETS: Record<string, { projectType: string; budget: string; timel
     message:
       "I'd like to scope an AI Automation Sprint. The bottleneck I want eliminated is:\n\n",
   },
+  "drone-realestate": {
+    projectType: "drone",
+    budget: "under1k",
+    timeline: "asap",
+    message:
+      "I'd like to schedule drone media for a property listing.\n\n" +
+      "Property address:\n\n" +
+      "Listing goes live:\n\n" +
+      "What I need (photos / video / both):\n\n" +
+      "Square footage / lot size:\n\n" +
+      "Notes:\n",
+  },
+  "drone-mapping": {
+    projectType: "drone",
+    budget: "1k-5k",
+    timeline: "1-2weeks",
+    message:
+      "I'd like to commission a drone mapping job.\n\n" +
+      "Site location:\n\n" +
+      "Approximate acreage:\n\n" +
+      "Deliverables (orthomosaic / 3D model / volumetrics / progress tracking):\n\n" +
+      "Deadline:\n\n" +
+      "Notes:\n",
+  },
+  "drone-video": {
+    projectType: "drone",
+    budget: "1k-5k",
+    timeline: "1-2weeks",
+    message:
+      "I'd like to commission drone video work.\n\n" +
+      "Project type (commercial / marketing / event / brand / other):\n\n" +
+      "Location:\n\n" +
+      "Deliverable format and length:\n\n" +
+      "Deadline:\n\n" +
+      "Notes:\n",
+  },
 };
 
 const EMPTY_FORM = {
