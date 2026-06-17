@@ -10,11 +10,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: "Dean Diego — AI Solutions Architect", template: "%s | Dean Diego" },
-  description: "I build what others plan. Full-stack platforms, autonomous drone systems, and AI integrations — shipped in days, not months.",
+  title: { default: "Dean Diego · Software Engineer & AI Systems Builder", template: "%s | Dean Diego" },
+  description: "Software engineer who builds full-stack applications, AI systems, and data pipelines end to end. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.",
   openGraph: {
-    title: "Dean Diego — AI Solutions Architect",
-    description: "Full-stack platforms, autonomous drone systems, and AI integrations — shipped in days, not months.",
+    title: "Dean Diego · Software Engineer & AI Systems Builder",
+    description: "Full-stack applications, AI systems, and data pipelines, built end to end. Open to senior and founding engineer roles.",
     url: "https://deandiego.com",
     type: "website",
   },

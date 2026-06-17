@@ -22,16 +22,16 @@ export default function AboutPage() {
               I use AI as a force multiplier to build production-grade systems at startup speed.
             </p>
             <p>
-              Based in Youngstown, Ohio — a city that knows what it means to rebuild. I take that same energy into everything I build. No fluff. No meetings that could have been emails. Just working software, deployed and live.
+              Based in Youngstown, Ohio, a city that knows what it means to rebuild. I take that same energy into everything I build. No fluff. No meetings that could have been emails. Just working software, deployed and live.
             </p>
             <p>
               By day, I&apos;m a Systems Integration Engineer at Window Depot USA, connecting 86 independent dealer locations through automated workflows, CRM pipelines, and marketing infrastructure. I&apos;ve built the systems that keep a national home improvement brand running at scale.
             </p>
             <p>
-              By night, I&apos;m building XPRT Solutions — a drone mapping SaaS platform and an American-made NDAA-compliant drone hardware company. I built the entire SaaS platform in 4 days, flew the first autonomous survey mission, and processed real aerial imagery into 3D models. Then I deployed a 9-agent AI research cluster to plan the hardware company. All in one weekend.
+              By night, I run XPRT Solutions, where I built a live drone-mapping SaaS platform solo: a full-stack app with AI photo analysis, GPU photogrammetry into 3D models, an interactive viewer, and Stripe billing. I flew the first autonomous survey mission myself and ran a multi-agent AI research cluster to pressure-test new product directions.
             </p>
             <p>
-              I&apos;m finishing my B.S. in General Education at Youngstown State University — an interdisciplinary degree that reflects how I think. I don&apos;t stay in one lane. I connect dots across software, hardware, business, aviation, and AI.
+              I&apos;m finishing my B.S. in General Education at Youngstown State University, an interdisciplinary degree that reflects how I think. I don&apos;t stay in one lane. I connect dots across software, hardware, business, aviation, and AI.
             </p>
             <p>
               The common thread: I build things that work, fast, and I ship them to the real world. Not wireframes. Not pitch decks. Working systems that people use today.
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold mb-6">Credentials</h2>
             <div className="space-y-4">
               {[
-                { label: "Founder & CEO", org: "XPRT Solutions LLC", year: "2022 — Present" },
+                { label: "Founder & CEO", org: "XPRT Solutions LLC", year: "2022 to Present" },
                 { label: "Systems Integration Engineer", org: "Window Depot USA", year: "Current" },
                 { label: "FAA Part 107 Remote Pilot", org: "Federal Aviation Administration", year: "Certified" },
                 { label: "B.S. General Education", org: "Youngstown State University", year: "2027 (Expected)" },
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 { category: "Frontend", items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Three.js", "Leaflet"] },
                 { category: "Backend", items: ["Python", "FastAPI", "Node.js", "PostgreSQL", "Docker"] },
                 { category: "AI & Automation", items: ["Claude API", "Gemini", "n8n", "OpenDroneMap", "ArduPilot"] },
-                { category: "Infrastructure", items: ["Cloudflare R2/CDN", "Vercel", "Coolify", "Hetzner", "GitHub Actions"] },
+                { category: "Infrastructure", items: ["Cloudflare R2/CDN", "Vercel", "Coolify", "Hostinger VPS", "GitHub Actions"] },
               ].map((g) => (
                 <div key={g.category}>
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[#DC2626] mb-2">{g.category}</h3>
@@ -106,7 +106,7 @@ export default function AboutPage() {
             {[
               { title: "Ship, don't plan", quote: "A working prototype beats a perfect pitch deck. Every time." },
               { title: "AI is a weapon, not a crutch", quote: "I don't use AI to avoid thinking. I use it to think at 10x speed and build at 100x." },
-              { title: "Domain knowledge is the moat", quote: "The code is the easy part. Understanding what drone pilots actually need — that's the hard part. I do both." },
+              { title: "Domain knowledge is the moat", quote: "The code is the easy part. Understanding what drone pilots actually need, that's the hard part. I do both." },
             ].map((p) => (
               <div key={p.title} className="border-l-2 border-[#DC2626]/50 pl-6">
                 <h3 className="font-semibold mb-2">{p.title}</h3>

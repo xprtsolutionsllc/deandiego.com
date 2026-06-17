@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 
-export const metadata: Metadata = { title: "XPRT Cloud — Case Study" };
+export const metadata: Metadata = { title: "XPRT Cloud · Case Study" };
 
 export default function XprtCloudPage() {
   return (
@@ -16,7 +16,7 @@ export default function XprtCloudPage() {
             <h1 className="text-4xl md:text-5xl font-bold">XPRT Cloud</h1>
             <span className="px-3 py-1 bg-[#DC2626]/10 text-[#DC2626] text-sm font-semibold rounded-full">Built in 4 days</span>
           </div>
-          <p className="text-lg text-gray-400 max-w-3xl">A full-stack drone mapping SaaS platform — from automated flight planning through GPU-processed orthomosaics, 3D models, AI analysis, branded reports, and client invoicing. The entire system, built and deployed in one weekend.</p>
+          <p className="text-lg text-gray-400 max-w-3xl">A full-stack drone mapping SaaS platform, from automated flight planning through GPU-processed orthomosaics, 3D models, AI analysis, branded reports, and client invoicing. The entire system, built and deployed in one weekend.</p>
         </div>
       </section>
 
@@ -26,7 +26,7 @@ export default function XprtCloudPage() {
           <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
             <Image
               src="/images/xprt-cloud-dashboard.png"
-              alt="XPRT Cloud Dashboard — overview with stat cards, activity feed, job status"
+              alt="XPRT Cloud Dashboard, overview with stat cards, activity feed, job status"
               width={1920}
               height={1080}
               className="w-full"
@@ -53,7 +53,7 @@ export default function XprtCloudPage() {
             <h2 className="text-xs text-[#DC2626] font-medium uppercase tracking-wider mb-3">The Solution</h2>
             <h3 className="text-2xl font-bold mb-4">One platform. $59/month. Everything.</h3>
             <p className="text-gray-400 leading-relaxed">
-              XPRT Cloud provides the complete drone pilot workflow in a single application — from generating an autonomous flight plan to delivering a finished orthomosaic and invoice to the client. At 82% less than DroneDeploy.
+              XPRT Cloud provides the complete drone pilot workflow in a single application, from generating an autonomous flight plan to delivering a finished orthomosaic and invoice to the client. At 82% less than DroneDeploy.
             </p>
           </div>
         </div>

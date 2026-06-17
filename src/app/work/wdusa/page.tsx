@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata: Metadata = { title: "Window Depot USA — Case Study" };
+export const metadata: Metadata = { title: "Window Depot USA · Case Study" };
 
 export default function WdusaPage() {
   return (
@@ -14,7 +14,7 @@ export default function WdusaPage() {
             <h1 className="text-4xl md:text-5xl font-bold">Window Depot USA</h1>
             <span className="px-3 py-1 bg-white/10 text-gray-300 text-sm font-semibold rounded-full">86 locations</span>
           </div>
-          <p className="text-lg text-gray-400 max-w-3xl">Technical systems integration for a national home improvement brand — keeping 86 independent dealer locations connected through automated workflows, CRM syncing, and data pipelines.</p>
+          <p className="text-lg text-gray-400 max-w-3xl">Technical systems integration for a national home improvement brand, keeping 86 independent dealer locations connected through automated workflows, CRM syncing, and data pipelines.</p>
         </div>
       </section>
 
@@ -23,7 +23,7 @@ export default function WdusaPage() {
           <div className="aspect-[2/1] rounded-xl overflow-hidden border border-white/10">
             <Image
               src="/images/wdusa-network.jpg"
-              alt="Illustrative dealer network — 86 locations connected across the United States"
+              alt="Illustrative dealer network, 86 locations connected across the United States"
               width={1672}
               height={941}
               className="w-full h-full object-cover"
@@ -45,7 +45,7 @@ export default function WdusaPage() {
             <h2 className="text-xs text-[#DC2626] font-medium uppercase tracking-wider mb-3">The Solution</h2>
             <h3 className="text-2xl font-bold mb-4">Automated infrastructure that scales.</h3>
             <p className="text-gray-400 leading-relaxed">
-              I handle the technical integration side — keeping all 86 dealer systems connected to corporate and to each other. Automated lead routing, CRM syncing, data pipelines, and workflow automation running on self-hosted infrastructure processing thousands of events daily.
+              I handle the technical integration side, keeping all 86 dealer systems connected to corporate and to each other. Automated lead routing, CRM syncing, data pipelines, and workflow automation running on self-hosted infrastructure processing thousands of events daily.
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function WdusaPage() {
             {[
               { title: "Lead Routing & Distribution", desc: "Automated lead distribution from multiple acquisition channels to location-specific CRM systems based on configurable routing rules." },
               { title: "Workflow Automation", desc: "Self-hosted automation platform handling CRM events, data sync triggers, onboarding flows, and operational notifications across all locations." },
-              { title: "Systems Integration", desc: "Keeping 86 independent dealer systems connected and working — syncing data between platforms, bridging CRMs to corporate tools, and ensuring nothing falls through the cracks." },
+              { title: "Systems Integration", desc: "Keeping 86 independent dealer systems connected and working · syncing data between platforms, bridging CRMs to corporate tools, and ensuring nothing falls through the cracks." },
               { title: "Infrastructure & Monitoring", desc: "Self-hosted deployment pipeline, container management, uptime monitoring, and automated recovery for the integration layer." },
             ].map((item) => (
               <div key={item.title} className="bg-white/[0.03] border border-white/5 rounded-xl p-6">

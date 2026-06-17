@@ -27,7 +27,7 @@ const SERVICES = [
     id: "ai",
     title: "AI Integration & Automation",
     tagline: "Connect your business to intelligence.",
-    description: "I integrate AI models and build automation pipelines that eliminate manual work. From intelligent chatbots to complex multi-step workflows that process data, make decisions, and take action — all running autonomously.",
+    description: "I integrate AI models and build automation pipelines that eliminate manual work. From intelligent chatbots to complex multi-step workflows that process data, make decisions, and take action, all running autonomously.",
     includes: [
       "AI-powered chatbots and assistants",
       "Claude, GPT, and Gemini API integrations",
@@ -114,8 +114,8 @@ export default function ServicesPage() {
           <p className="text-gray-400 mb-16 text-center max-w-lg mx-auto">Three steps. No fluff.</p>
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { step: "01", title: "Discovery", desc: "30-minute call. You tell me what you need. I tell you if I can build it, how fast, and what it costs. No proposals that take a week — you get a quote on the call." },
-              { step: "02", title: "Build Sprint", desc: "I build. You get daily updates with real, working progress — not mockups. Most projects ship in 1-5 days. You see it live on the internet, not in a Figma file." },
+              { step: "01", title: "Discovery", desc: "30-minute call. You tell me what you need. I tell you if I can build it, how fast, and what it costs. No proposals that take a week · you get a quote on the call." },
+              { step: "02", title: "Build Sprint", desc: "I build. You get daily updates with real, working progress · not mockups. Most projects ship in 1-5 days. You see it live on the internet, not in a Figma file." },
               { step: "03", title: "Deploy & Iterate", desc: "Live for real users. I stick around to iterate, fix, and optimize based on real feedback. You're not abandoned after launch." },
             ].map((s) => (
               <div key={s.step}>

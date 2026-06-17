@@ -6,10 +6,8 @@ import { useState } from "react";
 
 const LINKS = [
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/ai-sprint", label: "AI Sprint" },
   { href: "/work", label: "Work" },
-  { href: "/work#drone", label: "Drone" },
+  { href: "/#ai-approach", label: "AI Approach" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -30,18 +28,23 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className={`transition ${pathname === l.href || pathname.startsWith(l.href + "/") ? "text-white font-medium" : "text-gray-400 hover:text-white"}`}
+              className={`transition ${pathname === l.href || (l.href !== "/#ai-approach" && pathname.startsWith(l.href + "/")) ? "text-white font-medium" : "text-gray-400 hover:text-white"}`}
             >
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" className="bg-[#DC2626] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#B91C1C] transition">
-            Start a Project
-          </Link>
+          <a
+            href="/dean-diego-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#DC2626] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#B91C1C] transition"
+          >
+            Resume
+          </a>
         </div>
 
         {/* Mobile hamburger */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white p-2">
+        <button onClick={() => setOpen(!open)} className="md:hidden text-white p-2" aria-label="Toggle menu">
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
             {open ? (
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -65,9 +68,15 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setOpen(false)} className="block bg-[#DC2626] text-white px-4 py-2.5 rounded-lg text-sm font-medium text-center mt-2">
-            Start a Project
-          </Link>
+          <a
+            href="/dean-diego-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="block bg-[#DC2626] text-white px-4 py-2.5 rounded-lg text-sm font-medium text-center mt-2"
+          >
+            Resume
+          </a>
         </div>
       )}
     </nav>

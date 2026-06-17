@@ -1,6 +1,56 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const FEATURED = [
+  {
+    slug: "xprt-cloud",
+    title: "XPRT Cloud",
+    category: "Full-Stack AI SaaS",
+    description: "A drone-mapping SaaS built solo end to end: flight planning, AI photo analysis, GPU photogrammetry, 3D viewer, Stripe billing.",
+    stack: "FastAPI · Next.js · PostgreSQL · Modal H100",
+  },
+  {
+    slug: "conversation-intelligence",
+    title: "Conversation Intelligence",
+    category: "AI Application",
+    description: "An AI system I designed: transcript ingestion to structured LLM analysis to retrieval-grounded coaching chat with citations.",
+    stack: "GPT-5 structured output · pgvector · React",
+  },
+  {
+    slug: "quantum-qaoa",
+    title: "Quantum QAOA on IBM Hardware",
+    category: "Research Experiment",
+    description: "Ran a selection problem as a QAOA circuit on a real 156-qubit IBM processor. Honest result, real finding about constraint encoding.",
+    stack: "Qiskit · IBM Heron r2 · QUBO/HUBO",
+  },
+  {
+    slug: "trade-bridge",
+    title: "TradingView to FreqTrade Bridge",
+    category: "Systems & Infra",
+    description: "A production webhook bridge translating strategy signals into exchange orders sub-second, with auth, allow-listing, and clean failure modes.",
+    stack: "Python · FastAPI · webhooks",
+  },
+];
+
+const AI_APPROACH = [
+  {
+    title: "Model selection by task profile",
+    desc: "I route work across GPT-5, Claude, Gemini, Grok, and local Ollama by what each does best: vision, structured output, code review, multi-agent reasoning. Constant comparative evaluation of where each model is right and where it fails.",
+  },
+  {
+    title: "AI-gated code review",
+    desc: "I ship production code through an AI review gate, reading model output critically and correcting it before merge. On a strong day that is 11+ pull requests, all reviewed, all green.",
+  },
+  {
+    title: "Structured output, validated",
+    desc: "Strict JSON-schema output validated with Pydantic and Zod, so I catch and characterize exactly where a model violates a schema, omits a field, or hallucinates.",
+  },
+  {
+    title: "Prompts plus iteration loops",
+    desc: "Domain-specific prompt design with deliberate iteration is my normal workflow, codified into a persistent skills-and-memory system that carries context across sessions.",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -10,7 +60,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block mb-6 px-4 py-1.5 border border-[#DC2626]/30 rounded-full text-xs text-[#DC2626] font-medium tracking-wide uppercase">
-              FAA Part 107 Certified | Founder, XPRT Solutions LLC
+              Software Engineer · AI Systems · FAA Part 107
             </div>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
               Engineer. Pilot.
@@ -18,24 +68,24 @@ export default function Home() {
               <span className="text-[#DC2626]">Builder.</span>
             </h1>
             <p className="text-lg text-gray-400 max-w-lg mb-8 leading-relaxed">
-              Full-stack software, drone systems, and AI integrations — designed, built, and deployed by one person. If you can describe it, I can build it.
+              I build production software and the AI systems around it, end to end: full-stack applications, data pipelines, and multi-model LLM workflows. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-center">
-                Start a Project
-              </Link>
-              <Link href="/work" className="border border-white/10 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/5 transition text-center">
+              <Link href="/work" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-center">
                 See My Work
               </Link>
+              <a href="/dean-diego-resume.pdf" target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/5 transition text-center">
+                Download Resume
+              </a>
             </div>
           </div>
           <div className="hidden md:block">
             <div className="aspect-[4/5] rounded-xl overflow-hidden border border-white/10">
               <Image
-                src="/images/dean-hero.jpg"
-                alt="Dean Diego with laptop and DJI drone at golden hour in the woods"
-                width={1200}
-                height={1500}
+                src="/images/dean-headshot.jpg"
+                alt="Dean Diego portrait"
+                width={1331}
+                height={2000}
                 priority
                 className="w-full h-full object-cover"
               />
@@ -44,97 +94,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick intro */}
+      {/* What I build */}
       <section className="py-24 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Web Applications",
-              desc: "Custom platforms and SaaS products built with modern frameworks. Deployed in days.",
-              href: "/services#web",
-            },
-            {
-              title: "AI & Automation",
-              desc: "Intelligent workflows, chatbots, and AI-powered tools that work while you sleep.",
-              href: "/services#ai",
-            },
-            {
-              title: "Drone Mapping",
-              desc: "Autonomous aerial surveys, orthomosaics, 3D models. FAA Part 107 certified.",
-              href: "/services#drone",
-            },
-          ].map((s) => (
-            <Link key={s.title} href={s.href} className="group bg-white/[0.03] border border-white/5 rounded-xl p-8 hover:border-[#DC2626]/30 transition">
-              <h3 className="font-semibold text-lg mb-3 group-hover:text-[#DC2626] transition">{s.title}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed mb-4">{s.desc}</p>
-              <span className="text-xs text-[#DC2626] font-medium">Learn more &rarr;</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* AI Sprint banner */}
-      <section className="py-16 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/10 via-[#DC2626]/5 to-transparent">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
-            <div>
-              <div className="inline-block mb-3 px-3 py-1 border border-[#DC2626]/40 rounded-full text-xs text-[#DC2626] font-medium tracking-wider uppercase">
-                Productized offer
+          <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-10">What I build</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Full-stack applications",
+                desc: "End-to-end products: data model, backend, API, and UI. Python and TypeScript, FastAPI and Next.js, PostgreSQL and pgvector. Owned solo from schema to ship.",
+              },
+              {
+                title: "AI systems",
+                desc: "Multi-model LLM orchestration, retrieval-augmented generation, structured output, and evaluation. AI as a co-developer, used with intent, not as a gimmick.",
+              },
+              {
+                title: "Data pipelines and infra",
+                desc: "Event-driven integrations, webhooks, idempotency and dead-letter handling, GPU processing, and self-hosted infrastructure on Docker and Cloudflare.",
+              },
+            ].map((s) => (
+              <div key={s.title} className="bg-white/[0.03] border border-white/5 rounded-xl p-8">
+                <h3 className="font-semibold text-lg mb-3">{s.title}</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">{s.desc}</p>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">
-                $4,500 AI Automation Sprint <span className="text-gray-500 font-normal">·</span> 14 days <span className="text-gray-500 font-normal">·</span> one bottleneck eliminated.
-              </h2>
-              <p className="text-gray-400 max-w-2xl">
-                Fixed-fee, fixed-scope. CRM routing, intake automation, AI-powered workflows. Built and shipped, not proposed.
-              </p>
-            </div>
-            <Link
-              href="/ai-sprint"
-              className="bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B91C1C] transition whitespace-nowrap text-center"
-            >
-              See the offer &rarr;
-            </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured work preview */}
+      {/* Featured work */}
       <section className="py-24 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="text-3xl font-bold mb-2">Selected work.</h2>
-              <p className="text-gray-400">Real projects. Real results.</p>
+              <p className="text-gray-400">Shipped systems, honest writeups.</p>
             </div>
             <Link href="/work" className="text-sm text-[#DC2626] hover:underline hidden md:block">View all &rarr;</Link>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Link href="/work/xprt-cloud" className="group">
-              <div className="aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 group-hover:border-[#DC2626]/30 transition">
-                <Image src="/images/xprt-cloud-dashboard.png" alt="XPRT Cloud dashboard" width={1920} height={1080} className="w-full h-full object-cover" />
+          <div className="grid md:grid-cols-2 gap-6">
+            {FEATURED.map((p) => (
+              <Link key={p.slug} href={`/work/${p.slug}`} className="group block bg-white/[0.03] border border-white/5 rounded-xl p-7 hover:border-[#DC2626]/30 transition">
+                <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{p.category}</div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-[#DC2626] transition">{p.title}</h3>
+                <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.description}</p>
+                <div className="text-xs text-gray-500 font-mono">{p.stack}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How I build with AI */}
+      <section id="ai-approach" className="py-24 border-t border-white/5 scroll-mt-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">How I build with AI</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">AI as a co-developer, used with intent.</h3>
+            <p className="text-lg text-gray-400">Evaluating and directing AI output is a core, daily discipline for me, not an afterthought. This is how I ship faster without shipping slop.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+            {AI_APPROACH.map((a) => (
+              <div key={a.title} className="border-l-2 border-[#DC2626]/40 pl-5">
+                <h4 className="font-semibold text-lg mb-2">{a.title}</h4>
+                <p className="text-sm text-gray-400 leading-relaxed">{a.desc}</p>
               </div>
-              <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-xl font-bold group-hover:text-[#DC2626] transition">XPRT Cloud</h3>
-                <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Built in 4 days</span>
-              </div>
-              <p className="text-sm text-gray-400">Full-stack drone mapping SaaS — flight planning, AI analysis, GPU photogrammetry, 3D viewer, invoicing.</p>
-            </Link>
-            <Link href="/work/wdusa" className="group">
-              <div className="aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 group-hover:border-[#DC2626]/30 transition">
-                <Image
-                  src="/images/wdusa-network.jpg"
-                  alt="Dealer network — 86 locations across the US"
-                  width={1672}
-                  height={941}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-xl font-bold group-hover:text-[#DC2626] transition">Window Depot USA</h3>
-                <span className="px-2.5 py-0.5 bg-white/10 text-gray-300 text-xs font-semibold rounded-full">86 locations</span>
-              </div>
-              <p className="text-sm text-gray-400">Enterprise systems integration — automated workflows, CRM pipelines, dealer management for 86 locations.</p>
-            </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -142,11 +167,16 @@ export default function Home() {
       {/* CTA band */}
       <section className="py-20 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Got a project in mind?</h2>
-          <p className="text-gray-400 mb-8 max-w-lg mx-auto">I respond within 24 hours. Most projects ship in 1-5 days.</p>
-          <Link href="/contact" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
-            Let&apos;s Talk
-          </Link>
+          <h2 className="text-3xl font-bold mb-4">Open to senior and founding engineer roles.</h2>
+          <p className="text-gray-400 mb-8 max-w-lg mx-auto">Remote-first, US-based, US citizen. I respond within 24 hours.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
+              Get in Touch
+            </Link>
+            <a href="/dean-diego-resume.pdf" target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-10 py-4 rounded-lg font-semibold hover:bg-white/5 transition text-lg inline-block">
+              Download Resume
+            </a>
+          </div>
         </div>
       </section>
     </>

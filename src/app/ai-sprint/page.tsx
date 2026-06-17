@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Automation Sprint — $4,500 fixed-fee, 2 weeks",
+  title: "AI Automation Sprint · $4,500 fixed-fee, 2 weeks",
   description:
-    "$4,500 fixed-fee. Two weeks. One operational bottleneck eliminated. CRM routing, lead workflows, internal AI tools, automation pipelines — built and shipped, not proposed.",
+    "$4,500 fixed-fee. Two weeks. One operational bottleneck eliminated. CRM routing, lead workflows, internal AI tools, automation pipelines, built and shipped, not proposed.",
   openGraph: {
-    title: "AI Automation Sprint — $4,500 fixed-fee, 2 weeks",
+    title: "AI Automation Sprint · $4,500 fixed-fee, 2 weeks",
     description:
       "One bottleneck eliminated in 14 days. Fixed price, no scope creep, no retainer.",
     url: "https://deandiego.com/ai-sprint",
@@ -72,7 +72,7 @@ const TIMELINE = [
   {
     step: "Days 2-12",
     title: "Build",
-    desc: "Working software shipped to a staging environment within the first 5 days. Real, runnable progress every day — not Figma mockups, not Notion docs, not weekly status meetings.",
+    desc: "Working software shipped to a staging environment within the first 5 days. Real, runnable progress every day, not Figma mockups, not Notion docs, not weekly status meetings.",
   },
   {
     step: "Day 13",
@@ -88,7 +88,7 @@ const TIMELINE = [
 
 const CASE_STUDIES = [
   {
-    label: "Multi-location dealer network — corporate lead routing",
+    label: "Multi-location dealer network, corporate lead routing",
     problem:
       "An ~86-location franchise was getting corporate-website leads but routing them by hand. Leads sat for hours, occasionally days, before reaching the right local dealer. Conversion dropped because of the lag.",
     build:
@@ -128,7 +128,7 @@ const FAQ = [
   },
   {
     q: "Can I see the code?",
-    a: "Yes. You own everything I build for you. Source code, deployment scripts, environment configs — all transferred at delivery. No vendor lock-in.",
+    a: "Yes. You own everything I build for you. Source code, deployment scripts, environment configs, all transferred at delivery. No vendor lock-in.",
   },
   {
     q: "How do I know you can ship in 14 days?",
@@ -207,7 +207,7 @@ export default function AISprintPage() {
           <div className="text-xs text-[#DC2626] font-medium uppercase tracking-wider mb-3">Timeline</div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Day-by-day, no surprises.</h2>
           <p className="text-gray-400 mb-12 max-w-2xl">
-            You get daily updates with real, working progress — not status meetings, not Notion docs, not Figma mockups.
+            You get daily updates with real, working progress, not status meetings, not Notion docs, not Figma mockups.
           </p>
           <div className="space-y-6">
             {TIMELINE.map((t) => (
