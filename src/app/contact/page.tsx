@@ -54,7 +54,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
 };
 
 const EMPTY_FORM = {
-  inquiryType: "", name: "", email: "", company: "", roleType: "", projectType: "", budget: "", timeline: "", message: "",
+  inquiryType: "", name: "", email: "", company: "", phone: "", roleType: "", projectType: "", budget: "", timeline: "", message: "",
 };
 
 const INQUIRY_OPTIONS = [
@@ -98,7 +98,7 @@ function ContactInner() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, topic }),
       });
       if (res.ok) {
         toast.success("Message sent. I'll get back to you within 24 hours.");
@@ -162,9 +162,15 @@ function ContactInner() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">{isHiring ? "Company" : "Company / Organization"}</label>
-                <input type="text" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} className={inputClass} placeholder={isHiring ? "Where you're hiring" : "Your company"} />
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">{isHiring ? "Company" : "Company / Organization"}</label>
+                  <input type="text" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} className={inputClass} placeholder={isHiring ? "Where you're hiring" : "Your company"} />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Phone</label>
+                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className={inputClass} placeholder="Best number for a callback" />
+                </div>
               </div>
 
               {/* Hiring-specific */}
