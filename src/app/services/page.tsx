@@ -107,6 +107,70 @@ export default function ServicesPage() {
         </section>
       ))}
 
+      {/* Real estate drone pricing */}
+      <section id="drone-pricing" className="py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Real estate pricing</h2>
+            <h3 className="text-3xl font-bold mb-3">Per-listing drone packages.</h3>
+            <p className="text-gray-400">Flat starting prices, confirmed on a five-minute call. FAA Part 107 certified and commercially insured; certificates come with every booking confirmation.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {[
+              {
+                name: "Aerial Photos",
+                price: "from $175",
+                turnaround: "24-hour delivery",
+                popular: false,
+                features: ["12-18 MLS-ready aerial stills", "Front, rear, sides, orbit, and context shots", "Delivered via download link"],
+              },
+              {
+                name: "Photos + Video",
+                price: "from $325",
+                turnaround: "24-48 hour delivery",
+                popular: true,
+                features: ["Everything in Aerial Photos", "45-60 second cinematic aerial clip", "Branded photo report"],
+              },
+              {
+                name: "Premium 3D",
+                price: "from $450",
+                turnaround: "48-hour delivery",
+                popular: false,
+                features: ["Everything in Photos + Video", "Interactive 3D walkthrough link", "Opens on any phone, no app required"],
+              },
+            ].map((tier) => (
+              <div key={tier.name} className={`rounded-xl p-8 border ${tier.popular ? "border-[#DC2626]/40 bg-[#DC2626]/5" : "border-white/10 bg-white/[0.03]"}`}>
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-lg">{tier.name}</h4>
+                  {tier.popular && <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Most booked</span>}
+                </div>
+                <div className="text-3xl font-bold mb-1">{tier.price}</div>
+                <div className="text-xs text-gray-500 mb-6">{tier.turnaround}</div>
+                <ul className="space-y-2.5">
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-gray-400">
+                      <svg className="w-4 h-4 text-[#DC2626] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mb-8 max-w-3xl">Twilight shoots, same-week rush, lots over 2 acres, and travel beyond 25 miles are quoted as add-ons on the call. Booking 3 or more listings a month gets package pricing.</p>
+          <div className="flex flex-wrap items-center gap-6">
+            <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition inline-block">
+              Book a listing
+            </Link>
+            <a href="https://goxprt.com/share/uBFW9N_DC4TU9nrcS1LjPW9WxQfIMaTw" target="_blank" rel="noopener noreferrer" className="text-sm text-[#DC2626] font-medium hover:underline">
+              See a live 3D sample &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
       <section className="py-20 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
