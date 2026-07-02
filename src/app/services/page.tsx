@@ -164,6 +164,9 @@ export default function ServicesPage() {
             <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition inline-block">
               Book a listing
             </Link>
+            <Link href="/services/drone" className="text-sm text-[#DC2626] font-medium hover:underline">
+              Full drone services &amp; commercial work &rarr;
+            </Link>
             <a href="https://goxprt.com/share/uBFW9N_DC4TU9nrcS1LjPW9WxQfIMaTw" target="_blank" rel="noopener noreferrer" className="text-sm text-[#DC2626] font-medium hover:underline">
               See a live 3D sample &rarr;
             </a>
