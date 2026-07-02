@@ -191,6 +191,23 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* Drone services cross-link */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-[1fr_auto] gap-10 items-center rounded-xl border border-white/10 bg-white/[0.03] p-10">
+            <div>
+              <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Also flying</h2>
+              <h3 className="text-2xl font-bold mb-3">The pilot part is for hire too.</h3>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-2xl">FAA Part 107 certified and commercially insured. Aerial photos, cinematic video, mapping, and interactive 3D walkthroughs for real estate and construction, with flat per-listing pricing and 24-48 hour delivery.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row md:flex-col gap-4">
+              <Link href="/services#drone-pricing" className="bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm text-center">See drone pricing</Link>
+              <Link href="/contact?topic=drone-realestate" className="border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-sm text-center">Book a listing</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 border-t border-white/5 text-center">
         <p className="text-gray-400 mb-4">Open to senior and founding engineer roles.</p>
         <Link href="/contact" className="text-[#DC2626] text-sm font-medium hover:underline">Get in touch &rarr;</Link>
