@@ -51,6 +51,19 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Deadline:\n\n" +
       "Notes:\n",
   },
+  "deer-recovery": {
+    inquiryType: "project",
+    projectType: "deer-recovery",
+    budget: "under1k",
+    timeline: "flexible",
+    message:
+      "I'd like to get on the list for Dean's Deer Recovery for the 2026 Ohio season.\n\n" +
+      "County (Mahoning, Trumbull, Columbiana, Portage, or Stark):\n\n" +
+      "Nearest town or last known location:\n\n" +
+      "Single recovery ($300) or season pack ($750):\n\n" +
+      "Best number and time for a callback:\n\n" +
+      "Notes:\n",
+  },
 };
 
 const EMPTY_FORM = {
@@ -200,6 +213,7 @@ function ContactInner() {
                       <option value="website" className="bg-[#1A1A1A]">Website</option>
                       <option value="ai-sprint" className="bg-[#1A1A1A]">AI Sprint</option>
                       <option value="drone" className="bg-[#1A1A1A]">Drone Services</option>
+                      <option value="deer-recovery" className="bg-[#1A1A1A]">Dean's Deer Recovery</option>
                       <option value="other" className="bg-[#1A1A1A]">Other</option>
                     </select>
                   </div>

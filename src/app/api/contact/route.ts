@@ -9,6 +9,7 @@ const SERVICE_TYPE_BY_TOPIC: Record<string, string> = {
   "drone-realestate": "real_estate",
   "drone-mapping": "mapping",
   "drone-video": "video",
+  "deer-recovery": "deer_recovery",
 };
 
 async function sendTelegram(data: Record<string, string>): Promise<boolean> {
@@ -49,7 +50,7 @@ async function createXprtLead(data: Record<string, string>): Promise<boolean> {
         phone: data.phone || "not provided",
         email: data.email || null,
         address: "See notes (deandiego.com form)",
-        service_type: SERVICE_TYPE_BY_TOPIC[data.topic] || "drone_general",
+        service_type: SERVICE_TYPE_BY_TOPIC[data.topic] || (data.projectType === "deer-recovery" ? "deer_recovery" : "drone_general"),
         notes:
           `${data.message}\n\n` +
           `Company: ${data.company || "n/a"} | Budget: ${data.budget || "n/a"} | Timeline: ${data.timeline || "n/a"}`,
@@ -76,14 +77,15 @@ export async function POST(req: Request) {
     }
 
     const isDrone = projectType === "drone";
+    const isDeerRecovery = projectType === "deer-recovery" || data.topic === "deer-recovery";
     const [telegramOk, xprtOk] = await Promise.all([
       sendTelegram(data),
-      isDrone ? createXprtLead(data) : Promise.resolve(false),
+      isDrone || isDeerRecovery ? createXprtLead(data) : Promise.resolve(false),
     ]);
 
     // The lead must land somewhere. If every channel failed, tell the visitor
-    // instead of swallowing it — a loud failure beats a vanished lead.
-    if (!telegramOk && !(isDrone && xprtOk)) {
+    // instead of swallowing it. A loud failure beats a vanished lead.
+    if (!telegramOk && !((isDrone || isDeerRecovery) && xprtOk)) {
       return NextResponse.json({ error: "Delivery failed" }, { status: 502 });
     }
     return NextResponse.json({ success: true });
