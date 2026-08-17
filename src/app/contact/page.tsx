@@ -55,14 +55,18 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
     inquiryType: "project",
     projectType: "deer-recovery",
     budget: "under1k",
-    timeline: "flexible",
+    timeline: "asap",
     message:
-      "I'd like to get on the list for Dean's Deer Recovery for the 2026 Ohio season.\n\n" +
+      "Emergency deer recovery. I just shot a deer and cannot find it.\n\n" +
+      "Use /deer-recovery if you can. This form is the backup.\n\n" +
       "County (Mahoning, Trumbull, Columbiana, Portage, or Stark):\n\n" +
-      "Nearest town or last known location:\n\n" +
-      "Single recovery ($300) or season pack ($750):\n\n" +
-      "Best number and time for a callback:\n\n" +
-      "Notes:\n",
+      "Property address or pin:\n\n" +
+      "When I shot it:\n\n" +
+      "Where I think it went:\n\n" +
+      "Shot placement (shoulder, guts, ham, neck, unknown):\n\n" +
+      "Can you make it tonight / access notes:\n\n" +
+      "Phone for callback:\n\n" +
+      "Pricing I expect: $150 deposit for the look, $100 more if found ($250 total). No season pack.\n",
   },
 };
 
