@@ -66,7 +66,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Shot placement (shoulder, guts, ham, neck, unknown):\n\n" +
       "Can you make it tonight / access notes:\n\n" +
       "Phone for callback:\n\n" +
-      "Pricing I expect: $150 deposit for the look, $100 more if found ($250 total). No season pack.\n",
+      "Pricing I expect: $300 to come out, $50 more if found ($350 total). No season pack.\n",
   },
 };
 

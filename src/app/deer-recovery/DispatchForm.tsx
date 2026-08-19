@@ -68,10 +68,10 @@ export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
       <div className="max-w-xl rounded-xl border border-[#DC2626]/40 bg-[#DC2626]/5 p-8">
         <h4 className="text-2xl font-bold mb-3">Dean got it.</h4>
         <p className="text-sm text-gray-300 leading-relaxed mb-4">
-          Keep your phone on. He will call the number you left. The $150 deposit books the flight if he can take it tonight.
+          Keep your phone on. He will call the number you left. The $300 books the flight if he can take it tonight.
         </p>
         <p className="text-sm text-gray-400 leading-relaxed mb-6">
-          You pay $150 for the look either way. $100 more if he finds it. $250 total if found.
+          You pay $300 for the look either way. $50 more if he finds it. $350 total if found.
         </p>
         {depositUrl ? (
           <a
@@ -80,15 +80,15 @@ export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
             rel="noopener noreferrer"
             className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
           >
-            Pay $150 deposit
+            Pay $300
           </a>
         ) : (
           <div>
             <button type="button" disabled className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold text-sm opacity-50 cursor-not-allowed">
-              $150 deposit pending
+              $300 pending
             </button>
             <p className="text-xs text-gray-500 mt-3">
-              Payment link is not live yet. Dean will tell you how to pay the $150 if he can take the job.
+              Payment link is not live yet. Dean will tell you how to pay the $300 if he can take the job.
             </p>
           </div>
         )}
@@ -168,19 +168,19 @@ export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
           <ol className="space-y-3 text-sm text-gray-400">
             <li className="flex gap-3"><span className="text-[#DC2626] font-bold font-mono">1</span>Dean gets a DEER DISPATCH TONIGHT ping</li>
             <li className="flex gap-3"><span className="text-[#DC2626] font-bold font-mono">2</span>He calls the phone number you left</li>
-            <li className="flex gap-3"><span className="text-[#DC2626] font-bold font-mono">3</span>$150 deposit books the flight if he can take it</li>
+            <li className="flex gap-3"><span className="text-[#DC2626] font-bold font-mono">3</span>$300 books the flight if he can take it</li>
           </ol>
         </div>
         <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
-          <h3 className="font-semibold mb-2">$150 deposit books the flight</h3>
-          <p className="text-sm text-gray-400 mb-4">You pay for the look. $100 more if he finds it.</p>
+          <h3 className="font-semibold mb-2">$300 books the flight</h3>
+          <p className="text-sm text-gray-400 mb-4">You pay for the look. $50 more if he finds it.</p>
           {depositUrl ? (
             <a href={depositUrl} target="_blank" rel="noopener noreferrer" className="block text-center bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition">
-              Pay $150 deposit
+              Pay $300
             </a>
           ) : (
             <button type="button" disabled className="w-full bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm opacity-50 cursor-not-allowed">
-              $150 deposit pending
+              $300 pending
             </button>
           )}
         </div>
