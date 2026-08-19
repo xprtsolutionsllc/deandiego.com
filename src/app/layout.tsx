@@ -9,6 +9,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://deandiego.com"),
   title: { default: "Dean Diego · Software Engineer & AI Systems Builder", template: "%s | Dean Diego" },
   description: "Software engineer who builds full-stack applications, AI systems, and data pipelines end to end. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.",
   openGraph: {

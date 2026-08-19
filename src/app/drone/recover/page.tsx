@@ -2,9 +2,24 @@ import type { Metadata } from "next";
 import RecoverFlow from "./RecoverFlow";
 
 export const metadata: Metadata = {
-  title: "Deer recovery request",
+  title: { absolute: "Deer recovery | Dean Diego Drone" },
   description:
-    "Request thermal deer recovery in Northeast Ohio. Ohio only, after the taking. $250 to come out. $50 more if found dead.",
+    "Thermal drone deer recovery in Northeast Ohio. $250 to come out. $50 more if found dead. Ohio only, after the taking.",
+  openGraph: {
+    title: "Deer recovery | Dean Diego Drone",
+    description:
+      "Thermal drone deer recovery in Northeast Ohio. $250 to come out. $50 more if found dead. Ohio only.",
+    url: "https://deandiego.com/drone/recover",
+    siteName: "Dean Diego Drone",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Deer recovery | Dean Diego Drone",
+    description:
+      "Thermal drone deer recovery in Northeast Ohio. $250 to come out. $50 more if found dead. Ohio only.",
+  },
 };
 
 export default async function RecoverPage({
