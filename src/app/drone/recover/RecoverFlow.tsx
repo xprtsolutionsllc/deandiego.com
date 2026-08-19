@@ -34,6 +34,8 @@ type FormState = {
   terrain: string;
   landowner: string;
   accessNotes: string;
+  phonePlace: string;
+  pinMatches: boolean;
   ohioTaken: boolean;
   ohioNoDevice: boolean;
   ohioAliveStop: boolean;
@@ -58,6 +60,8 @@ const EMPTY: FormState = {
   terrain: "",
   landowner: "",
   accessNotes: "",
+  phonePlace: "",
+  pinMatches: false,
   ohioTaken: false,
   ohioNoDevice: false,
   ohioAliveStop: false,
@@ -70,6 +74,14 @@ const EMPTY: FormState = {
 const inputClass =
   "w-full min-h-12 bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-base text-white placeholder-gray-600 focus:outline-none focus:border-[#DC2626]/50 transition";
 const selectClass = inputClass + " appearance-none";
+
+function osmEmbed(lat: string, lng: string) {
+  const la = Number(lat);
+  const ln = Number(lng);
+  const d = 0.006;
+  const bbox = `${ln - d},${la - d},${ln + d},${la + d}`;
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${encodeURIComponent(`${la},${ln}`)}`;
+}
 
 export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: string; venmoUrl: string }) {
   const [step, setStep] = useState(0);
@@ -84,7 +96,7 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
 
   function canAdvance(): boolean {
     if (step === 0) return Boolean(form.name.trim() && form.phone.trim() && form.county);
-    if (step === 2) return Boolean(form.location.trim());
+    if (step === 2) return Boolean(form.location.trim() && form.lat && form.lng && form.pinMatches);
     if (step === 3) {
       return (
         form.ohioTaken &&
@@ -101,17 +113,28 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
   function next() {
     if (!canAdvance()) {
       if (step === 0) toast.error("Name, phone, and Ohio county are required.");
-      else if (step === 2) toast.error("Drop a pin or type the last known location.");
+      else if (step === 2) toast.error("Type the address, hit Use my location, then confirm the pin matches.");
       else if (step === 3) toast.error("Check every Ohio rule, type your name, and agree to the waiver.");
       return;
     }
     setStep((s) => Math.min(s + 1, STEPS.length - 1));
   }
 
+  async function lookupPlace(lat: string, lng: string) {
+    try {
+      const res = await fetch(`/api/geo/reverse?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}`);
+      const body = await res.json().catch(() => ({}));
+      const label = typeof body.label === "string" ? body.label : "";
+      if (label) set("phonePlace", label);
+    } catch {
+      /* pin still stands without a place name */
+    }
+  }
+
   function pinGps() {
     if (!navigator.geolocation) {
       setGpsState("err");
-      toast.error("This phone will not share GPS. Type the location instead.");
+      toast.error("This phone will not share GPS. Allow location and try again.");
       return;
     }
     setGpsState("loading");
@@ -123,15 +146,21 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
           ...prev,
           lat,
           lng,
-          location: prev.location.trim() || `${lat}, ${lng}`,
+          pinMatches: false,
+          phonePlace: "",
         }));
         setGpsState("ok");
+        void lookupPlace(lat, lng);
+        const nearPa = Number(lng) >= -80.52 && Number(lat) >= 40.6 && Number(lat) <= 42.3;
+        if (nearPa) {
+          toast.error("This pin is on or past the PA line. Ohio only.");
+        }
       },
       () => {
         setGpsState("err");
-        toast.error("GPS denied. Type the road, address, or pin.");
+        toast.error("Location was denied. In Safari: Settings, Privacy, Location, then try Use my location again.");
       },
-      { enableHighAccuracy: true, timeout: 12000 },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
     );
   }
 
@@ -293,33 +322,69 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
 
       {step === 2 ? (
         <div className="space-y-5">
-          <Field label="Last known location *">
+          <Field label="Property address or road *">
             <input
               value={form.location}
-              onChange={(e) => set("location", e.target.value)}
+              onChange={(e) => {
+                set("location", e.target.value);
+                set("pinMatches", false);
+              }}
               className={inputClass}
-              placeholder="Address, road, or GPS pin"
+              placeholder="What you would tell Dean on the phone"
+              autoComplete="street-address"
             />
           </Field>
           <button
             type="button"
             onClick={pinGps}
-            className="w-full min-h-12 border border-white/15 text-gray-200 px-4 py-3 rounded-lg font-semibold hover:border-[#DC2626]/40 transition"
+            className="w-full min-h-14 bg-white text-black px-4 py-3 rounded-lg font-semibold hover:bg-gray-200 transition flex items-center justify-center gap-3"
           >
-            {gpsState === "loading" ? "Getting GPS..." : gpsState === "ok" ? "Pin updated from GPS" : "Use this phone GPS as the pin"}
+            <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v4m0 12v4M2 12h4m12 0h4" />
+              <circle cx="12" cy="12" r="4" />
+            </svg>
+            {gpsState === "loading" ? "Finding this phone..." : gpsState === "ok" ? "Update pin from this phone" : "Use my location"}
           </button>
+          <p className="text-xs text-gray-500">
+            Stand where you last had blood, or as close as you can, then hit Use my location. The phone drops a pin. You check it against the address.
+          </p>
           {form.lat && form.lng ? (
-            <a
-              href={`https://maps.apple.com/?ll=${form.lat},${form.lng}&q=Last+known`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-sm text-[#DC2626]"
-            >
-              Open pin {form.lat}, {form.lng}
-            </a>
-          ) : (
-            <p className="text-xs text-gray-500">GPS is best. If it fails, type the road or drop a Maps pin and paste it.</p>
-          )}
+            <div className="rounded-xl overflow-hidden border border-white/10">
+              <iframe
+                title="Phone pin"
+                className="w-full h-52 grayscale-[20%] contrast-125"
+                src={osmEmbed(form.lat, form.lng)}
+                loading="lazy"
+              />
+              <div className="bg-black/40 p-4 space-y-3 text-sm">
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-gray-500 mb-1">You typed</div>
+                  <div className="text-gray-200">{form.location.trim() || "No address yet"}</div>
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-gray-500 mb-1">Phone pin</div>
+                  <div className="text-gray-200">{form.phonePlace || `${form.lat}, ${form.lng}`}</div>
+                </div>
+                <a
+                  href={`https://maps.apple.com/?ll=${form.lat},${form.lng}&q=Last+known`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-[#DC2626]"
+                >
+                  Open in Maps
+                </a>
+                <label className="flex gap-3 items-start text-sm text-gray-300 pt-1">
+                  <input
+                    type="checkbox"
+                    checked={form.pinMatches}
+                    onChange={(e) => set("pinMatches", e.target.checked)}
+                    className="mt-1 h-5 w-5 accent-[#DC2626] shrink-0"
+                  />
+                  <span>This pin is the last known location. It matches the address I typed, or is close enough to fly from.</span>
+                </label>
+              </div>
+            </div>
+          ) : null}
           <Field label="Terrain">
             <textarea
               value={form.terrain}

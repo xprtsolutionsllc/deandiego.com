@@ -31,6 +31,8 @@ async function sendTelegram(fields: Record<string, string>): Promise<boolean> {
     `${line("County", fields.county)}\n` +
     `${line("Location", fields.location)}\n` +
     `${line("Pin", maps || (fields.lat && fields.lng ? `${fields.lat},${fields.lng}` : ""))}\n` +
+    `${line("Phone place", fields.phonePlace)}\n` +
+    `${line("Pin matches address", fields.pinMatches)}\n` +
     `${line("Shot at", fields.shotAt)}\n` +
     `${line("Status", fields.deerStatus)}\n` +
     `${line("Thinks it went", fields.direction)}\n` +
@@ -75,6 +77,8 @@ async function createXprtLead(fields: Record<string, string>): Promise<boolean> 
           `Terrain: ${fields.terrain || "n/a"}\n` +
           `Landowner: ${fields.landowner || "n/a"}\n` +
           `Pin: ${fields.lat && fields.lng ? `${fields.lat},${fields.lng}` : "n/a"}\n` +
+          `Phone place: ${fields.phonePlace || "n/a"}\n` +
+          `Pin matches address: ${fields.pinMatches}\n` +
           `Meet tonight / access: ${fields.accessNotes || "n/a"}\n` +
           `Waiver: ${fields.waiverLine}\n` +
           `Media OK: ${fields.mediaOk}`,
@@ -133,12 +137,17 @@ export async function POST(req: Request) {
       accessNotes: text(data.accessNotes),
       lat: text(data.lat),
       lng: text(data.lng),
+      phonePlace: text(data.phonePlace),
+      pinMatches: truthy(data.pinMatches) ? "yes" : "no",
       mediaOk: truthy(data.mediaOk) ? "yes" : "no",
       waiverLine: `${text(data.waiverName)} agreed ${acceptedAt}${ip ? ` ip ${ip}` : ""}`,
     };
 
     if (!fields.name || !fields.phone || !fields.location) {
       return NextResponse.json({ error: "Name, phone, and location are required" }, { status: 400 });
+    }
+    if (!fields.lat || !fields.lng) {
+      return NextResponse.json({ error: "Use my location so Dean gets a pin, not a guess" }, { status: 400 });
     }
 
     const phoneDigits = fields.phone.replace(/\D/g, "");
