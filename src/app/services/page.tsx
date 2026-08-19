@@ -119,14 +119,14 @@ export default function ServicesPage() {
             {[
               {
                 name: "Aerial Photos",
-                price: "from $175",
+                price: "from $200",
                 turnaround: "24-hour delivery",
                 popular: false,
                 features: ["12-18 MLS-ready aerial stills", "Front, rear, sides, orbit, and context shots", "Delivered via download link"],
               },
               {
                 name: "Photos + Video",
-                price: "from $325",
+                price: "from $250",
                 turnaround: "24-48 hour delivery",
                 popular: true,
                 features: ["Everything in Aerial Photos", "45-60 second cinematic aerial clip", "Branded photo report"],

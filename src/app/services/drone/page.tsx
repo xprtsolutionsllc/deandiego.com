@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Drone Services",
   description:
-    "FAA Part 107 certified drone services in Northeast Ohio: real estate aerial photos from $175, cinematic listing video, interactive 3D walkthroughs, and commercial mapping, survey, and progress documentation.",
+    "FAA Part 107 certified drone services in Northeast Ohio: real estate aerial photos from $200, cinematic listing video from $250, interactive 3D walkthroughs from $450, and commercial mapping, survey, and progress documentation.",
 };
 
 const CHECK = (
@@ -16,7 +16,7 @@ const CHECK = (
 const LISTING_TIERS = [
   {
     name: "Aerial Photos",
-    price: "from $175",
+    price: "from $200",
     turnaround: "24-hour delivery",
     popular: false,
     blurb: "The MLS essentials. Every angle a listing needs to stop the scroll.",
@@ -30,7 +30,7 @@ const LISTING_TIERS = [
   },
   {
     name: "Photos + Video",
-    price: "from $325",
+    price: "from $250",
     turnaround: "24-48 hour delivery",
     popular: true,
     blurb: "Everything in Aerial Photos, plus motion. The package most listings book.",
