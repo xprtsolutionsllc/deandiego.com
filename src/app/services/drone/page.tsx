@@ -224,9 +224,14 @@ export default function DroneServicesPage() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to fly?</h2>
           <p className="text-gray-400 mb-8">Tell me about the property or the project. You will have a number the same day.</p>
-          <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
-            Book a flight
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
+              Book a flight
+            </Link>
+            <Link href="/drone/deer-recovery" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
+              Deer recovery
+            </Link>
+          </div>
         </div>
       </section>
     </>

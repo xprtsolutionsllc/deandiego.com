@@ -28,7 +28,7 @@ const inputClass =
   "w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#DC2626]/50 transition";
 const selectClass = inputClass + " appearance-none";
 
-export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
+export default function DispatchForm({ depositUrl, venmoUrl }: { depositUrl: string; venmoUrl: string }) {
   const [formData, setFormData] = useState(EMPTY);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -73,25 +73,37 @@ export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
         <p className="text-sm text-gray-400 leading-relaxed mb-6">
           You pay $250 for the look either way. $50 more if he finds it. $300 total if found.
         </p>
-        {depositUrl ? (
-          <a
-            href={depositUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
-          >
-            Pay $250
-          </a>
-        ) : (
-          <div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          {depositUrl ? (
+            <a
+              href={depositUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm text-center"
+            >
+              Pay $250 with card
+            </a>
+          ) : (
             <button type="button" disabled className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold text-sm opacity-50 cursor-not-allowed">
-              $250 pending
+              Card pay pending
             </button>
-            <p className="text-xs text-gray-500 mt-3">
-              Payment link is not live yet. Dean will tell you how to pay the $250 if he can take the job.
-            </p>
-          </div>
-        )}
+          )}
+          {venmoUrl ? (
+            <a
+              href={venmoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border border-white/15 text-gray-300 px-8 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-sm text-center"
+            >
+              Pay $250 with Venmo
+            </a>
+          ) : null}
+        </div>
+        {!depositUrl && !venmoUrl ? (
+          <p className="text-xs text-gray-500 mt-3">
+            Payment links are not live yet. Dean will tell you how to pay the $250 if he can take the job.
+          </p>
+        ) : null}
       </div>
     );
   }
@@ -174,15 +186,22 @@ export default function DispatchForm({ depositUrl }: { depositUrl: string }) {
         <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
           <h3 className="font-semibold mb-2">$250 books the flight</h3>
           <p className="text-sm text-gray-400 mb-4">You pay for the look. $50 more if he finds it.</p>
-          {depositUrl ? (
-            <a href={depositUrl} target="_blank" rel="noopener noreferrer" className="block text-center bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition">
-              Pay $250
-            </a>
-          ) : (
-            <button type="button" disabled className="w-full bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm opacity-50 cursor-not-allowed">
-              $250 pending
-            </button>
-          )}
+          <div className="space-y-3">
+            {depositUrl ? (
+              <a href={depositUrl} target="_blank" rel="noopener noreferrer" className="block text-center bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition">
+                Pay $250 with card
+              </a>
+            ) : (
+              <button type="button" disabled className="w-full bg-[#DC2626] text-white px-4 py-2.5 rounded-lg font-semibold text-sm opacity-50 cursor-not-allowed">
+                Card pay pending
+              </button>
+            )}
+            {venmoUrl ? (
+              <a href={venmoUrl} target="_blank" rel="noopener noreferrer" className="block text-center border border-white/15 text-gray-300 px-4 py-2.5 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
+                Pay $250 with Venmo
+              </a>
+            ) : null}
+          </div>
         </div>
         <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
           <h3 className="font-semibold mb-2">Pennsylvania</h3>

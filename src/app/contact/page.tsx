@@ -58,7 +58,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
     timeline: "asap",
     message:
       "Emergency deer recovery. I just shot a deer and cannot find it.\n\n" +
-      "Use /deer-recovery if you can. This form is the backup.\n\n" +
+      "Use /drone/deer-recovery if you can. This form is the backup.\n\n" +
       "County (Mahoning, Trumbull, Columbiana, Portage, or Stark):\n\n" +
       "Property address or pin:\n\n" +
       "When I shot it:\n\n" +
@@ -217,7 +217,7 @@ function ContactInner() {
                       <option value="website" className="bg-[#1A1A1A]">Website</option>
                       <option value="ai-sprint" className="bg-[#1A1A1A]">AI Sprint</option>
                       <option value="drone" className="bg-[#1A1A1A]">Drone Services</option>
-                      <option value="deer-recovery" className="bg-[#1A1A1A]">Dean&apos;s Deer Recovery</option>
+                      <option value="deer-recovery" className="bg-[#1A1A1A]">Deer recovery</option>
                       <option value="other" className="bg-[#1A1A1A]">Other</option>
                     </select>
                   </div>

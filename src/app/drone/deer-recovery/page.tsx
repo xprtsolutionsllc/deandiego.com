@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import DispatchForm from "./DispatchForm";
 
 export const metadata: Metadata = {
-  title: "Dean's Deer Recovery",
+  title: "Deer recovery",
   description:
-    "Shot a deer you cannot find? Thermal search in Northeast Ohio. $250 to come out. $50 more if we find it.",
+    "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it.",
 };
 
 const CHECK = (
@@ -15,37 +15,38 @@ const CHECK = (
 
 const COUNTIES = ["Mahoning", "Trumbull", "Columbiana", "Portage", "Stark"];
 
-function DepositButton({ url, className }: { url: string; className: string }) {
+function PayButton({ url, label, pending, className }: { url: string; label: string; pending: string; className: string }) {
   if (url) {
     return (
       <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
-        Pay $250
+        {label}
       </a>
     );
   }
   return (
     <button type="button" disabled className={`${className} opacity-50 cursor-not-allowed`}>
-      $250 pending
+      {pending}
     </button>
   );
 }
 
 export default function DeerRecoveryPage() {
-  // Public payment link only. Set NEXT_PUBLIC_DEER_DEPOSIT_URL in Vercel to a
-  // Venmo or Stripe checkout URL. Leave unset until that link exists. Never
-  // commit a secret or a made-up handle.
+  // Public payment links only. Set these in Vercel. Never commit a handle.
+  // NEXT_PUBLIC_DEER_DEPOSIT_URL = Stripe Payment Link ($250 search)
+  // NEXT_PUBLIC_DEER_VENMO_URL = Venmo for Business pay link
   const depositUrl = process.env.NEXT_PUBLIC_DEER_DEPOSIT_URL || "";
+  const venmoUrl = process.env.NEXT_PUBLIC_DEER_VENMO_URL || "";
 
   return (
     <>
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-            <span className="text-gray-300">Dean&apos;s Deer Recovery</span>
+            <span className="text-gray-300">Dean Diego Drone</span>
             <span className="mx-2">/</span>
-            <span>Northeast Ohio</span>
+            <span>Deer recovery</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Dean&apos;s Deer Recovery.</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Deer recovery.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
             Shot a deer you cannot find? Thermal search, Northeast Ohio. $250 to come out. $50 more if we find it.
           </p>
@@ -125,10 +126,20 @@ export default function DeerRecoveryPage() {
                     ? "Pay the $250 to book the search. Dean still has to be able to make it tonight."
                     : "Payment link is not live yet. Submit the dispatch and Dean will tell you how to pay the $250 if he can take the job."}
                 </p>
-                <DepositButton
-                  url={depositUrl}
-                  className="block w-full text-center bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition"
-                />
+                <div className="space-y-3">
+                  <PayButton
+                    url={depositUrl}
+                    label="Pay $250 with card"
+                    pending="Card pay pending"
+                    className="block w-full text-center bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition"
+                  />
+                  <PayButton
+                    url={venmoUrl}
+                    label="Pay $250 with Venmo"
+                    pending="Venmo pending"
+                    className="block w-full text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition"
+                  />
+                </div>
               </div>
               <a href="#dispatch" className="text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
                 Submit a dispatch
@@ -183,7 +194,7 @@ export default function DeerRecoveryPage() {
               If you cannot get him on the phone, submit this. Name, phone, and where you are. He calls the number you leave.
             </p>
           </div>
-          <DispatchForm depositUrl={depositUrl} />
+          <DispatchForm depositUrl={depositUrl} venmoUrl={venmoUrl} />
         </div>
       </section>
     </>
