@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,9 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Nav />
-        <main className="flex-1 pt-16">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
         <Toaster position="bottom-right" theme="dark" />
         <Analytics />
         <SpeedInsights />

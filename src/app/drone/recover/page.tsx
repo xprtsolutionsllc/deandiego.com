@@ -12,7 +12,7 @@ export default function RecoverPage() {
   const venmoUrl = process.env.NEXT_PUBLIC_DEER_VENMO_URL || "";
 
   return (
-    <section className="py-10 sm:py-16">
+    <section className="min-h-dvh py-10 sm:py-14">
       <div className="max-w-lg mx-auto px-6">
         <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
           Dean Diego Drone / Recover
