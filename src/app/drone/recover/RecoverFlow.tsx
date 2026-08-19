@@ -83,7 +83,17 @@ function osmEmbed(lat: string, lng: string) {
   return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${encodeURIComponent(`${la},${ln}`)}`;
 }
 
-export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: string; venmoUrl: string }) {
+export default function RecoverFlow({
+  depositUrl,
+  venmoUrl,
+  payAfter = false,
+  source = "site",
+}: {
+  depositUrl: string;
+  venmoUrl: string;
+  payAfter?: boolean;
+  source?: string;
+}) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState(EMPTY);
   const [gpsState, setGpsState] = useState<"idle" | "loading" | "ok" | "err">("idle");
@@ -177,6 +187,8 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
         body: JSON.stringify({
           ...form,
           waiverVersion: "2026-08-18",
+          source,
+          payAfter,
         }),
       });
       if (res.ok) {
@@ -198,39 +210,54 @@ export default function RecoverFlow({ depositUrl, venmoUrl }: { depositUrl: stri
     return (
       <div className="rounded-xl border border-[#DC2626]/40 bg-[#DC2626]/5 p-6 sm:p-8">
         <h2 className="text-2xl font-bold mb-3">Request received. Dean will contact you shortly.</h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-4">
-          Keep this phone on. He calls the number you left. The $250 books the flight if he can take it tonight.
-        </p>
-        <p className="text-sm text-gray-400 leading-relaxed mb-6">
-          $250 for the look either way. $50 more if he finds it dead. $300 total if found.
-        </p>
-        {mapsHref ? (
-          <a href={mapsHref} className="block text-sm text-[#DC2626] mb-6" target="_blank" rel="noopener noreferrer">
-            Open the pin you dropped
-          </a>
-        ) : null}
-        <div className="flex flex-col gap-3">
-          {depositUrl ? (
-            <a
-              href={depositUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center bg-[#DC2626] text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition"
-            >
-              Pay $250 with card
-            </a>
-          ) : null}
-          {venmoUrl ? (
-            <a
-              href={venmoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center border border-white/15 text-gray-300 px-6 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition"
-            >
-              Pay $250 with Venmo
-            </a>
-          ) : null}
-        </div>
+        {payAfter ? (
+          <>
+            <p className="text-sm text-gray-300 leading-relaxed mb-4">
+              Keep this phone on. He calls the number you left. Do not pay yet. After the search he will collect $250 on site (card, Venmo, or cash). $50 more if he finds it dead.
+            </p>
+            {mapsHref ? (
+              <a href={mapsHref} className="block text-sm text-[#DC2626]" target="_blank" rel="noopener noreferrer">
+                Open the pin you dropped
+              </a>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <p className="text-sm text-gray-300 leading-relaxed mb-4">
+              Keep this phone on. He calls the number you left. The $250 books the flight if he can take it tonight.
+            </p>
+            <p className="text-sm text-gray-400 leading-relaxed mb-6">
+              $250 for the look either way. $50 more if he finds it dead. $300 total if found.
+            </p>
+            {mapsHref ? (
+              <a href={mapsHref} className="block text-sm text-[#DC2626] mb-6" target="_blank" rel="noopener noreferrer">
+                Open the pin you dropped
+              </a>
+            ) : null}
+            <div className="flex flex-col gap-3">
+              {depositUrl ? (
+                <a
+                  href={depositUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center bg-[#DC2626] text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition"
+                >
+                  Pay $250 with card
+                </a>
+              ) : null}
+              {venmoUrl ? (
+                <a
+                  href={venmoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center border border-white/15 text-gray-300 px-6 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition"
+                >
+                  Pay $250 with Venmo
+                </a>
+              ) : null}
+            </div>
+          </>
+        )}
       </div>
     );
   }

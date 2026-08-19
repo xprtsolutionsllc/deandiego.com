@@ -24,7 +24,7 @@ async function sendTelegram(fields: Record<string, string>): Promise<boolean> {
       ? `https://maps.google.com/?q=${encodeURIComponent(fields.lat + "," + fields.lng)}`
       : "";
   const message =
-    `<b>DEER DISPATCH TONIGHT</b>\n\n` +
+    `<b>${fields.source === "ddr_map" ? "DEER DISPATCH TONIGHT (DDR MAP, collect after)" : "DEER DISPATCH TONIGHT"}</b>\n\n` +
     `${line("Name", fields.name)}\n` +
     `${line("Phone", fields.phone)}\n` +
     `${line("Email", fields.email)}\n` +
@@ -68,7 +68,7 @@ async function createXprtLead(fields: Record<string, string>): Promise<boolean> 
         address: fields.location || "See notes (deandiego.com deer recovery)",
         service_type: "deer_recovery",
         notes:
-          `DEER DISPATCH TONIGHT\n` +
+          `${fields.source === "ddr_map" ? "DEER DISPATCH TONIGHT (DDR MAP, collect after)" : "DEER DISPATCH TONIGHT"}\n` +
           `County: ${fields.county || "n/a"}\n` +
           `Shot at: ${fields.shotAt || "n/a"}\n` +
           `Status: ${fields.deerStatus || "n/a"}\n` +
@@ -83,7 +83,7 @@ async function createXprtLead(fields: Record<string, string>): Promise<boolean> 
           `Waiver: ${fields.waiverLine}\n` +
           `Media OK: ${fields.mediaOk}`,
         source: "deandiego.com",
-        utm_medium: "deer_recovery_form",
+        utm_medium: fields.source === "ddr_map" ? "ddr_map" : "deer_recovery_form",
         utm_content: "deer-recovery",
       }),
     });
@@ -140,6 +140,7 @@ export async function POST(req: Request) {
       phonePlace: text(data.phonePlace),
       pinMatches: truthy(data.pinMatches) ? "yes" : "no",
       mediaOk: truthy(data.mediaOk) ? "yes" : "no",
+      source: text(data.source) === "ddr_map" ? "ddr_map" : "site",
       waiverLine: `${text(data.waiverName)} agreed ${acceptedAt}${ip ? ` ip ${ip}` : ""}`,
     };
 
