@@ -263,7 +263,16 @@ export default function RecoverFlow({
   }
 
   return (
-    <div>
+    <form
+      autoComplete="on"
+      method="post"
+      action="#"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (step < STEPS.length - 1) next();
+        else void handleSubmit();
+      }}
+    >
       <div className="mb-8">
         <div className="flex justify-between text-xs uppercase tracking-wider text-gray-500 mb-2">
           <span>
@@ -281,17 +290,50 @@ export default function RecoverFlow({
 
       {step === 0 ? (
         <div className="space-y-5">
-          <Field label="Name *">
-            <input value={form.name} onChange={(e) => set("name", e.target.value)} className={inputClass} autoComplete="name" placeholder="Your name" />
+          <Field label="Name *" htmlFor="hunter-name">
+            <input
+              id="hunter-name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={(e) => set("name", e.target.value)}
+              className={inputClass}
+              autoComplete="name"
+              autoCapitalize="words"
+              autoCorrect="off"
+              placeholder="Your name"
+            />
           </Field>
-          <Field label="Phone *">
-            <input type="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} className={inputClass} autoComplete="tel" placeholder="This is how he calls back" />
+          <Field label="Phone *" htmlFor="hunter-tel">
+            <input
+              id="hunter-tel"
+              name="tel"
+              type="tel"
+              inputMode="tel"
+              value={form.phone}
+              onChange={(e) => set("phone", e.target.value)}
+              className={inputClass}
+              autoComplete="tel"
+              placeholder="This is how he calls back"
+            />
           </Field>
-          <Field label="Email">
-            <input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className={inputClass} autoComplete="email" placeholder="Optional" />
+          <Field label="Email" htmlFor="hunter-email">
+            <input
+              id="hunter-email"
+              name="email"
+              type="email"
+              inputMode="email"
+              value={form.email}
+              onChange={(e) => set("email", e.target.value)}
+              className={inputClass}
+              autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              placeholder="Optional"
+            />
           </Field>
-          <Field label="Ohio county *">
-            <select value={form.county} onChange={(e) => set("county", e.target.value)} className={selectClass}>
+          <Field label="Ohio county *" htmlFor="hunter-county">
+            <select id="hunter-county" name="address-level2" value={form.county} onChange={(e) => set("county", e.target.value)} className={selectClass} autoComplete="address-level2">
               <option value="" className="bg-[#1A1A1A]">
                 Ohio only
               </option>
@@ -308,11 +350,11 @@ export default function RecoverFlow({
 
       {step === 1 ? (
         <div className="space-y-5">
-          <Field label="Approximate shot time">
-            <input type="datetime-local" value={form.shotAt} onChange={(e) => set("shotAt", e.target.value)} className={inputClass} />
+          <Field label="Approximate shot time" htmlFor="shot-at">
+            <input id="shot-at" name="shot-at" type="datetime-local" value={form.shotAt} onChange={(e) => set("shotAt", e.target.value)} className={inputClass} autoComplete="off" />
           </Field>
-          <Field label="Is the deer down?">
-            <select value={form.deerStatus} onChange={(e) => set("deerStatus", e.target.value)} className={selectClass}>
+          <Field label="Is the deer down?" htmlFor="deer-status">
+            <select id="deer-status" name="deer-status" value={form.deerStatus} onChange={(e) => set("deerStatus", e.target.value)} className={selectClass} autoComplete="off">
               <option value="" className="bg-[#1A1A1A]">
                 Select
               </option>
@@ -323,8 +365,8 @@ export default function RecoverFlow({
               ))}
             </select>
           </Field>
-          <Field label="Shot placement">
-            <select value={form.shotPlacement} onChange={(e) => set("shotPlacement", e.target.value)} className={selectClass}>
+          <Field label="Shot placement" htmlFor="shot-placement">
+            <select id="shot-placement" name="shot-placement" value={form.shotPlacement} onChange={(e) => set("shotPlacement", e.target.value)} className={selectClass} autoComplete="off">
               <option value="" className="bg-[#1A1A1A]">
                 Select
               </option>
@@ -335,12 +377,15 @@ export default function RecoverFlow({
               ))}
             </select>
           </Field>
-          <Field label="Direction of travel / last blood">
+          <Field label="Direction of travel / last blood" htmlFor="direction">
             <textarea
+              id="direction"
+              name="direction"
               value={form.direction}
               onChange={(e) => set("direction", e.target.value)}
               rows={4}
               className={inputClass + " resize-none"}
+              autoComplete="off"
               placeholder="Which way it went, last blood, last seen"
             />
           </Field>
@@ -349,8 +394,11 @@ export default function RecoverFlow({
 
       {step === 2 ? (
         <div className="space-y-5">
-          <Field label="Property address or road *">
+          <Field label="Property address or road *" htmlFor="street-address">
             <input
+              id="street-address"
+              name="street-address"
+              type="text"
               value={form.location}
               onChange={(e) => {
                 set("location", e.target.value);
@@ -359,6 +407,7 @@ export default function RecoverFlow({
               className={inputClass}
               placeholder="What you would tell Dean on the phone"
               autoComplete="street-address"
+              autoCapitalize="words"
             />
           </Field>
           <button
@@ -412,24 +461,39 @@ export default function RecoverFlow({
               </div>
             </div>
           ) : null}
-          <Field label="Terrain">
+          <Field label="Terrain" htmlFor="terrain">
             <textarea
+              id="terrain"
+              name="terrain"
               value={form.terrain}
               onChange={(e) => set("terrain", e.target.value)}
               rows={3}
               className={inputClass + " resize-none"}
+              autoComplete="off"
               placeholder="Thick brush, creek, standing corn, beans, woods"
             />
           </Field>
-          <Field label="Landowner name">
-            <input value={form.landowner} onChange={(e) => set("landowner", e.target.value)} className={inputClass} placeholder="Who owns this parcel" />
+          <Field label="Landowner name" htmlFor="landowner">
+            <input
+              id="landowner"
+              name="landowner"
+              type="text"
+              value={form.landowner}
+              onChange={(e) => set("landowner", e.target.value)}
+              className={inputClass}
+              autoComplete="off"
+              placeholder="Who owns this parcel"
+            />
           </Field>
-          <Field label="Access / can you meet tonight">
+          <Field label="Access / can you meet tonight" htmlFor="access-notes">
             <textarea
+              id="access-notes"
+              name="access-notes"
               value={form.accessNotes}
               onChange={(e) => set("accessNotes", e.target.value)}
               rows={3}
               className={inputClass + " resize-none"}
+              autoComplete="off"
               placeholder="Gate, dogs, parked truck, permission status"
             />
           </Field>
@@ -460,13 +524,17 @@ export default function RecoverFlow({
               {WAIVER_BODY}
             </div>
           </div>
-          <Field label="Type your full name *">
+          <Field label="Type your full name *" htmlFor="waiver-name">
             <input
+              id="waiver-name"
+              name="waiver-name"
+              type="text"
               value={form.waiverName}
               onChange={(e) => set("waiverName", e.target.value)}
               className={inputClass}
               placeholder="Same as the hunter requesting recovery"
               autoComplete="name"
+              autoCapitalize="words"
             />
           </Field>
           <label className="flex gap-3 items-start text-sm text-gray-300">
@@ -502,16 +570,14 @@ export default function RecoverFlow({
         ) : null}
         {step < STEPS.length - 1 ? (
           <button
-            type="button"
-            onClick={next}
+            type="submit"
             className="flex-1 min-h-12 bg-[#DC2626] text-white px-4 py-3 rounded-lg font-semibold hover:bg-[#B91C1C] transition"
           >
             Continue
           </button>
         ) : (
           <button
-            type="button"
-            onClick={handleSubmit}
+            type="submit"
             disabled={submitting}
             className="flex-1 min-h-12 bg-[#DC2626] text-white px-4 py-3 rounded-lg font-semibold hover:bg-[#B91C1C] transition disabled:opacity-50"
           >
@@ -519,14 +585,16 @@ export default function RecoverFlow({
           </button>
         )}
       </div>
-    </div>
+    </form>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, htmlFor, children }: { label: string; htmlFor?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">{label}</label>
+      <label htmlFor={htmlFor} className="block text-xs text-gray-500 uppercase tracking-wider mb-2">
+        {label}
+      </label>
       {children}
     </div>
   );
