@@ -58,7 +58,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
     timeline: "asap",
     message:
       "Emergency deer recovery. I just shot a deer and cannot find it.\n\n" +
-      "Use /drone/deer-recovery if you can. This form is the backup.\n\n" +
+      "Use /drone/recover if you can. This form is the backup.\n\n" +
       "County (Mahoning, Trumbull, Columbiana, Portage, or Stark):\n\n" +
       "Property address or pin:\n\n" +
       "When I shot it:\n\n" +

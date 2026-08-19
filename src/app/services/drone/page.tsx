@@ -117,11 +117,17 @@ export default function DroneServicesPage() {
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
             FAA Part 107 certified. Commercially insured. Real estate packages with flat starting prices, and custom-scoped commercial work, all delivered through a professional pipeline I built myself.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 mb-8">
             {["FAA Part 107 certified", "Commercial liability insurance", "NDAA-compliant operations", "24-48 hour delivery"].map((b) => (
               <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">{b}</span>
             ))}
           </div>
+          <Link
+            href="/drone/recover"
+            className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
+          >
+            Need deer recovery?
+          </Link>
         </div>
       </section>
 
@@ -228,8 +234,8 @@ export default function DroneServicesPage() {
             <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
               Book a flight
             </Link>
-            <Link href="/drone/deer-recovery" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
-              Deer recovery
+            <Link href="/drone/recover" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
+              Need deer recovery?
             </Link>
           </div>
         </div>

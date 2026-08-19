@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DispatchForm from "./DispatchForm";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Deer recovery",
@@ -56,8 +56,8 @@ export default function DeerRecoveryPage() {
             ))}
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="#dispatch" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm">
-              Submit a dispatch
+            <a href="/drone/recover" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm">
+              Need deer recovery?
             </a>
             <a href="#pricing" className="border border-white/15 text-gray-300 px-8 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-sm">
               See pricing
@@ -70,11 +70,11 @@ export default function DeerRecoveryPage() {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold mb-4 text-center">How it works.</h2>
           <p className="text-gray-400 mb-16 text-center max-w-lg mx-auto">
-            If you cannot get Dean on the phone, submit the form. This is an emergency dispatch, not a season list.
+            If you cannot get Dean on the phone, start the recovery request. This is an emergency dispatch, not a season list.
           </p>
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { step: "01", title: "Call or submit the form", desc: "Tell him where you are, where you shot it, where you think it went, and where you think you hit it. Ask if he can make it tonight." },
+              { step: "01", title: "Call or start the request", desc: "Pin, shot notes, Ohio rules, and the waiver. Ask if he can make it tonight." },
               { step: "02", title: "Pay the $250", desc: "That books the flight. You pay $250 for the look, whether the deer is found or not." },
               { step: "03", title: "Dean flies if he can make it tonight", desc: "If he can take the job, he comes out and searches. $50 more if he finds it. $300 total if found." },
             ].map((s) => (
@@ -141,8 +141,8 @@ export default function DeerRecoveryPage() {
                   />
                 </div>
               </div>
-              <a href="#dispatch" className="text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
-                Submit a dispatch
+              <a href="/drone/recover" className="text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
+                Start recovery request
               </a>
             </div>
           </div>
@@ -187,14 +187,19 @@ export default function DeerRecoveryPage() {
 
       <section id="dispatch" className="py-20 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl">
             <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Emergency dispatch</h2>
             <h3 className="text-3xl font-bold mb-3">I am here. Can you make it tonight?</h3>
-            <p className="text-gray-400">
-              If you cannot get him on the phone, submit this. Name, phone, and where you are. He calls the number you leave.
+            <p className="text-gray-400 mb-8">
+              Four short screens on your phone: who you are, the deer, the pin, Ohio rules and the waiver. Dean gets the full packet and calls you.
             </p>
+            <Link
+              href="/drone/recover"
+              className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
+            >
+              Start recovery request
+            </Link>
           </div>
-          <DispatchForm depositUrl={depositUrl} venmoUrl={venmoUrl} />
         </div>
       </section>
     </>
