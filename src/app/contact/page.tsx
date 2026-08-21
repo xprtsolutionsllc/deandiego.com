@@ -50,7 +50,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Approximate roof area (sf) or footprint:\n\n" +
       "Access notes (parking, hours, rooftop HVAC):\n\n" +
       "Need thermal as a second product? (yes / no):\n\n" +
-      "Note: this is a measured documentation package, not a PE stamp or insurance certification.\n\n" +
+      "Note: RTK-tagged 2 cm ortho + DSM + pin list. Source file for a PE or inspector. Not a stamp, not an insurance cert.\n\n" +
       "Deadline:\n\n" +
       "Notes:\n",
   },
