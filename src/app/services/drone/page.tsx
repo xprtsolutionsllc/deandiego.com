@@ -137,8 +137,11 @@ export default function DroneServicesPage() {
             <span className="text-gray-300">Drone</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone Services.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl mb-8">
+          <p className="text-lg text-gray-400 max-w-2xl mb-4">
             FAA Part 107 certified. Commercially insured. Real estate packages with flat starting prices, and custom-scoped commercial work, all delivered through a professional pipeline I built myself.
+          </p>
+          <p className="text-sm text-gray-500 max-w-2xl mb-8">
+            Capture and files. Not a Professional Engineer (PE) stamp, not a land survey, not an insurance certification.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             {["FAA Part 107 certified", "Commercial liability insurance", "NDAA-compliant operations", "24-48 hour delivery"].map((b) => (

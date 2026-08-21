@@ -44,16 +44,17 @@ const SERVICES = [
   {
     id: "drone",
     title: "Drone Mapping & Aerial Intelligence",
-    tagline: "Autonomous surveys. Professional deliverables.",
+    tagline: "Aerial capture. Professional files.",
     description: "FAA Part 107 certified drone operations for property documentation, commercial roof inspection, construction progress, and aerial mapping. Full pipeline from automated flight planning through GPU-processed orthomosaics and 3D models, delivered through a custom client portal.",
+    disclaimer: "Capture and files. Not a Professional Engineer (PE) stamp, not a land survey, not an insurance certification.",
     includes: [
-      "Commercial Roof Inspection: 2 cm ortho, DSM, marked defects",
-      "Autonomous grid survey flights",
+      "Commercial Roof Inspection: 2 cm ortho, DSM, marked defects (file for a PE or inspector, not a stamp)",
+      "Autonomous grid flights",
       "Orthomosaic map generation (GeoTIFF)",
       "3D point cloud and textured models",
       "Digital surface models (DSM)",
       "AI-powered photo analysis",
-      "Branded PDF inspection reports",
+      "Branded PDF documentation reports",
       "Client portal with downloads",
       "NDAA-compliant operations",
     ],
@@ -81,7 +82,10 @@ export default function ServicesPage() {
               <div className="text-xs text-[#DC2626] font-medium uppercase tracking-wider mb-3">0{i + 1}</div>
               <h2 className="text-3xl font-bold mb-3">{s.title}</h2>
               <p className="text-lg text-gray-300 mb-4">{s.tagline}</p>
-              <p className="text-gray-400 leading-relaxed mb-8">{s.description}</p>
+              <p className={`text-gray-400 leading-relaxed ${"disclaimer" in s && s.disclaimer ? "mb-4" : "mb-8"}`}>{s.description}</p>
+              {"disclaimer" in s && s.disclaimer ? (
+                <p className="text-sm text-gray-500 leading-relaxed mb-8">{s.disclaimer}</p>
+              ) : null}
 
               <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">What&apos;s included</h3>
               <ul className="space-y-2.5 mb-8">
@@ -115,6 +119,7 @@ export default function ServicesPage() {
             <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Real estate pricing</h2>
             <h3 className="text-3xl font-bold mb-3">Per-listing drone packages.</h3>
             <p className="text-gray-400">Flat starting prices, confirmed on a five-minute call. FAA Part 107 certified and commercially insured; certificates come with every booking confirmation.</p>
+            <p className="text-sm text-gray-500 mt-3">Listing photos and video are documentation, not an inspection. Commercial roof files are for a PE or inspector to use; I do not stamp.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
