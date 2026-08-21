@@ -63,7 +63,7 @@ const COMMERCIAL = [
     name: "Commercial Roof Inspection",
     pricing: "Request a quote. Full roof package, higher ticket than a photo dump.",
     blurb:
-      "2 cm roof ortho, DSM, and marked defects, from a Matrice 4T grid, processed in Fieldmesh. Built for Ohio retail, warehouse, school, apartment, and municipal roofs. The owner or roofer gets a measured, marked deck they can act on. Not a land survey.",
+      "2 cm roof ortho, DSM, and marked defects, from a Matrice 4T grid, processed in Fieldmesh. Built for Ohio retail, warehouse, school, apartment, and municipal roofs. The owner or roofer gets a measured, marked deck they can act on. Documentation, not a PE stamp, insurance cert, or land survey.",
     features: [
       "Georeferenced 2 cm Wide-RGB orthomosaic (GeoTIFF)",
       "DSM for ponding and slope",

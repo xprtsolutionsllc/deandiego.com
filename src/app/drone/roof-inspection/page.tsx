@@ -22,6 +22,8 @@ const IN_PACKAGE = [
 ];
 
 const NOT_IN_PACKAGE = [
+  "Not a Professional Engineer (PE) report. No engineer stamp.",
+  "Not an insurance certification or ASTM inspection.",
   "Not a cadastral or land survey. Relative, RTK-tagged.",
   "No mixed thermal mosaic. Thermal is a separate product if you want it.",
   "No single flight line. No mosaic from fewer than 40 Wide frames.",
@@ -45,7 +47,7 @@ export default function RoofInspectionPage() {
             2 cm roof ortho, DSM, and marked defects, from a Matrice 4T grid, processed in Fieldmesh.
           </p>
           <p className="text-sm text-gray-500 max-w-2xl mb-8">
-            Higher ticket than a photo dump or a single thermal pass. The owner or roofer gets a measured, marked roof they can act on. Quote on the call. Delivery after a full roof grid.
+            Higher ticket than a photo dump or a single thermal pass. The owner or roofer gets a measured, marked roof they can act on. This is documentation, not a PE stamp, not an insurance certification, and not a land survey. Quote on the call. Delivery after a full roof grid.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
             {["Ohio commercial roofs", "Matrice 4T", "Fieldmesh", "Request a quote"].map((b) => (
@@ -69,7 +71,7 @@ export default function RoofInspectionPage() {
             <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Who it is for</h2>
             <h3 className="text-2xl font-bold mb-4">Ohio commercial roofs.</h3>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
-              Retail, warehouse, school, apartment, municipal. Facility owners, roofers, and property managers who need the whole deck documented, not a handful of handheld shots.
+              Retail, warehouse, school, apartment, municipal. Facility owners, roofers, and property managers who need the whole deck documented, not a handful of handheld shots. Hand the file to your PE or insurer if they need a stamp. We do not sell the stamp.
             </p>
             <ul className="space-y-2.5">
               {["Retail and warehouse", "Schools and municipal", "Apartments and HOA roofs", "Roofer / GC pre-bid and punch"].map((f) => (
