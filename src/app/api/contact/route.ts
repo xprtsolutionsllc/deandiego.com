@@ -8,6 +8,7 @@ const XPRT_API = "https://api.goxprt.com";
 const SERVICE_TYPE_BY_TOPIC: Record<string, string> = {
   "drone-realestate": "real_estate",
   "drone-mapping": "mapping",
+  "drone-roof": "mapping",
   "drone-video": "video",
   "deer-recovery": "deer_recovery",
 };

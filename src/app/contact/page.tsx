@@ -38,6 +38,21 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Deadline:\n\n" +
       "Notes:\n",
   },
+  "drone-roof": {
+    inquiryType: "project",
+    projectType: "drone",
+    budget: "1k-5k",
+    timeline: "1-2weeks",
+    message:
+      "I'd like a quote for a Commercial Roof Inspection.\n\n" +
+      "Site address:\n\n" +
+      "Building type (retail / warehouse / school / apartment / municipal / other):\n\n" +
+      "Approximate roof area (sf) or footprint:\n\n" +
+      "Access notes (parking, hours, rooftop HVAC):\n\n" +
+      "Need thermal as a second product? (yes / no):\n\n" +
+      "Deadline:\n\n" +
+      "Notes:\n",
+  },
   "drone-video": {
     inquiryType: "project",
     projectType: "drone",

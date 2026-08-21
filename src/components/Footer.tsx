@@ -21,6 +21,7 @@ export default function Footer() {
               <Link href="/#ai-approach" className="block text-sm text-gray-400 hover:text-white transition">AI Approach</Link>
               <Link href="/contact" className="block text-sm text-gray-400 hover:text-white transition">Contact</Link>
               <Link href="/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
+              <Link href="/drone/roof-inspection" className="block text-sm text-gray-400 hover:text-white transition">Commercial roof inspection</Link>
             </div>
           </div>
           <div>

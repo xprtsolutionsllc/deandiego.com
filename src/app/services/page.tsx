@@ -45,8 +45,9 @@ const SERVICES = [
     id: "drone",
     title: "Drone Mapping & Aerial Intelligence",
     tagline: "Autonomous surveys. Professional deliverables.",
-    description: "FAA Part 107 certified drone operations for property documentation, construction progress, roof inspection, and aerial mapping. Full pipeline from automated flight planning through GPU-processed orthomosaics and 3D models, delivered through a custom client portal.",
+    description: "FAA Part 107 certified drone operations for property documentation, commercial roof inspection, construction progress, and aerial mapping. Full pipeline from automated flight planning through GPU-processed orthomosaics and 3D models, delivered through a custom client portal.",
     includes: [
+      "Commercial Roof Inspection: 2 cm ortho, DSM, marked defects",
       "Autonomous grid survey flights",
       "Orthomosaic map generation (GeoTIFF)",
       "3D point cloud and textured models",
