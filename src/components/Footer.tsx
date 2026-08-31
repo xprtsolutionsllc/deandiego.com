@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TOWNS } from "@/app/drone/deer-recovery/towns";
 
 export default function Footer() {
   return (
@@ -22,6 +23,15 @@ export default function Footer() {
               <Link href="/#ai-approach" className="block text-sm text-gray-400 hover:text-white transition">AI Approach</Link>
               <Link href="/contact" className="block text-sm text-gray-400 hover:text-white transition">Contact</Link>
               <Link href="/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
+              {TOWNS.map((town) => (
+                <Link
+                  key={town.slug}
+                  href={`/drone/deer-recovery/${town.slug}`}
+                  className="block text-sm text-gray-500 hover:text-white transition pl-3"
+                >
+                  {town.name} deer recovery
+                </Link>
+              ))}
               <Link href="/drone/roof-inspection" className="block text-sm text-gray-400 hover:text-white transition">Commercial roof inspection</Link>
             </div>
           </div>
