@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DispatchForm from "./DispatchForm";
+import { TOWNS } from "./towns";
 
 export const metadata: Metadata = {
   title: "Dean's Deer Recovery",
@@ -151,6 +152,17 @@ export default function DeerRecoveryPage() {
                 <li key={c} className="flex items-start gap-3 text-sm text-gray-400">
                   {CHECK}
                   {c} County
+                </li>
+              ))}
+            </ul>
+            <h4 className="text-sm font-semibold mt-6 mb-3">Mahoning County towns</h4>
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+              {TOWNS.map((town) => (
+                <li key={town.slug} className="flex items-start gap-3 text-sm text-gray-400">
+                  {CHECK}
+                  <a href={`/deer-recovery/${town.slug}`} className="hover:text-white">
+                    Drone deer recovery in {town.name}
+                  </a>
                 </li>
               ))}
             </ul>
