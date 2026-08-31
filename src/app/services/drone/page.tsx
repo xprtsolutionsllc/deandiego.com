@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Drone Services",
   description:
-    "FAA Part 107 certified drone services in Northeast Ohio: real estate aerial photos from $200, cinematic listing video from $250, interactive 3D walkthroughs from $450, and commercial mapping, survey, and progress documentation.",
+    "FAA Part 107 certified drone services in Northeast Ohio: real estate aerial photos from $200, cinematic listing video from $250, interactive 3D walkthroughs from $450, commercial roof inspection, mapping, and progress documentation.",
 };
 
 const CHECK = (
@@ -60,6 +60,23 @@ const LISTING_TIERS = [
 
 const COMMERCIAL = [
   {
+    name: "Commercial Roof Inspection",
+    pricing: "Request a quote. Full roof package, higher ticket than a photo dump.",
+    blurb:
+      "RTK-tagged 2 cm Wide-RGB ortho, DSM, and pin list from a Matrice 4T grid, processed in Fieldmesh. Built for PEs, inspectors, roofers, and owners. You get the file. You stamp if you stamp. Not an insurance cert or a land survey.",
+    features: [
+      "RTK FIX grid, 2 cm GSD GeoTIFF",
+      "DSM for ponding and slope",
+      "Pin list a PE or inspector can take into a report",
+      "Marked hail, seam, ponding, puncture, HVAC, debris",
+      "Close-up damage stills, separate from the mosaic",
+      "Thermal pass available as a second product",
+    ],
+    cta: { label: "Request a roof quote", href: "/contact?topic=drone-roof" },
+    href: "/drone/roof-inspection",
+    highlight: true,
+  },
+  {
     name: "Mapping & Survey-Grade Capture",
     pricing: "Custom quote, scoped by acreage and deliverables",
     blurb:
@@ -72,6 +89,8 @@ const COMMERCIAL = [
       "Client portal with downloads",
     ],
     cta: { label: "Scope a mapping job", href: "/contact?topic=drone-mapping" },
+    href: "/contact?topic=drone-mapping",
+    highlight: false,
   },
   {
     name: "Construction Progress Documentation",
@@ -86,6 +105,8 @@ const COMMERCIAL = [
       "Roof and exterior condition documentation",
     ],
     cta: { label: "Set up progress flights", href: "/contact?topic=drone-mapping" },
+    href: "/contact?topic=drone-mapping",
+    highlight: false,
   },
   {
     name: "Commercial & Brand Video",
@@ -99,6 +120,8 @@ const COMMERCIAL = [
       "Edited deliverables in your formats",
     ],
     cta: { label: "Commission video", href: "/contact?topic=drone-video" },
+    href: "/contact?topic=drone-video",
+    highlight: false,
   },
 ];
 
@@ -114,14 +137,23 @@ export default function DroneServicesPage() {
             <span className="text-gray-300">Drone</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone Services.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl mb-8">
+          <p className="text-lg text-gray-400 max-w-2xl mb-4">
             FAA Part 107 certified. Commercially insured. Real estate packages with flat starting prices, and custom-scoped commercial work, all delivered through a professional pipeline I built myself.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <p className="text-sm text-gray-500 max-w-2xl mb-8">
+            Capture and files. Not a Professional Engineer (PE) stamp, not a land survey, not an insurance certification.
+          </p>
+          <div className="flex flex-wrap gap-3 mb-8">
             {["FAA Part 107 certified", "Commercial liability insurance", "NDAA-compliant operations", "24-48 hour delivery"].map((b) => (
               <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">{b}</span>
             ))}
           </div>
+          <Link
+            href="/drone/recover"
+            className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
+          >
+            Need deer recovery?
+          </Link>
         </div>
       </section>
 
@@ -173,9 +205,21 @@ export default function DroneServicesPage() {
           </div>
           <div className="space-y-6">
             {COMMERCIAL.map((job) => (
-              <div key={job.name} className="grid md:grid-cols-[2fr_1fr] gap-8 rounded-xl border border-white/10 bg-white/[0.03] p-8 items-start">
+              <div
+                key={job.name}
+                className={`grid md:grid-cols-[2fr_1fr] gap-8 rounded-xl p-8 items-start border ${
+                  job.highlight ? "border-[#DC2626]/40 bg-[#DC2626]/5" : "border-white/10 bg-white/[0.03]"
+                }`}
+              >
                 <div>
-                  <h4 className="font-semibold text-xl mb-1">{job.name}</h4>
+                  <div className="flex flex-wrap items-center gap-3 mb-1">
+                    <h4 className="font-semibold text-xl">{job.name}</h4>
+                    {job.highlight ? (
+                      <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">
+                        Full roof package
+                      </span>
+                    ) : null}
+                  </div>
                   <div className="text-xs text-gray-500 mb-4">{job.pricing}</div>
                   <p className="text-sm text-gray-400 leading-relaxed mb-5">{job.blurb}</p>
                   <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
@@ -186,9 +230,21 @@ export default function DroneServicesPage() {
                       </li>
                     ))}
                   </ul>
+                  {job.href.startsWith("/drone/") ? (
+                    <Link href={job.href} className="inline-block mt-5 text-sm text-[#DC2626] font-medium hover:underline">
+                      Full package details
+                    </Link>
+                  ) : null}
                 </div>
                 <div className="md:justify-self-end md:self-center">
-                  <Link href={job.cta.href} className="inline-block border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
+                  <Link
+                    href={job.cta.href}
+                    className={`inline-block px-6 py-3 rounded-lg font-semibold text-sm transition ${
+                      job.highlight
+                        ? "bg-[#DC2626] text-white hover:bg-[#B91C1C]"
+                        : "border border-white/15 text-gray-300 hover:border-[#DC2626]/40"
+                    }`}
+                  >
                     {job.cta.label}
                   </Link>
                 </div>
@@ -224,9 +280,17 @@ export default function DroneServicesPage() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to fly?</h2>
           <p className="text-gray-400 mb-8">Tell me about the property or the project. You will have a number the same day.</p>
-          <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
-            Book a flight
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
+              Book a flight
+            </Link>
+            <Link href="/drone/recover" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
+              Need deer recovery?
+            </Link>
+            <Link href="/drone/roof-inspection" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
+              Commercial roof inspection
+            </Link>
+          </div>
         </div>
       </section>
     </>

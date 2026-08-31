@@ -38,6 +38,22 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Deadline:\n\n" +
       "Notes:\n",
   },
+  "drone-roof": {
+    inquiryType: "project",
+    projectType: "drone",
+    budget: "1k-5k",
+    timeline: "1-2weeks",
+    message:
+      "I'd like a quote for a Commercial Roof Inspection.\n\n" +
+      "Site address:\n\n" +
+      "Building type (retail / warehouse / school / apartment / municipal / other):\n\n" +
+      "Approximate roof area (sf) or footprint:\n\n" +
+      "Access notes (parking, hours, rooftop HVAC):\n\n" +
+      "Need thermal as a second product? (yes / no):\n\n" +
+      "Note: RTK-tagged 2 cm ortho + DSM + pin list. Source file for a PE or inspector. Not a stamp, not an insurance cert.\n\n" +
+      "Deadline:\n\n" +
+      "Notes:\n",
+  },
   "drone-video": {
     inquiryType: "project",
     projectType: "drone",
@@ -58,7 +74,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
     timeline: "asap",
     message:
       "Emergency deer recovery. I just shot a deer and cannot find it.\n\n" +
-      "Use /deer-recovery if you can. This form is the backup.\n\n" +
+      "Use /drone/recover if you can. This form is the backup.\n\n" +
       "County (Mahoning, Trumbull, Columbiana, Portage, or Stark):\n\n" +
       "Property address or pin:\n\n" +
       "When I shot it:\n\n" +
@@ -66,7 +82,7 @@ const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; 
       "Shot placement (shoulder, guts, ham, neck, unknown):\n\n" +
       "Can you make it tonight / access notes:\n\n" +
       "Phone for callback:\n\n" +
-      "Pricing I expect: $300 to come out, $50 more if found ($350 total). No season pack.\n",
+      "Pricing I expect: $250 to come out, $50 more if found ($300 total). No season pack.\n",
   },
 };
 
@@ -217,7 +233,7 @@ function ContactInner() {
                       <option value="website" className="bg-[#1A1A1A]">Website</option>
                       <option value="ai-sprint" className="bg-[#1A1A1A]">AI Sprint</option>
                       <option value="drone" className="bg-[#1A1A1A]">Drone Services</option>
-                      <option value="deer-recovery" className="bg-[#1A1A1A]">Dean&apos;s Deer Recovery</option>
+                      <option value="deer-recovery" className="bg-[#1A1A1A]">Deer recovery</option>
                       <option value="other" className="bg-[#1A1A1A]">Other</option>
                     </select>
                   </div>

@@ -18,9 +18,11 @@ export default function Footer() {
             <div className="space-y-2.5">
               <Link href="/about" className="block text-sm text-gray-400 hover:text-white transition">About</Link>
               <Link href="/work" className="block text-sm text-gray-400 hover:text-white transition">Work</Link>
+              <Link href="/services" className="block text-sm text-gray-400 hover:text-white transition">Services</Link>
               <Link href="/#ai-approach" className="block text-sm text-gray-400 hover:text-white transition">AI Approach</Link>
               <Link href="/contact" className="block text-sm text-gray-400 hover:text-white transition">Contact</Link>
-              <Link href="/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Dean&apos;s Deer Recovery</Link>
+              <Link href="/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
+              <Link href="/drone/roof-inspection" className="block text-sm text-gray-400 hover:text-white transition">Commercial roof inspection</Link>
             </div>
           </div>
           <div>

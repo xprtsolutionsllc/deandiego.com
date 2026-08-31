@@ -7,9 +7,22 @@ import { useState } from "react";
 const LINKS = [
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
   { href: "/#ai-approach", label: "AI Approach" },
   { href: "/contact", label: "Contact" },
 ];
+
+function linkActive(href: string, pathname: string) {
+  if (href === "/#ai-approach") return false;
+  if (href === "/services") {
+    return (
+      pathname === "/services" ||
+      pathname.startsWith("/services/") ||
+      pathname.startsWith("/drone")
+    );
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Nav() {
   const pathname = usePathname();
@@ -28,7 +41,7 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className={`transition ${pathname === l.href || (l.href !== "/#ai-approach" && pathname.startsWith(l.href + "/")) ? "text-white font-medium" : "text-gray-400 hover:text-white"}`}
+              className={`transition ${linkActive(l.href, pathname) ? "text-white font-medium" : "text-gray-400 hover:text-white"}`}
             >
               {l.label}
             </Link>
@@ -63,7 +76,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`block py-2 text-sm ${pathname === l.href ? "text-white font-medium" : "text-gray-400"}`}
+              className={`block py-2 text-sm ${linkActive(l.href, pathname) ? "text-white font-medium" : "text-gray-400"}`}
             >
               {l.label}
             </Link>
