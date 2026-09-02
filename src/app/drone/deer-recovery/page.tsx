@@ -1,11 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TOWNS } from "./towns";
+import { COUNTIES, TOWNS } from "./towns";
+import { JsonLd, deerRecoveryJsonLd } from "./json-ld";
+
+const HUB_URL = "https://deandiego.com/drone/deer-recovery";
+const HUB_TITLE = "Drone Deer Recovery in Northeast Ohio | Dean Diego Drone";
+const HUB_DESCRIPTION =
+  "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it.";
 
 export const metadata: Metadata = {
-  title: "Deer recovery",
-  description:
-    "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it.",
+  title: { absolute: HUB_TITLE },
+  description: HUB_DESCRIPTION,
+  alternates: { canonical: HUB_URL },
+  openGraph: {
+    title: HUB_TITLE,
+    description: HUB_DESCRIPTION,
+    url: HUB_URL,
+    siteName: "Dean Diego Drone",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: HUB_TITLE,
+    description: HUB_DESCRIPTION,
+  },
 };
 
 const CHECK = (
@@ -13,8 +31,6 @@ const CHECK = (
     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
   </svg>
 );
-
-const COUNTIES = ["Mahoning", "Trumbull", "Columbiana", "Portage", "Stark"];
 
 function PayButton({ url, label, pending, className }: { url: string; label: string; pending: string; className: string }) {
   if (url) {
@@ -40,6 +56,7 @@ export default function DeerRecoveryPage() {
 
   return (
     <>
+      <JsonLd data={deerRecoveryJsonLd()} />
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
@@ -47,7 +64,7 @@ export default function DeerRecoveryPage() {
             <span className="mx-2">/</span>
             <span>Deer recovery</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Deer recovery.</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone deer recovery in Northeast Ohio.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
             Shot a deer you cannot find? Thermal search, Northeast Ohio. $250 to come out. $50 more if we find it.
           </p>
