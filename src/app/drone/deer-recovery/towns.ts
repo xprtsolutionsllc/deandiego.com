@@ -12,6 +12,8 @@ export const TOWNS: Town[] = [
   { slug: "poland", name: "Poland", county: "Mahoning" },
 ];
 
+export const COUNTIES = ["Mahoning", "Trumbull", "Columbiana", "Portage", "Stark"] as const;
+
 export function townBySlug(slug: string): Town | undefined {
   return TOWNS.find((t) => t.slug === slug);
 }

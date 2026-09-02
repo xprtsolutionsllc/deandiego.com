@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { TOWNS, townBySlug } from "../towns";
+import { JsonLd, deerRecoveryJsonLd } from "../json-ld";
 
 type Props = { params: Promise<{ town: string }> };
 
@@ -15,14 +16,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!town) return {};
   const title = `Drone Deer Recovery in ${town.name}`;
   const description = `Thermal drone deer recovery in ${town.name}, ${town.county} County, Ohio. $250 to come out. $50 more if we find it.`;
+  const url = `https://deandiego.com/drone/deer-recovery/${town.slug}`;
   return {
     title,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
-      url: `https://deandiego.com/drone/deer-recovery/${town.slug}`,
+      url,
       type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
     },
   };
 }
@@ -34,6 +42,7 @@ export default async function TownDeerRecoveryPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={deerRecoveryJsonLd(town)} />
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
