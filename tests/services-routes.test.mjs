@@ -3,6 +3,21 @@ import test from "node:test";
 
 const baseUrl = process.env.SERVICE_TEST_BASE_URL ?? "http://127.0.0.1:3210";
 const canonicalBase = "https://deandiego.com";
+const trustedPreviewHeaders = process.env.VERCEL_OIDC_TOKEN
+  ? {
+      "x-vercel-trusted-oidc-idp-token": process.env.VERCEL_OIDC_TOKEN,
+    }
+  : {};
+
+function request(path, init = {}) {
+  return fetch(`${baseUrl}${path}`, {
+    ...init,
+    headers: {
+      ...trustedPreviewHeaders,
+      ...init.headers,
+    },
+  });
+}
 
 const servicePages = [
   "/services",
@@ -42,7 +57,7 @@ const redirects = legacyRedirects.flatMap(([source, destination]) => [
 
 for (const path of servicePages) {
   test(`${path} renders successfully`, async () => {
-    const response = await fetch(`${baseUrl}${path}`);
+    const response = await request(path);
 
     assert.equal(response.status, 200);
   });
@@ -50,7 +65,7 @@ for (const path of servicePages) {
 
 for (const [source, destination] of redirects) {
   test(`${source} redirects directly to ${destination}`, async () => {
-    const response = await fetch(`${baseUrl}${source}`, { redirect: "manual" });
+    const response = await request(source, { redirect: "manual" });
     const location = response.headers.get("location");
 
     assert.equal(response.status, 308);
@@ -60,7 +75,7 @@ for (const [source, destination] of redirects) {
 }
 
 test("canonical service URLs normalize trailing slashes in one hop", async () => {
-  const response = await fetch(`${baseUrl}/services/drone/mapping/`, {
+  const response = await request("/services/drone/mapping/", {
     redirect: "manual",
   });
   const location = response.headers.get("location");
@@ -71,7 +86,7 @@ test("canonical service URLs normalize trailing slashes in one hop", async () =>
 });
 
 test("the DDR recovery flow stays at its field URL without site chrome", async () => {
-  const response = await fetch(`${baseUrl}/drone/recover?src=ddr`);
+  const response = await request("/drone/recover?src=ddr");
   const html = await response.text();
 
   assert.equal(response.status, 200);
@@ -80,7 +95,7 @@ test("the DDR recovery flow stays at its field URL without site chrome", async (
 });
 
 test("the sitemap lists canonical service pages only", async () => {
-  const response = await fetch(`${baseUrl}/sitemap.xml`);
+  const response = await request("/sitemap.xml");
   const xml = await response.text();
 
   assert.equal(response.status, 200);
