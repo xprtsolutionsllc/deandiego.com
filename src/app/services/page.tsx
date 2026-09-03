@@ -1,213 +1,205 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import ServiceDirectoryCard from "@/components/services/ServiceDirectoryCard";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Web applications, AI automation, and FAA Part 107 aerial documentation from Dean Diego.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services | Dean Diego",
+    description:
+      "Web applications, AI automation, and FAA Part 107 aerial documentation.",
+    url: "https://deandiego.com/services",
+    type: "website",
+  },
+};
 
-const SERVICES = [
+const DIRECT_SERVICES = [
   {
-    id: "web",
-    title: "Web Applications & SaaS",
-    tagline: "Custom platforms that ship in days, not months.",
-    description: "I build production-grade web applications using modern frameworks. From landing pages to full SaaS platforms with authentication, payments, dashboards, and APIs. Every project is deployed, live, and ready for real users.",
-    includes: [
-      "Custom websites and landing pages",
-      "SaaS platforms with multi-tenant architecture",
-      "Client portals and dashboards",
-      "Stripe payment integration",
-      "Authentication and user management",
-      "API design and development",
-      "Database architecture (PostgreSQL)",
-      "Deployment and CI/CD setup",
-    ],
-    tech: ["Next.js", "React", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Tailwind CSS", "Vercel", "Stripe", "Clerk"],
-    image: "Web app dashboard screenshot",
+    title: "AI Automation Sprint",
+    description: "One operational bottleneck, built and shipped in two weeks.",
+    href: "/services/ai-automation/sprint",
   },
   {
-    id: "ai",
-    title: "AI Integration & Automation",
-    tagline: "Connect your business to intelligence.",
-    description: "I integrate AI models and build automation pipelines that eliminate manual work. From intelligent chatbots to complex multi-step workflows that process data, make decisions, and take action, all running autonomously.",
-    includes: [
-      "AI-powered chatbots and assistants",
-      "Claude, GPT, and Gemini API integrations",
-      "Automated workflow design (n8n, custom)",
-      "Content generation pipelines",
-      "Data extraction and analysis",
-      "CRM and tool integrations",
-      "Email automation sequences",
-      "Custom internal tools",
-    ],
-    tech: ["Claude API", "OpenAI", "Gemini", "n8n", "Python", "Node.js", "Zapier", "Webhooks"],
-    image: "AI workflow or automation diagram",
+    title: "Real Estate Aerials",
+    description: "Listing photos, cinematic video, and interactive 3D packages.",
+    href: "/services/drone/real-estate",
   },
   {
-    id: "drone",
-    title: "Drone Mapping & Aerial Intelligence",
-    tagline: "Aerial capture. Professional files.",
-    description: "FAA Part 107 certified drone operations for property documentation, commercial roof inspection, construction progress, and aerial mapping. Full pipeline from automated flight planning through GPU-processed orthomosaics and 3D models, delivered through a custom client portal.",
-    disclaimer: "Capture and files. Not a Professional Engineer (PE) stamp, not a land survey, not an insurance certification.",
-    includes: [
-      "Commercial Roof Inspection: 2 cm ortho, DSM, marked defects (file for a PE or inspector, not a stamp)",
-      "Autonomous grid flights",
-      "Orthomosaic map generation (GeoTIFF)",
-      "3D point cloud and textured models",
-      "Digital surface models (DSM)",
-      "AI-powered photo analysis",
-      "Branded PDF documentation reports",
-      "Client portal with downloads",
-      "NDAA-compliant operations",
-    ],
-    tech: ["DJI Air 3", "ArduPilot", "OpenDroneMap", "Three.js", "Leaflet", "XPRT Cloud", "Cloudflare R2"],
-    image: "Drone in flight or orthomosaic result",
+    title: "Commercial Roof Inspection",
+    description: "RTK roof files for PEs, consultants, and owners.",
+    href: "/services/drone/roof-inspection",
+  },
+  {
+    title: "Aerial Mapping",
+    description: "Orthomosaics, surface models, point clouds, and site files.",
+    href: "/services/drone/mapping",
+  },
+  {
+    title: "Construction Progress",
+    description: "Repeatable aerial documentation across project milestones.",
+    href: "/services/drone/construction-progress",
+  },
+  {
+    title: "Commercial Video",
+    description: "Cinematic aerial work delivered for campaigns and properties.",
+    href: "/services/drone/commercial-video",
+  },
+  {
+    title: "Deer Recovery",
+    description: "Thermal search across the Northeast Ohio service area.",
+    href: "/services/drone/deer-recovery",
   },
 ];
 
 export default function ServicesPage() {
   return (
     <>
-      {/* Header */}
-      <section className="py-20 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Services.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl">AI-accelerated development. What takes agencies weeks, I ship in days.</p>
+      <section className="border-b border-white/5 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Services.</h1>
+          <p className="max-w-2xl text-lg text-gray-400">
+            Software, automation, and aerial documentation. Choose the work you
+            need, then go straight to the details.
+          </p>
         </div>
       </section>
 
-      {/* Services */}
-      {SERVICES.map((s, i) => (
-        <section key={s.id} id={s.id} className={`py-20 ${i > 0 ? "border-t border-white/5" : ""}`}>
-          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
-            <div className={i % 2 === 1 ? "md:order-2" : ""}>
-              <div className="text-xs text-[#DC2626] font-medium uppercase tracking-wider mb-3">0{i + 1}</div>
-              <h2 className="text-3xl font-bold mb-3">{s.title}</h2>
-              <p className="text-lg text-gray-300 mb-4">{s.tagline}</p>
-              <p className={`text-gray-400 leading-relaxed ${"disclaimer" in s && s.disclaimer ? "mb-4" : "mb-8"}`}>{s.description}</p>
-              {"disclaimer" in s && s.disclaimer ? (
-                <p className="text-sm text-gray-500 leading-relaxed mb-8">{s.disclaimer}</p>
-              ) : null}
-
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">What&apos;s included</h3>
-              <ul className="space-y-2.5 mb-8">
-                {s.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-gray-400">
-                    <svg className="w-4 h-4 text-[#DC2626] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2">
-                {s.tech.map((t) => (
-                  <span key={t} className="px-2.5 py-1 bg-white/5 rounded text-xs text-gray-500">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div className={i % 2 === 1 ? "md:order-1" : ""}>
-              <ImagePlaceholder label={s.image} aspect="aspect-[4/3]" />
-            </div>
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-3 text-sm font-medium uppercase tracking-wider text-[#DC2626]">
+              Three capabilities
+            </p>
+            <h2 className="mb-3 text-3xl font-bold">Built end to end.</h2>
+            <p className="text-gray-400">
+              Each service now has its own scope, process, and next step.
+            </p>
           </div>
-        </section>
-      ))}
-
-      {/* Real estate drone pricing */}
-      <section id="drone-pricing" className="py-20 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-12">
-            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Real estate pricing</h2>
-            <h3 className="text-3xl font-bold mb-3">Per-listing drone packages.</h3>
-            <p className="text-gray-400">Flat starting prices, confirmed on a five-minute call. FAA Part 107 certified and commercially insured; certificates come with every booking confirmation.</p>
-            <p className="text-sm text-gray-500 mt-3">Listing photos and video are documentation, not an inspection. Commercial roof files are for a PE or inspector to use; I do not stamp.</p>
+          <div className="grid gap-6 lg:grid-cols-3">
+            <ServiceDirectoryCard
+              id="web"
+              eyebrow="Software"
+              title="Web Applications & SaaS"
+              description="Production web applications, client portals, APIs, payments, and deployment."
+              href="/services/web-applications"
+              features={[
+                "Custom applications and SaaS",
+                "Portals, APIs, and data systems",
+                "Production deployment",
+              ]}
+            />
+            <ServiceDirectoryCard
+              id="ai"
+              eyebrow="Automation"
+              title="AI Integration & Automation"
+              description="AI assistants, workflow automation, and internal tools tied to real business systems."
+              href="/services/ai-automation"
+              features={[
+                "AI model integrations",
+                "Workflow and CRM automation",
+                "Fixed-scope automation sprint",
+              ]}
+            />
+            <ServiceDirectoryCard
+              id="drone"
+              anchorAliases={["drone-pricing"]}
+              eyebrow="Dean Diego Drone"
+              title="Aerial Documentation"
+              description="FAA Part 107 capture for listings, sites, commercial roofs, video, and deer recovery."
+              href="/services/drone"
+              features={[
+                "Real estate packages",
+                "Mapping and progress files",
+                "Thermal search",
+              ]}
+            />
           </div>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+        </div>
+      </section>
+
+      <section className="border-t border-white/5 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-3 text-sm font-medium uppercase tracking-wider text-[#DC2626]">
+              Go straight to the work
+            </p>
+            <h2 className="mb-3 text-3xl font-bold">Every service page.</h2>
+            <p className="text-gray-400">
+              Pricing is public where the scope is repeatable. Commercial work
+              is quoted to the site and deliverables.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {DIRECT_SERVICES.map((service) => (
+              <Link
+                key={service.href}
+                href={service.href}
+                className="rounded-xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-[#DC2626]/40"
+              >
+                <h3 className="mb-2 font-semibold">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-400">
+                  {service.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/5 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="mb-4 text-center text-3xl font-bold">
+            A direct process.
+          </h2>
+          <p className="mx-auto mb-16 max-w-lg text-center text-gray-400">
+            Clear scope, working delivery, and no mystery between the two.
+          </p>
+          <div className="grid gap-12 md:grid-cols-3">
             {[
               {
-                name: "Aerial Photos",
-                price: "from $200",
-                turnaround: "24-hour delivery",
-                popular: false,
-                features: ["12-18 MLS-ready aerial stills", "Front, rear, sides, orbit, and context shots", "Delivered via download link"],
+                step: "01",
+                title: "Choose the service",
+                desc: "Start with the page that matches the outcome you need. Each one states what is included and what is not.",
               },
               {
-                name: "Photos + Video",
-                price: "from $250",
-                turnaround: "24-48 hour delivery",
-                popular: true,
-                features: ["Everything in Aerial Photos", "45-60 second cinematic aerial clip", "Branded photo report"],
+                step: "02",
+                title: "Confirm the scope",
+                desc: "Share the bottleneck, property, or deliverables. Repeatable packages show starting prices; custom work gets a direct quote.",
               },
               {
-                name: "Premium 3D",
-                price: "from $450",
-                turnaround: "48-hour delivery",
-                popular: false,
-                features: ["Everything in Photos + Video", "Interactive 3D walkthrough link", "Opens on any phone, no app required"],
+                step: "03",
+                title: "Receive the work",
+                desc: "Software ships to a working environment. Aerial files arrive ready for the professional or platform that uses them next.",
               },
-            ].map((tier) => (
-              <div key={tier.name} className={`rounded-xl p-8 border ${tier.popular ? "border-[#DC2626]/40 bg-[#DC2626]/5" : "border-white/10 bg-white/[0.03]"}`}>
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold text-lg">{tier.name}</h4>
-                  {tier.popular && <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Most booked</span>}
+            ].map((item) => (
+              <div key={item.step}>
+                <div className="mb-4 font-mono text-5xl font-bold text-[#DC2626]">
+                  {item.step}
                 </div>
-                <div className="text-3xl font-bold mb-1">{tier.price}</div>
-                <div className="text-xs text-gray-500 mb-6">{tier.turnaround}</div>
-                <ul className="space-y-2.5">
-                  {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-gray-400">
-                      <svg className="w-4 h-4 text-[#DC2626] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-500 mb-8 max-w-3xl">Twilight shoots, same-week rush, lots over 2 acres, and travel beyond 25 miles are quoted as add-ons on the call. Booking 3 or more listings a month gets package pricing.</p>
-          <div className="flex flex-wrap items-center gap-6">
-            <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition inline-block">
-              Book a listing
-            </Link>
-            <Link href="/services/drone" className="text-sm text-[#DC2626] font-medium hover:underline">
-              Full drone services &amp; commercial work &rarr;
-            </Link>
-            <a href="https://goxprt.com/share/ivzH1wyTtLHPG5EE_dWPYDOTJwbzg66b" target="_blank" rel="noopener noreferrer" className="text-sm text-[#DC2626] font-medium hover:underline">
-              See a live 3D sample &rarr;
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4 text-center">How it works.</h2>
-          <p className="text-gray-400 mb-16 text-center max-w-lg mx-auto">Three steps. No fluff.</p>
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { step: "01", title: "Discovery", desc: "30-minute call. You tell me what you need. I tell you if I can build it, how fast, and what it costs. No proposals that take a week · you get a quote on the call." },
-              { step: "02", title: "Build Sprint", desc: "I build. You get daily updates with real, working progress · not mockups. Most projects ship in 1-5 days. You see it live on the internet, not in a Figma file." },
-              { step: "03", title: "Deploy & Iterate", desc: "Live for real users. I stick around to iterate, fix, and optimize based on real feedback. You're not abandoned after launch." },
-            ].map((s) => (
-              <div key={s.step}>
-                <div className="text-[#DC2626] text-5xl font-bold mb-4 font-mono">{s.step}</div>
-                <h3 className="font-semibold text-xl mb-3">{s.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{s.desc}</p>
+                <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-400">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to build?</h2>
-          <p className="text-gray-400 mb-8">Every project starts with a conversation. No commitment, no sales pitch.</p>
-          <Link href="/contact" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
-            Request a Quote
+      <section className="border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent py-20">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <h2 className="mb-4 text-3xl font-bold">Not sure where to start?</h2>
+          <p className="mb-8 text-gray-400">
+            Describe the outcome. I will point you to the right service.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block rounded-lg bg-[#DC2626] px-10 py-4 text-lg font-semibold text-white transition hover:bg-[#B91C1C]"
+          >
+            Contact Dean
           </Link>
         </div>
       </section>

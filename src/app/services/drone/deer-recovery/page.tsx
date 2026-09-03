@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 import { COUNTIES, TOWNS } from "./towns";
 import { JsonLd, deerRecoveryJsonLd } from "./json-ld";
 
-const HUB_URL = "https://deandiego.com/drone/deer-recovery";
+const HUB_URL = "https://deandiego.com/services/drone/deer-recovery";
 const HUB_TITLE = "Drone Deer Recovery in Northeast Ohio | Dean Diego Drone";
 const HUB_DESCRIPTION =
   "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it.";
@@ -59,11 +60,13 @@ export default function DeerRecoveryPage() {
       <JsonLd data={deerRecoveryJsonLd()} />
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-            <span className="text-gray-300">Dean Diego Drone</span>
-            <span className="mx-2">/</span>
-            <span>Deer recovery</span>
-          </div>
+          <ServiceBreadcrumbs
+            items={[
+              { label: "Services", href: "/services" },
+              { label: "Aerial Documentation", href: "/services/drone" },
+              { label: "Deer Recovery" },
+            ]}
+          />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone deer recovery in Northeast Ohio.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
             Shot a deer you cannot find? Thermal search, Northeast Ohio. $250 to come out. $50 more if we find it.
@@ -188,9 +191,9 @@ export default function DeerRecoveryPage() {
               {TOWNS.map((town) => (
                 <li key={town.slug} className="flex items-start gap-3 text-sm text-gray-400">
                   {CHECK}
-                  <a href={`/drone/deer-recovery/${town.slug}`} className="hover:text-white">
+                  <Link href={`/services/drone/deer-recovery/${town.slug}`} className="hover:text-white">
                     Drone deer recovery in {town.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
