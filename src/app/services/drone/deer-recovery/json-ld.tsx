@@ -12,8 +12,8 @@ function countyAreas() {
 export function deerRecoveryJsonLd(town?: Town) {
   const url = town ? `${HUB}/${town.slug}` : HUB;
   const description = town
-    ? `Thermal drone deer recovery in ${town.name}, ${town.county} County, Ohio. $250 to come out. $50 more if we find it.`
-    : "Thermal drone deer recovery in Northeast Ohio. $250 to come out. $50 more if we find it.";
+    ? `Thermal drone deer recovery in ${town.name}, ${town.county} County, Ohio. $250 to come out. $50 more if we find it. Cash or Venmo before launch.`
+    : "Thermal drone deer recovery in Northeast Ohio. $250 to come out. $50 more if we find it. Cash or Venmo before launch.";
   const townCity = town
     ? { "@type": "City" as const, name: `${town.name}, Ohio` }
     : null;

@@ -61,10 +61,10 @@ export default async function TownDeerRecoveryPage({ params }: Props) {
             Drone deer recovery in {town.name}.
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
-            Shot a deer around {town.name} you cannot find? Thermal search in {town.county} County. $250 to come out. $50 more if we find it.
+            Shot a deer around {town.name} you cannot find? Thermal search in {town.county} County. $250 to come out. $50 more if we find it. Mahoning and Columbiana: no deposit to book. Pay cash or Venmo on scene before launch.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
-            {[`${town.name}, Ohio`, `${town.county} County`, "$250 to come out", "Thermal search"].map((b) => (
+            {[`${town.name}, Ohio`, `${town.county} County`, "$250 to come out", "Pay on scene"].map((b) => (
               <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">{b}</span>
             ))}
           </div>
@@ -84,6 +84,9 @@ export default async function TownDeerRecoveryPage({ params }: Props) {
           <h2 className="text-3xl font-bold mb-4">Thermal search, {town.name}.</h2>
           <p className="text-gray-400 max-w-2xl mb-8">
             Dean flies out of Northeast Ohio. {town.name} is in the service area. Ohio only. Pennsylvania is a hard no.
+          </p>
+          <p className="text-gray-400 max-w-2xl mb-8">
+            Booking: Mahoning and Columbiana book with no deposit. Pay $250 cash or Venmo before launch. Anywhere else in the Ohio service area needs a $50 deposit to book, then the same $250 at launch. $50 more if we find it.
           </p>
           <p className="text-sm text-gray-500 max-w-2xl">
             This is after the taking, not during the hunt. No hunting devices in the recovery party. If the deer is alive, stop and mark last position.

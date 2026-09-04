@@ -7,7 +7,7 @@ import { JsonLd, deerRecoveryJsonLd } from "./json-ld";
 const HUB_URL = "https://deandiego.com/services/drone/deer-recovery";
 const HUB_TITLE = "Drone Deer Recovery in Northeast Ohio | Dean Diego Drone";
 const HUB_DESCRIPTION =
-  "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it.";
+  "Shot a deer you cannot find? Thermal drone search in Northeast Ohio. $250 to come out. $50 more if we find it. Cash or Venmo before launch.";
 
 export const metadata: Metadata = {
   title: { absolute: HUB_TITLE },
@@ -33,28 +33,7 @@ const CHECK = (
   </svg>
 );
 
-function PayButton({ url, label, pending, className }: { url: string; label: string; pending: string; className: string }) {
-  if (url) {
-    return (
-      <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
-        {label}
-      </a>
-    );
-  }
-  return (
-    <button type="button" disabled className={`${className} opacity-50 cursor-not-allowed`}>
-      {pending}
-    </button>
-  );
-}
-
 export default function DeerRecoveryPage() {
-  // Public payment links only. Set these in Vercel. Never commit a handle.
-  // NEXT_PUBLIC_DEER_DEPOSIT_URL = Stripe Payment Link ($250 search)
-  // NEXT_PUBLIC_DEER_VENMO_URL = Venmo for Business pay link
-  const depositUrl = process.env.NEXT_PUBLIC_DEER_DEPOSIT_URL || "";
-  const venmoUrl = process.env.NEXT_PUBLIC_DEER_VENMO_URL || "";
-
   return (
     <>
       <JsonLd data={deerRecoveryJsonLd()} />
@@ -69,10 +48,10 @@ export default function DeerRecoveryPage() {
           />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone deer recovery in Northeast Ohio.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
-            Shot a deer you cannot find? Thermal search, Northeast Ohio. $250 to come out. $50 more if we find it.
+            Shot a deer you cannot find? Thermal search, Northeast Ohio. $250 to come out. $50 more if we find it. Cash or Venmo before the drone launches.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
-            {["Ohio only", "$250 to come out", "$50 more if found", "Thermal search"].map((b) => (
+            {["Ohio only", "$250 to come out", "$50 more if found", "Pay on scene"].map((b) => (
               <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">{b}</span>
             ))}
           </div>
@@ -96,7 +75,7 @@ export default function DeerRecoveryPage() {
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { step: "01", title: "Call or start the request", desc: "Pin, shot notes, Ohio rules, and the waiver. Ask if he can make it tonight." },
-              { step: "02", title: "Pay the $250", desc: "That books the flight. You pay $250 for the look, whether the deer is found or not." },
+              { step: "02", title: "Pay before launch", desc: "Cash or Venmo on scene before the bird goes up. $250 for the look, whether the deer is found or not." },
               { step: "03", title: "Dean flies if he can make it tonight", desc: "If he can take the job, he comes out and searches. $50 more if he finds it. $300 total if found." },
             ].map((s) => (
               <div key={s.step}>
@@ -114,25 +93,27 @@ export default function DeerRecoveryPage() {
           <div className="max-w-2xl mb-12">
             <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Pricing</h2>
             <h3 className="text-3xl font-bold mb-3">You pay for the look.</h3>
-            <p className="text-gray-400">$250 to come out. $50 more if found. $300 if found. No season pack. Hunters pay when they just shot a deer and cannot find it.</p>
+            <p className="text-gray-400">
+              $250 to come out. $50 more if we find it. Cash or Venmo before the drone launches. No online prepay.
+            </p>
           </div>
           <div className="max-w-md">
             <div className="flex flex-col rounded-xl p-8 border border-[#DC2626]/40 bg-[#DC2626]/5">
               <div className="flex items-center justify-between mb-4">
                 <h4 className="font-semibold text-lg">Thermal search</h4>
-                <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Pay for the look</span>
+                <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Pay on scene</span>
               </div>
               <div className="text-3xl font-bold mb-1">$250</div>
               <div className="text-xs text-gray-500 mb-4">+ $50 if found ($300 total)</div>
               <p className="text-sm text-gray-400 mb-6">
-                $250 is the search. You pay it no matter what. If Dean finds it, $50 more. No season pack.
+                $250 is the search. You pay it before launch. If Dean finds it, $50 more. No season pack.
               </p>
               <ul className="space-y-2.5 mb-8">
                 {[
                   "$250 to come out and look",
                   "$50 more if he finds it",
                   "$300 total if found",
-                  "You pay for the look, not a season pack",
+                  "Cash or Venmo before launch",
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-gray-400">
                     {CHECK}
@@ -141,28 +122,23 @@ export default function DeerRecoveryPage() {
                 ))}
               </ul>
               <div className="rounded-lg border border-white/10 bg-black/20 p-4 mb-6">
-                <div className="text-sm font-semibold mb-1">$250 books the flight</div>
-                <p className="text-xs text-gray-500 mb-4">
-                  {depositUrl
-                    ? "Pay the $250 to book the search. Dean still has to be able to make it tonight."
-                    : "Payment link is not live yet. Submit the dispatch and Dean will tell you how to pay the $250 if he can take the job."}
-                </p>
-                <div className="space-y-3">
-                  <PayButton
-                    url={depositUrl}
-                    label="Pay $250 with card"
-                    pending="Card pay pending"
-                    className="block w-full text-center bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition"
-                  />
-                  <PayButton
-                    url={venmoUrl}
-                    label="Pay $250 with Venmo"
-                    pending="Venmo pending"
-                    className="block w-full text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition"
-                  />
-                </div>
+                <div className="text-sm font-semibold mb-1">Booking</div>
+                <ul className="space-y-2.5 text-xs text-gray-500">
+                  <li className="flex items-start gap-3">
+                    {CHECK}
+                    <span>
+                      <span className="text-gray-300 font-medium">Mahoning and Columbiana:</span> book with no deposit. Pay $250 on scene before launch.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    {CHECK}
+                    <span>
+                      <span className="text-gray-300 font-medium">Anywhere else in our Ohio service area:</span> $50 deposit to book, then the same $250 at launch.
+                    </span>
+                  </li>
+                </ul>
               </div>
-              <a href="/drone/recover" className="text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition">
+              <a href="/drone/recover" className="text-center bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition">
                 Start recovery request
               </a>
             </div>
