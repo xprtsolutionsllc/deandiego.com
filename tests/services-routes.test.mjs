@@ -38,6 +38,10 @@ const servicePages = [
   "/services/drone/deer-recovery/poland",
 ];
 
+const navigationServicePages = servicePages.filter(
+  (path) => !path.startsWith("/services/drone/deer-recovery/"),
+);
+
 const legacyRedirects = [
   ["/ai-sprint", "/services/ai-automation/sprint"],
   ["/drone/roof-inspection", "/services/drone/roof-inspection"],
@@ -108,4 +112,16 @@ test("the sitemap lists canonical service pages only", async () => {
     xml,
     /<loc>https:\/\/deandiego\.com\/drone\/(?:deer-recovery|roof-inspection)<\/loc>/,
   );
+});
+
+test("the site navigation exposes the service tree on desktop and mobile", async () => {
+  const response = await request("/");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /data-services-menu="desktop"/);
+  assert.match(html, /data-services-menu="mobile"/);
+  for (const path of navigationServicePages) {
+    assert.match(html, new RegExp(`href="${path}"`));
+  }
 });
