@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 import ServiceDirectoryCard from "@/components/services/ServiceDirectoryCard";
 
 export const metadata: Metadata = {
@@ -51,6 +52,11 @@ export default function AIAutomationPage() {
               { label: "AI Integration & Automation" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/09_ai_automation.jpg"
+          alt="Desk monitors showing abstract automation workflows"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             AI Integration & Automation.
           </h1>

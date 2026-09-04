@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Aerial Mapping & Reality Capture",
@@ -61,6 +62,11 @@ export default function MappingPage() {
               { label: "Mapping" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/06_mapping.jpg"
+          alt="Top-down orthomosaic-style aerial of fields and a creek"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Aerial Mapping & Reality Capture.
           </h1>

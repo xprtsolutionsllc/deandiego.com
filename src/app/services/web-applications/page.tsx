@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Web Applications & SaaS",
@@ -67,6 +68,11 @@ export default function WebApplicationsPage() {
               { label: "Web Applications & SaaS" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/10_web_applications.jpg"
+          alt="Laptop on a dark desk showing a blurred product dashboard"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Web Applications & SaaS.
           </h1>
