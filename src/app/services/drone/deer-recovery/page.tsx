@@ -33,7 +33,28 @@ const CHECK = (
   </svg>
 );
 
+function DepositButton({ url }: { url: string }) {
+  const className =
+    "mt-4 block w-full text-center border border-white/15 text-gray-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-[#DC2626]/40 transition";
+  if (url) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
+        Pay $50 deposit
+      </a>
+    );
+  }
+  return (
+    <button type="button" disabled className={`${className} opacity-50 cursor-not-allowed`}>
+      $50 deposit link pending
+    </button>
+  );
+}
+
 export default function DeerRecoveryPage() {
+  // Public Payment Link only. Set in Vercel. Never commit a secret key.
+  // NEXT_PUBLIC_DEER_BOOKING_DEPOSIT_URL = Stripe Payment Link ($50 outer-county booking deposit)
+  const bookingDepositUrl = process.env.NEXT_PUBLIC_DEER_BOOKING_DEPOSIT_URL || "";
+
   return (
     <>
       <JsonLd data={deerRecoveryJsonLd()} />
@@ -94,7 +115,7 @@ export default function DeerRecoveryPage() {
             <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Pricing</h2>
             <h3 className="text-3xl font-bold mb-3">You pay for the look.</h3>
             <p className="text-gray-400">
-              $250 to come out. $50 more if we find it. Cash or Venmo before the drone launches. No online prepay.
+              $250 to come out. $50 more if we find it. Cash or Venmo before launch. Outer Ohio only: $50 booking deposit online.
             </p>
           </div>
           <div className="max-w-md">
@@ -137,6 +158,10 @@ export default function DeerRecoveryPage() {
                     </span>
                   </li>
                 </ul>
+                <DepositButton url={bookingDepositUrl} />
+                <p className="text-[11px] text-gray-600 mt-2">
+                  $50 deposit is for outer Ohio only. Not for Mahoning or Columbiana. Not the $250 search fee.
+                </p>
               </div>
               <a href="/drone/recover" className="text-center bg-[#DC2626] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#B91C1C] transition">
                 Start recovery request
