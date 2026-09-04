@@ -3,6 +3,7 @@ import Link from "next/link";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 import { COUNTIES, TOWNS } from "./towns";
 import { JsonLd, deerRecoveryJsonLd } from "./json-ld";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 const HUB_URL = "https://deandiego.com/services/drone/deer-recovery";
 const HUB_TITLE = "Drone Deer Recovery in Northeast Ohio | Dean Diego Drone";
@@ -66,6 +67,10 @@ export default function DeerRecoveryPage() {
               { label: "Aerial Documentation", href: "/services/drone" },
               { label: "Deer Recovery" },
             ]}
+          />
+          <ServiceHeroImage
+            src="/images/services/03_deer_recovery.jpg"
+            alt="Night aerial over Ohio woods and fields for thermal deer recovery"
           />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone deer recovery in Northeast Ohio.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">

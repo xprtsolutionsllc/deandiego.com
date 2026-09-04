@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Real Estate Drone Photography",
@@ -77,6 +78,11 @@ export default function RealEstateDronePage() {
               { label: "Real Estate" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/05_real_estate.jpg"
+          alt="Oblique aerial of a suburban Ohio home for real estate listing"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Real Estate Aerials.
           </h1>

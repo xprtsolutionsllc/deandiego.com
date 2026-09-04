@@ -3,6 +3,7 @@ import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 import ServiceDirectoryCard from "@/components/services/ServiceDirectoryCard";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Drone Services",
@@ -103,6 +104,10 @@ export default function DroneServicesPage() {
               { label: "Services", href: "/services" },
               { label: "Aerial Documentation" },
             ]}
+          />
+          <ServiceHeroImage
+            src="/images/services/02_drone_hub.jpg"
+            alt="Enterprise drone over a suburban Ohio street at dusk"
           />
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Drone Services.

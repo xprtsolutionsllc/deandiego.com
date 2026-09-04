@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Commercial Roof Inspection",
@@ -60,6 +61,10 @@ export default function RoofInspectionPage() {
               { label: "Aerial Documentation", href: "/services/drone" },
               { label: "Commercial Roof Inspection" },
             ]}
+          />
+          <ServiceHeroImage
+            src="/images/services/04_roof_inspection.jpg"
+            alt="Straight-down aerial of a residential asphalt shingle roof"
           />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Commercial Roof Inspection.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-6">

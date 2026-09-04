@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ServiceDirectoryCard from "@/components/services/ServiceDirectoryCard";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -59,6 +60,10 @@ export default function ServicesPage() {
     <>
       <section className="border-b border-white/5 py-20">
         <div className="mx-auto max-w-6xl px-6">
+          <ServiceHeroImage
+            src="/images/services/01_services_hub.jpg"
+            alt="Aerial view of a Northeast Ohio neighborhood at golden hour"
+          />
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">Services.</h1>
           <p className="max-w-2xl text-lg text-gray-400">
             Software, automation, and aerial documentation. Choose the work you

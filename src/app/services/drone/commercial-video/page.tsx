@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Commercial Drone Video",
@@ -61,6 +62,11 @@ export default function CommercialVideoPage() {
               { label: "Commercial Video" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/07_commercial_video.jpg"
+          alt="Cinematic low aerial along a Main Street at blue hour"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Commercial Drone Video.
           </h1>

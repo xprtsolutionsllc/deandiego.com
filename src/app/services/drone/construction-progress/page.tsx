@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DroneDisclaimer from "@/components/services/DroneDisclaimer";
 import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceHeroImage from "@/components/services/ServiceHeroImage";
 
 export const metadata: Metadata = {
   title: "Construction Progress Documentation",
@@ -61,6 +62,11 @@ export default function ConstructionProgressPage() {
               { label: "Construction Progress" },
             ]}
           />
+          <ServiceHeroImage
+          src="/images/services/08_construction_progress.jpg"
+          alt="Oblique aerial of a house under construction"
+          />
+
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Construction Progress Documentation.
           </h1>
