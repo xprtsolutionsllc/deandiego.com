@@ -1,294 +1,210 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DroneDisclaimer from "@/components/services/DroneDisclaimer";
+import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
+import ServiceDirectoryCard from "@/components/services/ServiceDirectoryCard";
 
 export const metadata: Metadata = {
   title: "Drone Services",
   description:
-    "FAA Part 107 certified drone services in Northeast Ohio: real estate aerial photos from $200, cinematic listing video from $250, interactive 3D walkthroughs from $450, commercial roof inspection, mapping, and progress documentation.",
+    "FAA Part 107 aerial documentation in Northeast Ohio for real estate, commercial roofs, mapping, construction progress, video, and deer recovery.",
+  alternates: { canonical: "/services/drone" },
+  openGraph: {
+    title: "Drone Services | Dean Diego Drone",
+    description:
+      "Real estate packages and custom aerial documentation delivered through a professional capture pipeline.",
+    url: "https://deandiego.com/services/drone",
+    type: "website",
+  },
 };
 
-const CHECK = (
-  <svg className="w-4 h-4 text-[#DC2626] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-  </svg>
-);
-
-const LISTING_TIERS = [
+const SERVICES = [
   {
-    name: "Aerial Photos",
-    price: "from $200",
-    turnaround: "24-hour delivery",
-    popular: false,
-    blurb: "The MLS essentials. Every angle a listing needs to stop the scroll.",
+    title: "Real Estate Aerials",
+    description:
+      "MLS-ready photos, cinematic video, and interactive 3D packages with public starting prices.",
+    href: "/services/drone/real-estate",
+    eyebrow: "From $200",
     features: [
-      "12-18 MLS-ready aerial stills",
-      "Front, rear, sides, orbit, and context shots",
-      "Neighborhood and lot-boundary views",
-      "Delivered via download link",
+      "Aerial photo packages",
+      "Edited listing video",
+      "Interactive 3D delivery",
     ],
-    cta: { label: "Book photos", href: "/contact?topic=drone-realestate" },
   },
   {
-    name: "Photos + Video",
-    price: "from $250",
-    turnaround: "24-48 hour delivery",
-    popular: true,
-    blurb: "Everything in Aerial Photos, plus motion. The package most listings book.",
+    title: "Commercial Roof Inspection",
+    description:
+      "RTK-tagged roof ortho, surface model, and pin list prepared as a source file for the professional who uses it.",
+    href: "/services/drone/roof-inspection",
+    eyebrow: "Quote by site",
     features: [
-      "Everything in Aerial Photos",
-      "45-60 second cinematic aerial clip",
-      "Licensed music, edited and ready to post",
-      "Branded photo report",
+      "2 cm Wide-RGB target",
+      "GeoTIFF and DSM",
+      "PE-ready source files",
     ],
-    cta: { label: "Book photos + video", href: "/contact?topic=drone-realestate" },
   },
   {
-    name: "Premium 3D",
-    price: "from $450",
-    turnaround: "48-hour delivery",
-    popular: false,
-    blurb: "The full package, plus an interactive 3D walkthrough buyers open on their phone.",
+    title: "Aerial Mapping",
+    description:
+      "Repeatable grid capture processed into orthomosaics, surface models, point clouds, and site files.",
+    href: "/services/drone/mapping",
+    eyebrow: "Quote by acreage",
     features: [
-      "Everything in Photos + Video",
-      "Interactive 3D walkthrough link",
-      "Opens on any phone, no app required",
-      "Shareable with every buyer lead",
+      "Orthomosaic GeoTIFF",
+      "3D point cloud and model",
+      "Surface and volume outputs",
     ],
-    cta: { label: "Book premium 3D", href: "/contact?topic=drone-realestate" },
-  },
-];
-
-const COMMERCIAL = [
-  {
-    name: "Commercial Roof Inspection",
-    pricing: "Request a quote. Full roof package, higher ticket than a photo dump.",
-    blurb:
-      "RTK-tagged 2 cm Wide-RGB ortho, DSM, and pin list from a Matrice 4T grid, processed in Fieldmesh. Built for PEs, inspectors, roofers, and owners. You get the file. You stamp if you stamp. Not an insurance cert or a land survey.",
-    features: [
-      "RTK FIX grid, 2 cm GSD GeoTIFF",
-      "DSM for ponding and slope",
-      "Pin list a PE or inspector can take into a report",
-      "Marked hail, seam, ponding, puncture, HVAC, debris",
-      "Close-up damage stills, separate from the mosaic",
-      "Thermal pass available as a second product",
-    ],
-    cta: { label: "Request a roof quote", href: "/contact?topic=drone-roof" },
-    href: "/drone/roof-inspection",
-    highlight: true,
   },
   {
-    name: "Mapping & Survey-Grade Capture",
-    pricing: "Custom quote, scoped by acreage and deliverables",
-    blurb:
-      "Autonomous grid flights processed through a GPU photogrammetry pipeline. Built for land, sites, and stockpiles. Positional and boundary deliverables are stamped through licensed-surveyor partners where required.",
+    title: "Construction Progress",
+    description:
+      "Consistent flights across milestones so owners and project teams can compare the same site over time.",
+    href: "/services/drone/construction-progress",
+    eyebrow: "Single or recurring",
     features: [
-      "Orthomosaic maps (GeoTIFF)",
-      "3D point clouds and textured models",
-      "Digital surface models (DSM)",
-      "Volumetric measurements",
-      "Client portal with downloads",
+      "Repeatable flight paths",
+      "Milestone documentation",
+      "Organized client delivery",
     ],
-    cta: { label: "Scope a mapping job", href: "/contact?topic=drone-mapping" },
-    href: "/contact?topic=drone-mapping",
-    highlight: false,
   },
   {
-    name: "Construction Progress Documentation",
-    pricing: "Custom quote, per-visit or recurring",
-    blurb:
-      "Scheduled flights over active sites with consistent flight paths, so week-over-week progress is actually comparable. AI-assisted photo analysis and branded PDF reports on every visit.",
+    title: "Commercial Video",
+    description:
+      "Cinematic aerial footage for properties, developments, campaigns, and events, edited to the required format.",
+    href: "/services/drone/commercial-video",
+    eyebrow: "Quote by brief",
     features: [
-      "Recurring or milestone-based flights",
-      "Repeatable flight paths for true comparisons",
-      "AI-powered photo analysis",
-      "Branded PDF progress reports",
-      "Roof and exterior condition documentation",
+      "Shot-to-brief capture",
+      "Edited campaign deliverables",
+      "Horizontal and vertical formats",
     ],
-    cta: { label: "Set up progress flights", href: "/contact?topic=drone-mapping" },
-    href: "/contact?topic=drone-mapping",
-    highlight: false,
   },
   {
-    name: "Commercial & Brand Video",
-    pricing: "Custom quote, scoped by format and length",
-    blurb:
-      "Cinematic aerial work for businesses, developments, and marketing campaigns. Shot to brief, edited to the format you need, delivered ready to publish.",
+    title: "Deer Recovery",
+    description:
+      "Thermal search after the taking across the Northeast Ohio service area, with a direct field intake flow.",
+    href: "/services/drone/deer-recovery",
+    eyebrow: "$250 search",
     features: [
-      "Marketing and brand films",
-      "Development and property showcases",
-      "Event coverage",
-      "Edited deliverables in your formats",
+      "Ohio only",
+      "$50 more if found dead",
+      "Field request and waiver",
     ],
-    cta: { label: "Commission video", href: "/contact?topic=drone-video" },
-    href: "/contact?topic=drone-video",
-    highlight: false,
   },
 ];
 
 export default function DroneServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-20 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-            <Link href="/services" className="hover:text-[#DC2626] transition">Services</Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-300">Drone</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Drone Services.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl mb-4">
-            FAA Part 107 certified. Commercially insured. Real estate packages with flat starting prices, and custom-scoped commercial work, all delivered through a professional pipeline I built myself.
+      <section className="border-b border-white/5 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <ServiceBreadcrumbs
+            items={[
+              { label: "Services", href: "/services" },
+              { label: "Aerial Documentation" },
+            ]}
+          />
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+            Drone Services.
+          </h1>
+          <p className="mb-4 max-w-2xl text-lg leading-relaxed text-gray-400">
+            FAA Part 107 capture for listings, commercial sites, mapping, video,
+            and thermal recovery. Each service has its own deliverables,
+            pricing posture, and next step.
           </p>
-          <p className="text-sm text-gray-500 max-w-2xl mb-8">
-            Capture and files. Not a Professional Engineer (PE) stamp, not a land survey, not an insurance certification.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-8">
-            {["FAA Part 107 certified", "Commercial liability insurance", "NDAA-compliant operations", "24-48 hour delivery"].map((b) => (
-              <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">{b}</span>
-            ))}
-          </div>
-          <Link
-            href="/drone/recover"
-            className="inline-block bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm"
-          >
-            Need deer recovery?
-          </Link>
-        </div>
-      </section>
-
-      {/* Real estate packages */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-12">
-            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Real estate</h2>
-            <h3 className="text-3xl font-bold mb-3">Per-listing packages.</h3>
-            <p className="text-gray-400">Flat starting prices, confirmed on a five-minute call. Twilight shoots, same-week rush, lots over 2 acres, and travel beyond 25 miles are quoted as add-ons. Three or more listings a month gets package pricing.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {LISTING_TIERS.map((tier) => (
-              <div key={tier.name} className={`flex flex-col rounded-xl p-8 border ${tier.popular ? "border-[#DC2626]/40 bg-[#DC2626]/5" : "border-white/10 bg-white/[0.03]"}`}>
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold text-lg">{tier.name}</h4>
-                  {tier.popular && <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">Most booked</span>}
-                </div>
-                <div className="text-3xl font-bold mb-1">{tier.price}</div>
-                <div className="text-xs text-gray-500 mb-4">{tier.turnaround}</div>
-                <p className="text-sm text-gray-400 mb-6">{tier.blurb}</p>
-                <ul className="space-y-2.5 mb-8 flex-1">
-                  {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-gray-400">
-                      {CHECK}
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link href={tier.cta.href} className={`text-center px-6 py-3 rounded-lg font-semibold text-sm transition ${tier.popular ? "bg-[#DC2626] text-white hover:bg-[#B91C1C]" : "border border-white/15 text-gray-300 hover:border-[#DC2626]/40"}`}>
-                  {tier.cta.label}
-                </Link>
-              </div>
-            ))}
-          </div>
-          <a href="https://goxprt.com/share/ivzH1wyTtLHPG5EE_dWPYDOTJwbzg66b" target="_blank" rel="noopener noreferrer" className="text-sm text-[#DC2626] font-medium hover:underline">
-            See a live 3D walkthrough sample &rarr;
-          </a>
-        </div>
-      </section>
-
-      {/* Commercial work */}
-      <section className="py-20 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-12">
-            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Commercial</h2>
-            <h3 className="text-3xl font-bold mb-3">Bigger jobs, scoped to the site.</h3>
-            <p className="text-gray-400">Mapping, recurring progress documentation, and commercial video are quoted per project: acreage, deliverables, and cadence drive the number. Every quote lands on the discovery call, not a week later.</p>
-          </div>
-          <div className="space-y-6">
-            {COMMERCIAL.map((job) => (
-              <div
-                key={job.name}
-                className={`grid md:grid-cols-[2fr_1fr] gap-8 rounded-xl p-8 items-start border ${
-                  job.highlight ? "border-[#DC2626]/40 bg-[#DC2626]/5" : "border-white/10 bg-white/[0.03]"
-                }`}
-              >
-                <div>
-                  <div className="flex flex-wrap items-center gap-3 mb-1">
-                    <h4 className="font-semibold text-xl">{job.name}</h4>
-                    {job.highlight ? (
-                      <span className="px-2.5 py-0.5 bg-[#DC2626]/10 text-[#DC2626] text-xs font-semibold rounded-full">
-                        Full roof package
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="text-xs text-gray-500 mb-4">{job.pricing}</div>
-                  <p className="text-sm text-gray-400 leading-relaxed mb-5">{job.blurb}</p>
-                  <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
-                    {job.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm text-gray-400">
-                        {CHECK}
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  {job.href.startsWith("/drone/") ? (
-                    <Link href={job.href} className="inline-block mt-5 text-sm text-[#DC2626] font-medium hover:underline">
-                      Full package details
-                    </Link>
-                  ) : null}
-                </div>
-                <div className="md:justify-self-end md:self-center">
-                  <Link
-                    href={job.cta.href}
-                    className={`inline-block px-6 py-3 rounded-lg font-semibold text-sm transition ${
-                      job.highlight
-                        ? "bg-[#DC2626] text-white hover:bg-[#B91C1C]"
-                        : "border border-white/15 text-gray-300 hover:border-[#DC2626]/40"
-                    }`}
-                  >
-                    {job.cta.label}
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-20 border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4 text-center">How booking works.</h2>
-          <p className="text-gray-400 mb-16 text-center max-w-lg mx-auto">Three steps, no waiting on proposals.</p>
-          <div className="grid md:grid-cols-3 gap-12">
+          <DroneDisclaimer className="mb-8 max-w-2xl" />
+          <div className="flex flex-wrap gap-3">
             {[
-              { step: "01", title: "Quote on the call", desc: "Five minutes: address, scope, timeline. You get the exact number on the call, and a booking confirmation with my Part 107 certificate and insurance certificate attached." },
-              { step: "02", title: "The flight", desc: "Airspace clearance and weather minimums checked before every flight. If conditions are not safe or legal, we reschedule; that discipline is part of what you are paying for." },
-              { step: "03", title: "Delivery", desc: "Photos in 24 hours, video in 24-48, 3D walkthroughs in 48. Everything lands in a download link or client portal, ready for MLS, marketing, or the site trailer." },
-            ].map((s) => (
-              <div key={s.step}>
-                <div className="text-[#DC2626] text-5xl font-bold mb-4 font-mono">{s.step}</div>
-                <h3 className="font-semibold text-xl mb-3">{s.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{s.desc}</p>
-              </div>
+              "FAA Part 107 certified",
+              "Commercial liability insurance",
+              "Northeast Ohio",
+              "Professional file delivery",
+            ].map((badge) => (
+              <span
+                key={badge}
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-gray-300"
+              >
+                {badge}
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to fly?</h2>
-          <p className="text-gray-400 mb-8">Tell me about the property or the project. You will have a number the same day.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact?topic=drone-realestate" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
-              Book a flight
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-3 text-sm font-medium uppercase tracking-wider text-[#DC2626]">
+              Choose the flight
+            </p>
+            <h2 className="mb-3 text-3xl font-bold">
+              One page for every service.
+            </h2>
+            <p className="text-gray-400">
+              Start with the outcome you need. The detail page shows the
+              deliverables, limitations, and booking path.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((service) => (
+              <ServiceDirectoryCard key={service.href} {...service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/5 py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-3">
+          {[
+            {
+              step: "01",
+              title: "Scope",
+              desc: "Share the address, intended use, timeline, and the professional or platform receiving the files.",
+            },
+            {
+              step: "02",
+              title: "Fly",
+              desc: "Airspace, weather, site access, and capture requirements are checked before launch.",
+            },
+            {
+              step: "03",
+              title: "Deliver",
+              desc: "Receive organized media or processed files through a download link or client portal.",
+            },
+          ].map((item) => (
+            <div key={item.step}>
+              <div className="mb-4 font-mono text-5xl font-bold text-[#DC2626]">
+                {item.step}
+              </div>
+              <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+              <p className="text-sm leading-relaxed text-gray-400">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent py-20">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <h2 className="mb-4 text-3xl font-bold">
+            Have a property or site in mind?
+          </h2>
+          <p className="mb-8 text-gray-400">
+            Send the location, intended use, and delivery deadline.
+          </p>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/contact?topic=drone-mapping"
+              className="rounded-lg bg-[#DC2626] px-10 py-4 text-lg font-semibold text-white transition hover:bg-[#B91C1C]"
+            >
+              Request a quote
             </Link>
-            <Link href="/drone/recover" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
-              Need deer recovery?
-            </Link>
-            <Link href="/drone/roof-inspection" className="border border-white/15 text-gray-300 px-10 py-4 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-lg inline-block">
-              Commercial roof inspection
+            <Link
+              href="/drone/recover"
+              className="rounded-lg border border-white/15 px-10 py-4 text-lg font-semibold text-gray-300 transition hover:border-[#DC2626]/40"
+            >
+              Start deer recovery
             </Link>
           </div>
         </div>

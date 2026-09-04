@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 import { TOWNS, townBySlug } from "../towns";
 import { JsonLd, deerRecoveryJsonLd } from "../json-ld";
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!town) return {};
   const title = `Drone Deer Recovery in ${town.name}`;
   const description = `Thermal drone deer recovery in ${town.name}, ${town.county} County, Ohio. $250 to come out. $50 more if we find it.`;
-  const url = `https://deandiego.com/drone/deer-recovery/${town.slug}`;
+  const url = `https://deandiego.com/services/drone/deer-recovery/${town.slug}`;
   return {
     title,
     description,
@@ -45,11 +46,17 @@ export default async function TownDeerRecoveryPage({ params }: Props) {
       <JsonLd data={deerRecoveryJsonLd(town)} />
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-            <Link href="/drone/deer-recovery" className="text-gray-300 hover:text-white">Deer recovery</Link>
-            <span className="mx-2">/</span>
-            <span>{town.name}, Ohio</span>
-          </div>
+          <ServiceBreadcrumbs
+            items={[
+              { label: "Services", href: "/services" },
+              { label: "Aerial Documentation", href: "/services/drone" },
+              {
+                label: "Deer Recovery",
+                href: "/services/drone/deer-recovery",
+              },
+              { label: `${town.name}, Ohio` },
+            ]}
+          />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Drone deer recovery in {town.name}.
           </h1>
@@ -65,7 +72,7 @@ export default async function TownDeerRecoveryPage({ params }: Props) {
             <Link href="/drone/recover" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-sm">
               Start recovery request
             </Link>
-            <Link href="/drone/deer-recovery" className="border border-white/15 text-gray-300 px-8 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-sm">
+            <Link href="/services/drone/deer-recovery" className="border border-white/15 text-gray-300 px-8 py-3.5 rounded-lg font-semibold hover:border-[#DC2626]/40 transition text-sm">
               How it works
             </Link>
           </div>

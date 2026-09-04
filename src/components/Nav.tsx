@@ -17,8 +17,7 @@ function linkActive(href: string, pathname: string) {
   if (href === "/services") {
     return (
       pathname === "/services" ||
-      pathname.startsWith("/services/") ||
-      pathname.startsWith("/drone")
+      pathname.startsWith("/services/")
     );
   }
   return pathname === href || pathname.startsWith(`${href}/`);

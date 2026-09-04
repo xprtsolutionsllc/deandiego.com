@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 
 export const metadata: Metadata = {
   title: "AI Automation Sprint · $4,500 fixed-fee, 2 weeks",
   description:
     "$4,500 fixed-fee. Two weeks. One operational bottleneck eliminated. CRM routing, lead workflows, internal AI tools, automation pipelines, built and shipped, not proposed.",
+  alternates: { canonical: "/services/ai-automation/sprint" },
   openGraph: {
     title: "AI Automation Sprint · $4,500 fixed-fee, 2 weeks",
     description:
       "One bottleneck eliminated in 14 days. Fixed price, no scope creep, no retainer.",
-    url: "https://deandiego.com/ai-sprint",
+    url: "https://deandiego.com/services/ai-automation/sprint",
     type: "website",
   },
 };
@@ -143,6 +145,16 @@ export default function AISprintPage() {
       <section className="py-20 md:py-28 border-b border-white/5 bg-grid relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]" />
         <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <ServiceBreadcrumbs
+            items={[
+              { label: "Services", href: "/services" },
+              {
+                label: "AI Integration & Automation",
+                href: "/services/ai-automation",
+              },
+              { label: "AI Automation Sprint" },
+            ]}
+          />
           <div className="inline-block mb-6 px-4 py-1.5 border border-[#DC2626]/30 rounded-full text-xs text-[#DC2626] font-medium tracking-wide uppercase">
             AI Automation Sprint
           </div>

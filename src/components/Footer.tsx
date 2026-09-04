@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TOWNS } from "@/app/drone/deer-recovery/towns";
 
 export default function Footer() {
   return (
@@ -15,24 +14,16 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Navigation</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Services</h4>
             <div className="space-y-2.5">
-              <Link href="/about" className="block text-sm text-gray-400 hover:text-white transition">About</Link>
-              <Link href="/work" className="block text-sm text-gray-400 hover:text-white transition">Work</Link>
-              <Link href="/services" className="block text-sm text-gray-400 hover:text-white transition">Services</Link>
-              <Link href="/#ai-approach" className="block text-sm text-gray-400 hover:text-white transition">AI Approach</Link>
-              <Link href="/contact" className="block text-sm text-gray-400 hover:text-white transition">Contact</Link>
-              <Link href="/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
-              {TOWNS.map((town) => (
-                <Link
-                  key={town.slug}
-                  href={`/drone/deer-recovery/${town.slug}`}
-                  className="block text-sm text-gray-500 hover:text-white transition pl-3"
-                >
-                  {town.name} deer recovery
-                </Link>
-              ))}
-              <Link href="/drone/roof-inspection" className="block text-sm text-gray-400 hover:text-white transition">Commercial roof inspection</Link>
+              <Link href="/services" className="block text-sm text-gray-400 hover:text-white transition">All services</Link>
+              <Link href="/services/web-applications" className="block text-sm text-gray-400 hover:text-white transition">Web applications</Link>
+              <Link href="/services/ai-automation" className="block text-sm text-gray-400 hover:text-white transition">AI automation</Link>
+              <Link href="/services/ai-automation/sprint" className="block text-sm text-gray-400 hover:text-white transition">AI Automation Sprint</Link>
+              <Link href="/services/drone" className="block text-sm text-gray-400 hover:text-white transition">Aerial documentation</Link>
+              <Link href="/services/drone/real-estate" className="block text-sm text-gray-400 hover:text-white transition">Real estate aerials</Link>
+              <Link href="/services/drone/roof-inspection" className="block text-sm text-gray-400 hover:text-white transition">Commercial Roof Inspection</Link>
+              <Link href="/services/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
             </div>
           </div>
           <div>

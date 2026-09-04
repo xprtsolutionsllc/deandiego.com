@@ -1,6 +1,6 @@
 import { COUNTIES, type Town } from "./towns";
 
-const HUB = "https://deandiego.com/drone/deer-recovery";
+const HUB = "https://deandiego.com/services/drone/deer-recovery";
 
 function countyAreas() {
   return COUNTIES.map((name) => ({

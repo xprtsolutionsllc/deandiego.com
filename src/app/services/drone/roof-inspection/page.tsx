@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DroneDisclaimer from "@/components/services/DroneDisclaimer";
+import ServiceBreadcrumbs from "@/components/services/ServiceBreadcrumbs";
 
 export const metadata: Metadata = {
   title: "Commercial Roof Inspection",
   description:
     "RTK-tagged 2 cm Wide-RGB roof ortho, DSM, and pin list from a Matrice 4T grid, processed in Fieldmesh. Source file for PEs and inspectors. Not a stamp. Ohio commercial. Request a quote.",
+  alternates: { canonical: "/services/drone/roof-inspection" },
+  openGraph: {
+    title: "Commercial Roof Inspection | Dean Diego Drone",
+    description:
+      "RTK-tagged roof documentation files for PEs, roof consultants, and owners. Not a stamp, land survey, or insurance certification.",
+    url: "https://deandiego.com/services/drone/roof-inspection",
+    type: "website",
+  },
 };
 
 const CHECK = (
@@ -32,7 +42,7 @@ const FOR_PE = [
 
 const NOT_IN_PACKAGE = [
   "Not a Professional Engineer (PE) report. No engineer stamp.",
-  "Not an insurance certification or ASTM inspection.",
+  "Not an insurance certification or ASTM-compliant condition assessment.",
   "Not a cadastral or land survey. Relative, RTK-tagged.",
   "No mixed thermal mosaic. Thermal is a separate product if you want it.",
   "No single flight line. No mosaic from fewer than 40 Wide frames.",
@@ -44,20 +54,21 @@ export default function RoofInspectionPage() {
     <>
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-            <Link href="/services/drone" className="hover:text-[#DC2626] transition">
-              Drone
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-300">Commercial Roof Inspection</span>
-          </div>
+          <ServiceBreadcrumbs
+            items={[
+              { label: "Services", href: "/services" },
+              { label: "Aerial Documentation", href: "/services/drone" },
+              { label: "Commercial Roof Inspection" },
+            ]}
+          />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Commercial Roof Inspection.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-6">
             RTK-tagged 2 cm Wide-RGB ortho, DSM, and a pin list. Matrice 4T grid, processed in Fieldmesh. You take it from there.
           </p>
-          <p className="text-sm text-gray-500 max-w-2xl mb-8">
-            Built for PEs, roof consultants, inspectors, roofers, and owners who need a measured deck, not a folder of JPEGs. We capture and mark. We do not stamp, certify insurance, or sell a land survey. Quote on the call. Delivery after a full roof grid.
+          <p className="text-sm text-gray-400 max-w-2xl mb-4">
+            Built for PEs, roof consultants, inspectors, roofers, and owners who need a complete roof file, not a folder of disconnected JPEGs. Quote on the call. Delivery follows a full roof grid.
           </p>
+          <DroneDisclaimer className="mb-8 max-w-2xl" />
           <div className="flex flex-wrap gap-3 mb-8">
             {["RTK FIX", "2 cm GSD", "GeoTIFF + DSM", "You stamp"].map((b) => (
               <span key={b} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">
