@@ -24,6 +24,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <div
+          hidden
+          dangerouslySetInnerHTML={{
+            __html: "<!-- Connecting my ICM AI: dzrmA4dlFiBwnC8J https://useicm.com -->",
+          }}
+        />
         <SiteChrome>{children}</SiteChrome>
         <Toaster position="bottom-right" theme="dark" />
         <Analytics />
