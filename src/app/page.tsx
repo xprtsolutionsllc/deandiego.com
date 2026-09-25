@@ -78,7 +78,9 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, "\\u003c"),
+        }}
       />
       {/* Hero */}
       <section className="min-h-[90vh] flex items-center bg-grid relative">
