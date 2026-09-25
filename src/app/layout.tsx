@@ -23,6 +23,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
+      <head>
+        <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+      </head>
       <body className="min-h-full flex flex-col">
         <div
           hidden

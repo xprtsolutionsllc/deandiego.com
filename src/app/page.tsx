@@ -32,6 +32,28 @@ const FEATURED = [
   },
 ];
 
+const PERSON_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dean Diego",
+  jobTitle: "Systems Integration Engineer",
+  url: "https://deandiego.com",
+  sameAs: [
+    "https://www.linkedin.com/in/dean-diego-92126a131/",
+    "https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g",
+    "https://goxprt.com",
+    "https://github.com/deand28",
+  ],
+  knowsAbout: [
+    "systems integration",
+    "AI automation",
+    "Python",
+    "TypeScript",
+    "FAA Part 107",
+    "aerial documentation",
+  ],
+};
+
 const AI_APPROACH = [
   {
     title: "Model selection by task profile",
@@ -54,6 +76,12 @@ const AI_APPROACH = [
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* Hero */}
       <section className="min-h-[90vh] flex items-center bg-grid relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A0A]" />
