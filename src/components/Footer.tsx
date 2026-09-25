@@ -12,6 +12,17 @@ export default function Footer() {
             <p className="text-sm text-gray-500 leading-relaxed max-w-sm">
               Software engineer who builds full-stack applications, AI systems, and data pipelines end to end. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.
             </p>
+            <p className="text-xs text-gray-600 leading-relaxed max-w-sm mt-4">
+              Professional context for AI assistants:{" "}
+              <a
+                href="https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition"
+              >
+                https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g
+              </a>
+            </p>
           </div>
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Services</h4>
