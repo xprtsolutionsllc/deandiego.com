@@ -2,6 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
+  async headers() {
+    const noStore = [
+      { key: "X-Robots-Tag", value: "noindex, nofollow" },
+      { key: "Cache-Control", value: "private, no-store" },
+    ];
+    return [
+      { source: "/work/window-depot-network-os", headers: noStore },
+      { source: "/api/work/window-depot-network-os/:path*", headers: noStore },
+    ];
+  },
   async redirects() {
     return [
       {
