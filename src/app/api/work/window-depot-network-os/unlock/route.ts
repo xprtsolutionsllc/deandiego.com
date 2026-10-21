@@ -9,6 +9,7 @@ import {
   signSession,
   type GateErrorCode,
 } from "@/lib/case-study-gate";
+import { unlockClientKey, unlockRateLimiter } from "@/lib/case-study-rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -38,15 +39,25 @@ async function readSubmittedPassword(req: NextRequest): Promise<string> {
   return typeof value === "string" ? value : "";
 }
 
-function failure(req: NextRequest, code: GateErrorCode, status: number) {
+function withRetryAfter(res: NextResponse, retryAfterSeconds?: number): NextResponse {
+  if (retryAfterSeconds && retryAfterSeconds > 0) {
+    res.headers.set("Retry-After", String(retryAfterSeconds));
+  }
+  return res;
+}
+
+function failure(req: NextRequest, code: GateErrorCode, status: number, retryAfterSeconds?: number) {
   if (wantsJson(req)) {
-    return NextResponse.json({ ok: false, error: gateErrorMessage(code) }, { status });
+    return withRetryAfter(
+      NextResponse.json({ ok: false, error: gateErrorMessage(code) }, { status }),
+      retryAfterSeconds,
+    );
   }
   const url = req.nextUrl.clone();
   url.pathname = CASE_STUDY_PATH;
   url.search = "";
   url.searchParams.set("error", code);
-  return NextResponse.redirect(url, 303);
+  return withRetryAfter(NextResponse.redirect(url, 303), retryAfterSeconds);
 }
 
 function success(req: NextRequest, token: string) {
@@ -65,6 +76,9 @@ function success(req: NextRequest, token: string) {
 }
 
 export async function POST(req: NextRequest) {
+  const limit = unlockRateLimiter.take(unlockClientKey(req.headers));
+  if (!limit.allowed) return failure(req, "limited", 429, limit.retryAfterSeconds);
+
   const expected = readCaseStudyPassword();
   const submitted = await readSubmittedPassword(req);
 

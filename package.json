@@ -8,14 +8,15 @@
     "start": "next start",
     "lint": "eslint",
     "test:services": "node --test tests/services-routes.test.mjs",
-    "test:case-study": "node --experimental-strip-types --test tests/case-study-gate.test.ts"
+    "test:case-study": "node --experimental-strip-types --test tests/case-study-gate.test.ts tests/unlock-rate-limit.test.ts tests/security-headers.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "next": "16.2.2",
+    "next": "16.4.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "sharp": "0.35.5",
     "sonner": "^2.0.7"
   },
   "devDependencies": {
@@ -24,7 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.2",
+    "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

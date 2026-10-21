@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
   CASE_STUDY_TTL_SECONDS,
+  gateErrorMessage,
   passwordsMatch,
   readCaseStudyPassword,
   signSession,
@@ -34,6 +35,11 @@ test("session cookie verifies only for the signing password and within TTL", () 
   const [version, exp, mac] = token.split(".");
   const tampered = `${version}.${Number(exp) + 1}.${mac}`;
   assert.equal(verifySession(tampered, PASSWORD, now + 1000), false);
+});
+
+test("rate-limit error is distinct from a wrong password", () => {
+  assert.equal(gateErrorMessage("limited"), "Too many attempts. Try again later.");
+  assert.notEqual(gateErrorMessage("limited"), gateErrorMessage("incorrect"));
 });
 
 test("blank env password stays locked", () => {

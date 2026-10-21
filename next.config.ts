@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
+import { caseStudyNoStoreHeaders, securityHeaders } from "./src/lib/security-headers";
 
 const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   async headers() {
-    const noStore = [
-      { key: "X-Robots-Tag", value: "noindex, nofollow" },
-      { key: "Cache-Control", value: "private, no-store" },
-    ];
+    const security = securityHeaders();
+    const noStore = caseStudyNoStoreHeaders();
     return [
+      { source: "/:path*", headers: security },
       { source: "/work/window-depot-network-os", headers: noStore },
       { source: "/api/work/window-depot-network-os/:path*", headers: noStore },
     ];
