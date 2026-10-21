@@ -8,7 +8,7 @@ export const CASE_STUDY_TTL_SECONDS = 60 * 60 * 24 * 14;
 
 const SESSION_VERSION = "v1";
 
-export type GateErrorCode = "incorrect" | "unavailable";
+export type GateErrorCode = "incorrect" | "unavailable" | "limited";
 
 export function readCaseStudyPassword(): string | null {
   const value = process.env.CASE_STUDY_WDUSA_PASSWORD;
@@ -69,6 +69,8 @@ export function gateErrorMessage(code: GateErrorCode): string {
       return "Incorrect password.";
     case "unavailable":
       return "This page is not available right now.";
+    case "limited":
+      return "Too many attempts. Try again later.";
     default: {
       const exhaustive: never = code;
       return exhaustive;

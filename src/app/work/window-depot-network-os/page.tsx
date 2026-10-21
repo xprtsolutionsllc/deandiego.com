@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 function parseGateError(value: string | string[] | undefined): GateErrorCode | null {
   const code = Array.isArray(value) ? value[0] : value;
-  if (code === "incorrect" || code === "unavailable") return code;
+  if (code === "incorrect" || code === "unavailable" || code === "limited") return code;
   return null;
 }
 
