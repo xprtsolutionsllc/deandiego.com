@@ -3,8 +3,17 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { HIRING_CTA, LOCATION, ROLE_TYPE_OPTIONS, ROLES_OPEN_TO } from "@/lib/site-profile";
 
-const TOPIC_PRESETS: Record<string, { inquiryType: string; projectType: string; budget: string; timeline: string; message: string }> = {
+const TOPIC_PRESETS: Record<string, { inquiryType: string; roleType?: string; projectType: string; budget: string; timeline: string; message: string }> = {
+  hiring: {
+    inquiryType: "hiring",
+    roleType: "forward-deployed-engineer",
+    projectType: "",
+    budget: "",
+    timeline: "",
+    message: "I'd like to talk about a role on your team.\n\nRole and title:\n\nTeam and location:\n\nWhat the person will own:\n\nLink to the posting:\n",
+  },
   "ai-sprint": {
     inquiryType: "project",
     projectType: "ai-sprint",
@@ -103,7 +112,12 @@ function ContactInner() {
   const [formData, setFormData] = useState(() => {
     const preset = TOPIC_PRESETS[topic];
     if (!preset) return EMPTY_FORM;
-    return { ...EMPTY_FORM, ...preset };
+    // Empty strings in a preset must not overwrite defaults, but an explicit
+    // role choice should stick.
+    const applied = Object.fromEntries(
+      Object.entries(preset).filter(([, value]) => value !== ""),
+    );
+    return { ...EMPTY_FORM, ...applied };
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -154,7 +168,7 @@ function ContactInner() {
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Let&apos;s talk.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl">Hiring for a role, or have a project in mind? Either way, tell me what you need and I&apos;ll get back to you within 24 hours.</p>
+          <p className="text-lg text-gray-400 max-w-2xl">Hiring for a customer-facing engineering role, or have a project in mind? Either way, tell me what you need and I&apos;ll get back to you within 24 hours.</p>
         </div>
       </section>
 
@@ -212,10 +226,9 @@ function ContactInner() {
                   <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Role type</label>
                   <select value={formData.roleType} onChange={(e) => setFormData({ ...formData, roleType: e.target.value })} className={selectClass}>
                     <option value="" className="bg-[#1A1A1A]">Select...</option>
-                    <option value="full-time" className="bg-[#1A1A1A]">Full-time</option>
-                    <option value="founding" className="bg-[#1A1A1A]">Founding engineer</option>
-                    <option value="contract" className="bg-[#1A1A1A]">Contract / engagement</option>
-                    <option value="not-sure" className="bg-[#1A1A1A]">Not sure yet</option>
+                    {ROLE_TYPE_OPTIONS.map((o) => (
+                      <option key={o.value} value={o.value} className="bg-[#1A1A1A]">{o.label}</option>
+                    ))}
                   </select>
                 </div>
               )}
@@ -282,11 +295,13 @@ function ContactInner() {
             <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
               <h3 className="font-semibold mb-4">Open to</h3>
               <ul className="space-y-2.5 text-sm text-gray-400">
-                <li className="flex gap-3"><span className="text-[#DC2626]">&bull;</span>Senior and founding engineer roles</li>
-                <li className="flex gap-3"><span className="text-[#DC2626]">&bull;</span>AI, full-stack, and integration work</li>
+                {ROLES_OPEN_TO.map((role) => (
+                  <li key={role} className="flex gap-3"><span className="text-[#DC2626]">&bull;</span>{role}</li>
+                ))}
                 <li className="flex gap-3"><span className="text-[#DC2626]">&bull;</span>Select freelance and consulting projects</li>
               </ul>
-              <p className="text-xs text-gray-600 mt-4">Remote-first, US-based, US citizen. Open to relocation for the right role.</p>
+              <p className="text-xs text-gray-600 mt-4">{HIRING_CTA}</p>
+              <p className="text-xs text-gray-600 mt-2">Based in {LOCATION}. Available for remote work nationwide.</p>
             </div>
 
             <div className="bg-white/[0.03] border border-white/5 rounded-xl p-6">
@@ -302,7 +317,7 @@ function ContactInner() {
               <h3 className="font-semibold mb-4">Prefer email?</h3>
               <a href="mailto:dean@goxprt.com" className="text-[#DC2626] text-sm hover:underline">dean@goxprt.com</a>
               <h3 className="font-semibold mb-2 mt-5">Based in</h3>
-              <p className="text-sm text-gray-400">Youngstown, Ohio</p>
+              <p className="text-sm text-gray-400">{LOCATION}</p>
               <p className="text-xs text-gray-600 mt-1">Available for remote work nationwide</p>
             </div>
           </div>

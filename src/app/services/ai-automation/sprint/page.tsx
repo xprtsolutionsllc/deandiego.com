@@ -92,22 +92,22 @@ const CASE_STUDIES = [
   {
     label: "Multi-location dealer network, corporate lead routing",
     problem:
-      "An ~86-location franchise was getting corporate-website leads but routing them by hand. Leads sat for hours, occasionally days, before reaching the right local dealer. Conversion dropped because of the lag.",
+      "A network of about 86 dealer locations was getting corporate-website leads, but someone had to decide which dealer owned each inquiry and forward it by hand.",
     build:
-      "Replaced the manual triage with an automated form-to-CRM pipeline: form submission → state-and-territory lookup → dealer matching → email + audit log → fallback to a designated owner if no match. Live across the entire network.",
+      "I built Network OS to replace the manual forwarding with ZIP-based territory routing: ZIP code to territory to dealer, then delivery into that dealer's CRM with an audit trail. I also wrote the onboarding guide staff use to run it.",
     outcome:
-      "Routing time dropped from hours to seconds. Every lead has an audit trail. The owner-designate fallback caught the 17 edge-case locations that had no clean match.",
-    timebox: "Phase 1 shipped in 2 weeks. Phases 2-3 followed as separate engagements.",
+      "Dealers receive corporate leads through their own CRM instead of a forwarded email. Every routing decision is recorded. Along the way I worked with a St. Louis dealer and its CRM vendor to restore missing phone numbers and map product interests to the dealer's follow-up rules.",
+    timebox: "Ongoing work since 2025, alongside service intake and dealer AI webchat.",
   },
   {
     label: "Inbound partner-request triage",
     problem:
-      "Internal team was triaging inbound partner service requests by hand and assigning them based on a submitter-selected category that was wrong about half the time. Wrong assignments stalled work for days.",
+      "Inbound service requests arrived as one long list, many with generic task names that told a coordinator nothing about the work inside.",
     build:
-      "Replaced the submitter-categorization with an AI agent that reads the request description, classifies it independently, and auto-assigns to the right team member. Human override one click away.",
+      "I connected Gravity Forms, n8n, and Asana into a service queue, then added AI classification that reads each request and gives it a descriptive title.",
     outcome:
-      "Mis-routes dropped sharply. Triage labor went to near-zero. The team lead now reviews exceptions instead of triaging from scratch.",
-    timebox: "Shipped in 10 days inside a single sprint.",
+      "Staff closed 615 service requests through the queue I built. AI gave 216 generically named tasks descriptive titles, so the queue could be triaged instead of reread.",
+    timebox: "Built alongside the dealer systems work since 2025.",
   },
 ];
 
