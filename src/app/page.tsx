@@ -1,34 +1,58 @@
 import Link from "next/link";
 import Image from "next/image";
+import {
+  EMPLOYMENT,
+  GITHUB_URL,
+  HIRING_CTA,
+  HEADLINE_LEAD,
+  HEADLINE_REST,
+  INTRO,
+  LINKEDIN_URL,
+  LOCATION,
+  RESUME_PATH,
+  WORK_PATHS,
+  XPRT_CLOUD_URL,
+} from "@/lib/site-profile";
 
 const FEATURED = [
   {
+    slug: "wdusa",
+    title: "Dealer Operations at Window Depot USA",
+    category: "Systems Integration",
+    description:
+      "Network OS replaced manual lead forwarding with ZIP-based territory routing for a network of about 86 dealer locations. When a St. Louis dealer's web leads arrived without phone numbers, I worked with the dealer and its CRM vendor to fix the field mapping and route each product interest to the right follow-up.",
+    outcome: "In Dallas, webchat booked an in-home estimate on the dealer's calendar.",
+    stack: "Next.js, TypeScript, PostgreSQL, n8n, Gravity Forms",
+    imagePath: "/images/wdusa-network.jpg",
+    imageAlt: "Illustrative map of about 86 Window Depot USA dealer locations",
+    href: WORK_PATHS.dealerOperations,
+  },
+  {
     slug: "xprt-cloud",
     title: "XPRT Cloud",
-    category: "Full-Stack AI SaaS",
-    description: "A drone-mapping SaaS built solo end to end: flight planning, AI photo analysis, GPU photogrammetry, 3D viewer, Stripe billing.",
-    stack: "FastAPI · Next.js · PostgreSQL · Modal H100",
+    category: "Product Engineering",
+    description:
+      "I fly commercial drone jobs under my FAA Part 107 certificate, and I built the platform that turns the imagery into shareable jobsite reports and 3D views. I own the Next.js interface, the Python API, Stripe billing, and the Docker deployment.",
+    outcome: "A running product used on my own flights.",
+    stack: "Next.js, Python API, Stripe, Docker",
+    imagePath: "/images/xprt-cloud-dashboard.png",
+    imageAlt: "XPRT Cloud dashboard showing jobs and reports",
+    href: WORK_PATHS.xprtCloud,
+  },
+];
+
+const BUILD = [
+  {
+    title: "Dealer-facing systems",
+    desc: "Lead intake, territory routing, CRM delivery, appointment booking, and service queues for a network of about 86 dealer locations. I work with dealers and their CRM vendors on the same problems in the same call.",
   },
   {
-    slug: "conversation-intelligence",
-    title: "Conversation Intelligence",
-    category: "AI Application",
-    description: "An AI system I designed: transcript ingestion to structured LLM analysis to retrieval-grounded coaching chat with citations.",
-    stack: "GPT-5 structured output · pgvector · React",
+    title: "Applied AI that reaches the work",
+    desc: "AI webchat that books estimates on a dealer's calendar, request classification that gives generically named service tasks real titles, and read-only analytics access for marketing staff.",
   },
   {
-    slug: "quantum-qaoa",
-    title: "Quantum QAOA on IBM Hardware",
-    category: "Research Experiment",
-    description: "Ran a selection problem as a QAOA circuit on a real 156-qubit IBM processor. Honest result, real finding about constraint encoding.",
-    stack: "Qiskit · IBM Heron r2 · QUBO/HUBO",
-  },
-  {
-    slug: "trade-bridge",
-    title: "TradingView to FreqTrade Bridge",
-    category: "Systems & Infra",
-    description: "A production webhook bridge translating strategy signals into exchange orders sub-second, with auth, allow-listing, and clean failure modes.",
-    stack: "Python · FastAPI · webhooks",
+    title: "Software I run end to end",
+    desc: "XPRT Cloud: a Next.js interface, a Python API, Stripe billing, and a Docker deployment. I built it and I am the person who operates it after launch.",
   },
 ];
 
@@ -36,42 +60,36 @@ const PERSON_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Dean Diego",
-  jobTitle: "Systems Integration Engineer",
+  jobTitle: "Forward Deployed Engineer",
+  description:
+    "Forward Deployed Engineer focused on systems integration and AI automation. Systems Integration Engineer at Window Depot USA, founder and sole engineer at XPRT Solutions LLC, and FAA Part 107 remote pilot.",
   url: "https://deandiego.com",
-  sameAs: [
-    "https://www.linkedin.com/in/dean-diego-92126a131/",
-    "https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g",
-    "https://goxprt.com",
-    "https://github.com/deand28",
+  address: { "@type": "PostalAddress", addressLocality: "Youngstown", addressRegion: "OH", addressCountry: "US" },
+  sameAs: [LINKEDIN_URL, GITHUB_URL, XPRT_CLOUD_URL],
+  worksFor: [
+    { "@type": "Organization", name: "Window Depot USA" },
+    { "@type": "Organization", name: "XPRT Solutions LLC" },
   ],
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    name: "Part 107 Remote Pilot Certificate",
+    credentialCategory: "certification",
+    recognizedBy: { "@type": "Organization", name: "Federal Aviation Administration" },
+  },
   knowsAbout: [
     "systems integration",
     "AI automation",
+    "CRM integration",
+    "lead routing",
+    "network operations",
     "Python",
     "TypeScript",
+    "Next.js",
+    "REST APIs and webhooks",
     "FAA Part 107",
     "aerial documentation",
   ],
 };
-
-const AI_APPROACH = [
-  {
-    title: "Model selection by task profile",
-    desc: "I route work across GPT-5, Claude, Gemini, Grok, and local Ollama by what each does best: vision, structured output, code review, multi-agent reasoning. Constant comparative evaluation of where each model is right and where it fails.",
-  },
-  {
-    title: "AI-gated code review",
-    desc: "I ship production code through an AI review gate, reading model output critically and correcting it before merge. On a strong day that is 11+ pull requests, all reviewed, all green.",
-  },
-  {
-    title: "Structured output, validated",
-    desc: "Strict JSON-schema output validated with Pydantic and Zod, so I catch and characterize exactly where a model violates a schema, omits a field, or hallucinates.",
-  },
-  {
-    title: "Prompts plus iteration loops",
-    desc: "Domain-specific prompt design with deliberate iteration is my normal workflow, codified into a persistent skills-and-memory system that carries context across sessions.",
-  },
-];
 
 export default function Home() {
   return (
@@ -88,21 +106,25 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block mb-6 px-4 py-1.5 border border-[#DC2626]/30 rounded-full text-xs text-[#DC2626] font-medium tracking-wide uppercase">
-              Software Engineer · AI Systems · FAA Part 107
+              Systems Integration | AI Automation | FAA Part 107
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-              Engineer. Pilot.
-              <br />
-              <span className="text-[#DC2626]">Builder.</span>
+            <h1 className="mb-6 tracking-tight">
+              <span className="block text-[2.6rem] leading-[1.05] sm:text-6xl md:text-7xl font-bold text-[#DC2626]">
+                {HEADLINE_LEAD}
+              </span>
+              <span className="mt-3 block text-xl sm:text-2xl md:text-3xl font-semibold text-gray-200 leading-snug">
+                {HEADLINE_REST}
+              </span>
             </h1>
-            <p className="text-lg text-gray-400 max-w-lg mb-8 leading-relaxed">
-              I build production software and the AI systems around it, end to end: full-stack applications, data pipelines, and multi-model LLM workflows. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.
+            <p className="text-lg text-gray-400 max-w-lg mb-4 leading-relaxed">{INTRO}</p>
+            <p className="text-sm text-gray-500 mb-8">
+              {LOCATION} &middot; Systems Integration Engineer at Window Depot USA &middot; Founder and sole engineer, XPRT Solutions LLC
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/work" className="bg-[#DC2626] text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-center">
                 See My Work
               </Link>
-              <a href="/dean-diego-resume.pdf" target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/5 transition text-center">
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/5 transition text-center">
                 Download Resume
               </a>
             </div>
@@ -122,25 +144,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Selected work */}
+      <section className="py-24 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl font-bold mb-2">Selected work.</h2>
+              <p className="text-gray-400 max-w-xl">Two systems I built and still operate: dealer operations for Window Depot USA and XPRT Cloud.</p>
+            </div>
+            <Link href="/work" className="text-sm text-gray-300 hover:text-white hover:underline hidden md:block whitespace-nowrap">View all &rarr;</Link>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {FEATURED.map((p) => (
+              <Link key={p.slug} href={p.href} className="group flex flex-col bg-white/[0.03] border border-white/5 rounded-xl overflow-hidden hover:border-[#DC2626]/30 transition">
+                <div className="aspect-[16/9] overflow-hidden border-b border-white/5">
+                  <Image
+                    src={p.imagePath}
+                    alt={p.imageAlt}
+                    width={1920}
+                    height={1080}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col flex-1 p-7">
+                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{p.category}</div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#DC2626] transition">{p.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.description}</p>
+                  <p className="text-sm text-gray-300 leading-relaxed mb-4 border-l-2 border-[#DC2626]/50 pl-3">{p.outcome}</p>
+                  <div className="mt-auto text-xs text-gray-500 font-mono">{p.stack}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* What I build */}
       <section className="py-24 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-10">What I build</h2>
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">What I build</h2>
+            <h3 className="text-3xl font-bold">Software that has to work for the people using it.</h3>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Full-stack applications",
-                desc: "End-to-end products: data model, backend, API, and UI. Python and TypeScript, FastAPI and Next.js, PostgreSQL and pgvector. Owned solo from schema to ship.",
-              },
-              {
-                title: "AI systems",
-                desc: "Multi-model LLM orchestration, retrieval-augmented generation, structured output, and evaluation. AI as a co-developer, used with intent, not as a gimmick.",
-              },
-              {
-                title: "Data pipelines and infra",
-                desc: "Event-driven integrations, webhooks, idempotency and dead-letter handling, GPU processing, and self-hosted infrastructure on Docker and Cloudflare.",
-              },
-            ].map((s) => (
+            {BUILD.map((s) => (
               <div key={s.title} className="bg-white/[0.03] border border-white/5 rounded-xl p-8">
                 <h3 className="font-semibold text-lg mb-3">{s.title}</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">{s.desc}</p>
@@ -150,42 +197,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured work */}
-      <section className="py-24 border-t border-white/5">
+      {/* Applied AI */}
+      <section id="ai-approach" className="py-24 border-t border-white/5 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-2">Selected work.</h2>
-              <p className="text-gray-400">Shipped systems, honest writeups.</p>
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">Applied AI</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">AI is only worth it when it reaches the work.</h3>
+            <p className="text-lg text-gray-400">
+              I deploy AI where a salesperson, a service coordinator, or a marketing lead has to act on it, then I stay close enough to a rollout to hear what happened after launch.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-7">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Dealer webchat</div>
+              <h4 className="font-semibold text-lg mb-3">Dallas: a booked estimate</h4>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                I deployed AI webchat for dealers from training content through launch and support. In Dallas, a homeowner used the chat to book an in-home estimate, and the appointment landed on the dealer&apos;s calendar. The dealer later confirmed the sale. The sale belongs to the dealer; my part was getting the conversation onto their calendar.
+              </p>
             </div>
-            <Link href="/work" className="text-sm text-[#DC2626] hover:underline hidden md:block">View all &rarr;</Link>
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-7">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Service intake</div>
+              <h4 className="font-semibold text-lg mb-3">615 requests through the queue</h4>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Staff closed 615 service requests through the queue I built. I added AI classification to give generically named tasks descriptive titles so the queue could be triaged instead of reread.
+              </p>
+            </div>
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-7">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Reporting</div>
+              <h4 className="font-semibold text-lg mb-3">Read-only ads reporting</h4>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Marketing staff can now query Google Ads in plain language without taking raw API access or write permissions somewhere they do not belong. I verified read-only reporting across 16 client accounts.
+              </p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {FEATURED.map((p) => (
-              <Link key={p.slug} href={`/work/${p.slug}`} className="group block bg-white/[0.03] border border-white/5 rounded-xl p-7 hover:border-[#DC2626]/30 transition">
-                <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{p.category}</div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-[#DC2626] transition">{p.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.description}</p>
-                <div className="text-xs text-gray-500 font-mono">{p.stack}</div>
-              </Link>
-            ))}
-          </div>
+          <p className="mt-8 text-sm text-gray-500">
+            More on how each rollout went: <Link href={WORK_PATHS.dealerOperations} className="text-[#DC2626] hover:underline">dealer operations case study</Link>.
+          </p>
         </div>
       </section>
 
-      {/* How I build with AI */}
-      <section id="ai-approach" className="py-24 border-t border-white/5 scroll-mt-20">
+      {/* Employment */}
+      <section className="py-24 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-12">
-            <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-3">How I build with AI</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">AI as a co-developer, used with intent.</h3>
-            <p className="text-lg text-gray-400">Evaluating and directing AI output is a core, daily discipline for me, not an afterthought. This is how I ship faster without shipping slop.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
-            {AI_APPROACH.map((a) => (
-              <div key={a.title} className="border-l-2 border-[#DC2626]/40 pl-5">
-                <h4 className="font-semibold text-lg mb-2">{a.title}</h4>
-                <p className="text-sm text-gray-400 leading-relaxed">{a.desc}</p>
+          <h2 className="text-sm text-[#DC2626] font-medium uppercase tracking-wider mb-10">Where I work</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {EMPLOYMENT.map((job) => (
+              <div key={job.company} className="bg-white/[0.03] border border-white/5 rounded-xl p-8">
+                <h3 className="font-semibold text-lg">{job.title}</h3>
+                <p className="text-sm text-gray-300 mt-1">{job.company}</p>
+                <p className="text-xs text-gray-500 mt-1">{job.period}</p>
+                <p className="text-sm text-gray-400 leading-relaxed mt-4">{job.note}</p>
               </div>
             ))}
           </div>
@@ -195,13 +256,14 @@ export default function Home() {
       {/* CTA band */}
       <section className="py-20 border-t border-white/5 bg-gradient-to-r from-[#DC2626]/5 to-transparent">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Open to senior and founding engineer roles.</h2>
-          <p className="text-gray-400 mb-8 max-w-lg mx-auto">Remote-first, US-based, US citizen. I respond within 24 hours.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Hiring for a customer-facing engineering role?</h2>
+          <p className="text-gray-300 mb-2 max-w-2xl mx-auto">{HIRING_CTA}</p>
+          <p className="text-sm text-gray-500 mb-8">{LOCATION}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
+            <Link href="/contact?topic=hiring" className="bg-[#DC2626] text-white px-10 py-4 rounded-lg font-semibold hover:bg-[#B91C1C] transition text-lg inline-block">
               Get in Touch
             </Link>
-            <a href="/dean-diego-resume.pdf" target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-10 py-4 rounded-lg font-semibold hover:bg-white/5 transition text-lg inline-block">
+            <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="border border-white/10 text-white px-10 py-4 rounded-lg font-semibold hover:bg-white/5 transition text-lg inline-block">
               Download Resume
             </a>
           </div>

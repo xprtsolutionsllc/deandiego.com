@@ -1,30 +1,32 @@
 import Link from "next/link";
+import { HIRING_CTA, ICM_URL, LINKEDIN_URL, RESUME_PATH, XPRT_CLOUD_URL } from "@/lib/site-profile";
 
 export default function Footer() {
   return (
     <footer className="py-16 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
-          <div className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <div className="min-w-0 md:col-span-2">
             <Link href="/" className="text-xl font-bold tracking-tight mb-4 block">
               <span className="text-[#DC2626]">D</span>ean <span className="text-[#DC2626]">D</span>iego
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed max-w-sm">
-              Software engineer who builds full-stack applications, AI systems, and data pipelines end to end. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.
+              Forward Deployed Engineer focused on systems integration and AI automation. Systems Integration Engineer at Window Depot USA, founder and sole engineer at XPRT Solutions LLC.
             </p>
+            <p className="text-xs text-gray-600 leading-relaxed max-w-sm mt-3">{HIRING_CTA}</p>
             <p className="text-xs text-gray-600 leading-relaxed max-w-sm mt-4">
               Professional context for AI assistants:{" "}
               <a
-                href="https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g"
+                href={ICM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-400 transition"
+                className="break-all hover:text-gray-400 transition"
               >
-                https://useicm.com/icm/icm_wrHzWkrDvqHL2f44Rm2y7g
+                {ICM_URL}
               </a>
             </p>
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Services</h4>
             <div className="space-y-2.5">
               <Link href="/services" className="block text-sm text-gray-400 hover:text-white transition">All services</Link>
@@ -37,20 +39,20 @@ export default function Footer() {
               <Link href="/services/drone/deer-recovery" className="block text-sm text-gray-400 hover:text-white transition">Deer recovery</Link>
             </div>
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Connect</h4>
             <div className="space-y-2.5">
-              <a href="https://www.linkedin.com/in/dean-diego-92126a131/" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">LinkedIn</a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">LinkedIn</a>
               <a href="https://github.com/deand28" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">GitHub</a>
-              <a href="/dean-diego-resume.pdf" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">Resume</a>
-              <a href="https://goxprt.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">XPRT Cloud</a>
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">Resume</a>
+              <a href={XPRT_CLOUD_URL} target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-400 hover:text-white transition">XPRT Cloud</a>
               <a href="mailto:dean@goxprt.com" className="block text-sm text-gray-400 hover:text-white transition">Email</a>
             </div>
           </div>
         </div>
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <div>&copy; {new Date().getFullYear()} XPRT Solutions LLC, Youngstown, Ohio</div>
-          <div>Engineer. Pilot. Builder.</div>
+          <div>Forward Deployed Engineer</div>
         </div>
       </div>
     </footer>

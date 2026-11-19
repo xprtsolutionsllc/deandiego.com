@@ -1,7 +1,51 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { CERTIFICATION, EDUCATION, EMPLOYMENT, LOCATION } from "@/lib/site-profile";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Systems Integration Engineer at Window Depot USA and founder of XPRT Solutions LLC. My path from dealer websites and training materials into systems integration, CRM work, and applied AI.",
+};
+
+const PROGRESSION = [
+  {
+    period: "2022 - 2025",
+    title: "Dealer websites and training materials",
+    body: "I started at Window Depot USA building dealer websites, lead dashboards, and the training materials dealers used to run them. The work was close to the people using it, which is where I learned that software a dealer team cannot operate is software that does not ship.",
+  },
+  {
+    period: "2025",
+    title: "Systems Integration Specialist, AI and Automation",
+    body: "The next step was connecting the pieces. I moved into integrations between web forms, n8n workflows, and the tools dealers already ran, then into AI automation as dealers asked for webchat, service triage, and reporting that reached their staff rather than another dashboard.",
+  },
+  {
+    period: "November 2025 - Present",
+    title: "Systems Integration Engineer",
+    body: "Today I build and support the systems a network of about 86 dealer locations depends on: Network OS for ZIP-based territory routing, native CRM integrations for Builder Prime and MarketSharp, dealer AI webchat, and the service queue staff use daily. Much of the most useful work happens on a call with a single dealer and their CRM vendor.",
+  },
+];
+
+const CREDENTIALS = [
+  { label: EMPLOYMENT[0].title, org: EMPLOYMENT[0].company, year: EMPLOYMENT[0].period },
+  { label: EMPLOYMENT[1].title, org: EMPLOYMENT[1].company, year: EMPLOYMENT[1].period },
+  { label: CERTIFICATION.label, org: CERTIFICATION.org, year: "Certified" },
+  { label: EDUCATION.label, org: EDUCATION.school, year: "In progress" },
+];
+
+const STACK = [
+  { category: "Software", items: ["Python", "TypeScript", "SQL", "FastAPI", "React", "Next.js", "PostgreSQL", "Docker", "GitHub Actions"] },
+  { category: "Integrations", items: ["REST APIs", "Webhooks", "n8n", "Zapier", "WordPress", "OpenAI API", "Vendasta", "Stripe"] },
+  { category: "Dealer systems", items: ["Gravity Forms", "Builder Prime", "MarketSharp", "Google Ads API", "Asana"] },
+  { category: "Aerial", items: ["FAA Part 107", "Aerial mapping", "3D reconstruction", "Site documentation"] },
+];
+
+const PRINCIPLES = [
+  { title: "Stay close to the rollout", quote: "Deploying is the middle of the job. I want to hear what the dealer, the coordinator, or the marketing lead says after launch, because that is where the real problems show up." },
+  { title: "Work with the vendors, not around them", quote: "A dealer's CRM vendor knows their product better than I do. I bring the integration and the data, and we fix the mapping together." },
+  { title: "Trace the failure to the data", quote: "A field labeled active can hold a date. A provider can say delivered while the message never arrives. I read the values before I trust the check that reads them." },
+];
 
 export default function AboutPage() {
   return (
@@ -10,7 +54,9 @@ export default function AboutPage() {
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About me.</h1>
-          <p className="text-lg text-gray-400 max-w-2xl">Systems engineer, founder, FAA-certified drone pilot, and the guy who built an entire SaaS platform in a weekend.</p>
+          <p className="text-lg text-gray-400 max-w-2xl">
+            Systems Integration Engineer at Window Depot USA, founder and sole engineer at XPRT Solutions LLC, and an FAA Part 107 commercial drone pilot based in {LOCATION}.
+          </p>
         </div>
       </section>
 
@@ -19,22 +65,25 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-5 gap-16">
           <div className="md:col-span-3 space-y-5 text-gray-400 leading-relaxed">
             <p className="text-white text-lg font-medium">
-              I use AI as a force multiplier to build production-grade systems at startup speed.
+              I work directly with dealers and their software vendors to fix how leads reach sales teams, how customers book appointments, and how staff handle service requests.
             </p>
             <p>
-              Based in Youngstown, Ohio, a city that knows what it means to rebuild. I take that same energy into everything I build. No fluff. No meetings that could have been emails. Just working software, deployed and live.
+              I did not start in integration. I started on the dealer side of a home improvement network, building websites, lead dashboards, and training materials for teams who had to use them the next morning. That path led into systems integration, and then into applied AI, because the same question kept coming up: does this actually reach the person who has to act on it?
             </p>
             <p>
-              By day, I&apos;m a Systems Integration Engineer at Window Depot USA, connecting 86 independent dealer locations through automated workflows, CRM pipelines, and marketing infrastructure. I&apos;ve built the systems that keep a national home improvement brand running at scale.
+              At Window Depot USA I am a Systems Integration Engineer for a network of about 86 dealer locations. I built Network OS to replace manual lead forwarding with ZIP-based territory routing, wrote the onboarding guide staff use, and built native integrations for the CRMs dealers already run. Some of my most useful work is on a call with one dealer: in St. Louis, web leads were arriving without phone numbers, so the dealer, its CRM vendor, and I tested submissions together until the mapping was right.
             </p>
             <p>
-              By night, I run XPRT Solutions, where I built a live drone-mapping SaaS platform solo: a full-stack app with AI photo analysis, GPU photogrammetry into 3D models, an interactive viewer, and Stripe billing. I flew the first autonomous survey mission myself and ran a multi-agent AI research cluster to pressure-test new product directions.
+              I also know what it feels like to be the person in the field. I fly commercial drone jobs, and after a flight I still owe the client a usable record of the site. As founder and sole engineer of XPRT Solutions, I built XPRT Cloud to turn aerial imagery into shareable jobsite reports and 3D views. I own the application from the Next.js interface and Python API through Stripe billing and the Docker deployment.
             </p>
             <p>
-              I&apos;m finishing my B.S. in General Education at Youngstown State University, an interdisciplinary degree that reflects how I think. I don&apos;t stay in one lane. I connect dots across software, hardware, business, aviation, and AI.
+              {EDUCATION.label} at {EDUCATION.school}. The degree is interdisciplinary by design, and it fits how I work: software, business operations, aviation, and AI tend to meet in the same problem.
             </p>
             <p>
-              The common thread: I build things that work, fast, and I ship them to the real world. Not wireframes. Not pitch decks. Working systems that people use today.
+              The common thread: I build things that reach production, get used by real staff and customers, and I am still the person who answers when a dealer says the lead did not arrive.
+            </p>
+            <p>
+              <Link href="/work" className="text-[#DC2626] hover:underline">See how the dealer operations work turned out</Link>
             </p>
           </div>
           <div className="md:col-span-2">
@@ -51,20 +100,34 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Progression */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-bold mb-2">How I got here.</h2>
+          <p className="text-gray-400 mb-10 max-w-2xl">From dealer websites and training materials into systems integration and customer-facing AI.</p>
+          <div className="space-y-4">
+            {PROGRESSION.map((step) => (
+              <div key={step.title} className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-10 border-l-2 border-[#DC2626]/40 pl-6 py-2">
+                <div className="text-sm text-[#DC2626] font-medium">{step.period}</div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed max-w-3xl">{step.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Credentials + Stack */}
       <section className="py-20 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
           <div>
             <h2 className="text-2xl font-bold mb-6">Credentials</h2>
             <div className="space-y-4">
-              {[
-                { label: "Founder & CEO", org: "XPRT Solutions LLC", year: "2022 to Present" },
-                { label: "Systems Integration Engineer", org: "Window Depot USA", year: "Current" },
-                { label: "FAA Part 107 Remote Pilot", org: "Federal Aviation Administration", year: "Certified" },
-                { label: "B.S. General Education", org: "Youngstown State University", year: "2027 (Expected)" },
-              ].map((c) => (
+              {CREDENTIALS.map((c) => (
                 <div key={c.label} className="bg-white/[0.03] border border-white/5 rounded-lg p-5">
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <div>
                       <h3 className="font-semibold text-sm">{c.label}</h3>
                       <p className="text-xs text-gray-500 mt-0.5">{c.org}</p>
@@ -78,12 +141,7 @@ export default function AboutPage() {
           <div>
             <h2 className="text-2xl font-bold mb-6">Tech stack</h2>
             <div className="space-y-6">
-              {[
-                { category: "Frontend", items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Three.js", "Leaflet"] },
-                { category: "Backend", items: ["Python", "FastAPI", "Node.js", "PostgreSQL", "Docker"] },
-                { category: "AI & Automation", items: ["Claude API", "Gemini", "n8n", "OpenDroneMap", "ArduPilot"] },
-                { category: "Infrastructure", items: ["Cloudflare R2/CDN", "Vercel", "Coolify", "Hostinger VPS", "GitHub Actions"] },
-              ].map((g) => (
+              {STACK.map((g) => (
                 <div key={g.category}>
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[#DC2626] mb-2">{g.category}</h3>
                   <div className="flex flex-wrap gap-2">
@@ -98,19 +156,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Philosophy */}
+      {/* Principles */}
       <section className="py-20 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-10">How I think.</h2>
+          <h2 className="text-2xl font-bold mb-10">How I work.</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: "Ship, don't plan", quote: "A working prototype beats a perfect pitch deck. Every time." },
-              { title: "AI is a weapon, not a crutch", quote: "I don't use AI to avoid thinking. I use it to think at 10x speed and build at 100x." },
-              { title: "Domain knowledge is the moat", quote: "The code is the easy part. Understanding what drone pilots actually need, that's the hard part. I do both." },
-            ].map((p) => (
+            {PRINCIPLES.map((p) => (
               <div key={p.title} className="border-l-2 border-[#DC2626]/50 pl-6">
                 <h3 className="font-semibold mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-400 italic">&ldquo;{p.quote}&rdquo;</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{p.quote}</p>
               </div>
             ))}
           </div>

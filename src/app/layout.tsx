@@ -4,19 +4,34 @@ import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import SiteChrome from "@/components/SiteChrome";
+import { LOCATION, SITE_URL } from "@/lib/site-profile";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const SITE_TITLE = "Dean Diego | Forward Deployed Engineer";
+const SITE_DESCRIPTION =
+  `Forward Deployed Engineer focused on systems integration and AI automation. I work with dealers and their software vendors at Window Depot USA and build XPRT Cloud. ${LOCATION}.`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://deandiego.com"),
-  title: { default: "Dean Diego · Software Engineer & AI Systems Builder", template: "%s | Dean Diego" },
-  description: "Software engineer who builds full-stack applications, AI systems, and data pipelines end to end. Founder of XPRT Solutions LLC. Open to senior and founding engineer roles.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: "%s | Dean Diego" },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Dean Diego · Software Engineer & AI Systems Builder",
-    description: "Full-stack applications, AI systems, and data pipelines, built end to end. Open to senior and founding engineer roles.",
-    url: "https://deandiego.com",
+    title: SITE_TITLE,
+    description:
+      "Forward Deployed Engineer focused on systems integration and AI automation. Dealer operations for about 86 Window Depot USA locations, and XPRT Cloud, a jobsite documentation platform I built and operate.",
+    url: SITE_URL,
+    siteName: "Dean Diego",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description:
+      "Forward Deployed Engineer focused on systems integration and AI automation. Dealer operations for about 86 Window Depot USA locations, and XPRT Cloud.",
   },
 };
 
